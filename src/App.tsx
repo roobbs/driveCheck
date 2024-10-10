@@ -1,10 +1,8 @@
-import "./App.css";
-
 function App() {
   return (
-    <>
-      <p>drive check app</p>
-    </>
+    <div className="bg-gray-800">
+      <p className="text-blue-700 font-bold">drive sd check app</p>
+    </div>
   );
 }
 
