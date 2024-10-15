@@ -5,7 +5,7 @@ export default function Summary() {
   const [open, setOpen] = useState(true);
 
   return (
-    <section className="rounded-lg bg-gray-900 p-3 py-6">
+    <section className="rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">Vehicle Summary</div>
         <div
