@@ -1,6 +1,7 @@
 import Summary from "./Summary";
 import Overview from "./Overview";
 import UpcomingReminders from "./UpcomingReminders";
+import MaintenanceHistory from "./MaintenanceHistory";
 
 export default function Content() {
   return (
@@ -8,6 +9,7 @@ export default function Content() {
       <Summary />
       <Overview />
       <UpcomingReminders />
+      <MaintenanceHistory />
     </main>
   );
 }
