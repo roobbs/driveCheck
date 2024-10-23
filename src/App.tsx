@@ -1,11 +1,9 @@
-import Content from "./components/Content";
-import Header from "./components/Header";
+import Router from "./Router";
 
 function App() {
   return (
     <>
-      <Header />
-      <Content />
+      <Router />
     </>
   );
 }
