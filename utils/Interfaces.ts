@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
 export interface User {
-  first_name: string;
-  last_name: string;
+  uid: string;
   email: string;
-  googleId: string;
+  displayName: string;
+  photoURL: string;
 }
 
 export interface AuthProviderProps {
