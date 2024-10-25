@@ -4,8 +4,30 @@ import { MdAttachMoney } from "react-icons/md";
 import { FaOilCan } from "react-icons/fa";
 import { LuMilestone } from "react-icons/lu";
 import { MdOutlineHistory } from "react-icons/md";
+import { signInWithGoogle } from "../../utils/database";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../components/auth/AuthContext";
 
 export default function Index() {
+  const navigate = useNavigate();
+  const { addUser } = useContext(AuthContext);
+
+  const signInUser = async () => {
+    try {
+      const user = await signInWithGoogle();
+      if (user) {
+        addUser(user);
+        console.log("logged user:")
+        console.log(user);
+        console.log("User signed in correctly");
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="relative">
       <header className="sticky top-0 flex items-center justify-between bg-blue-950 px-8 py-3">
@@ -13,7 +35,10 @@ export default function Index() {
           <IoCarSport size={40} /> Drive Check
         </div>
         <div className="text-lg font-bold uppercase">Maintenence tracker</div>
-        <div className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white">
+        <div
+          onClick={signInUser}
+          className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white"
+        >
           <FcGoogle size={25} /> Sign In With Google
         </div>
       </header>
