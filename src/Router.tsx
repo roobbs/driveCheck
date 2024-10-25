@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./components/auth/AuthContext";
 import Index from "./screens/Index";
 import Error from "./screens/Error";
+import PrivateRoute from "./components/PrivateRoute";
+import Home from "./screens/Home";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -11,14 +13,14 @@ export default function Router() {
       errorElement: <Error />,
     },
 
-    // {
-    //   path: "/profile",
-    //   element: <PrivateRoute />,
-    //   children: [
-    //     { index: true, element: <Profile /> },
-    //     { path: "createBusiness", element: <CreateBusiness /> },
-    //   ],
-    // },
+    {
+      path: "/home",
+      element: <PrivateRoute />,
+      children: [
+        { index: true, element: <Home /> },
+        // { path: "createBusiness", element: <CreateBusiness /> },
+      ],
+    },
   ]);
 
   return (
