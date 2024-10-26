@@ -4,13 +4,13 @@ import { User, AuthProviderProps } from "../../../utils/Interfaces";
 interface AuthContextType {
   user: User | null;
   addUser: (user: User) => void;
-  logOutUser: () => void;
+  deleteUserFromContext: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   addUser: () => {},
-  logOutUser: () => {},
+  deleteUserFromContext: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
@@ -20,7 +20,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setUser(user);
   };
 
-  const logOutUser = () => {
+  const deleteUserFromContext = () => {
     setUser(null);
   };
 
@@ -29,7 +29,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       value={{
         user,
         addUser,
-        logOutUser,
+        deleteUserFromContext,
       }}
     >
       {children}
