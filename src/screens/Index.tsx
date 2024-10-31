@@ -8,6 +8,8 @@ import { signInWithGoogle } from "../../utils/database";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
+import { db } from "../../config/firebase";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -17,14 +19,37 @@ export default function Index() {
     try {
       const user = await signInWithGoogle();
       if (user) {
-        addUser(user);
-        console.log("logged user:")
-        console.log(user);
-        console.log("User signed in correctly");
+        const uid = user.uid;
+
+        const userRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+
+          addUser({ ...user, ...userData });
+
+          console.log("logged user:", { ...user, ...userData });
+          console.log("User signed in correctly");
+        } else {
+          console.log("User not found in Firestore");
+
+          const newUser = {
+            email: user.email,
+            name: user.displayName,
+            profilePicture: user.photoURL,
+            joinedAt: new Date().toISOString(),
+            cars: [],
+          };
+
+          await setDoc(userRef, newUser);
+          console.log("New user created:", { ...user, ...newUser });
+          console.log("User signed in correctly");
+        }
         navigate("/home");
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error signing in:", error);
     }
   };
 
