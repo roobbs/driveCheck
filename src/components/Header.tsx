@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "./auth/AuthContext";
 import { signUserOut } from "../../utils/database";
 import { useNavigate } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
 
 function Header() {
   const [menu, setMenu] = useState(false);
@@ -40,11 +41,22 @@ function Header() {
             />
             <div className="text-lg">{user?.displayName}</div>
           </div>
+          <div className="flex items-center justify-around">
+            <div className="text-md font-bold">Language</div>
+            <div className="flex cursor-pointer rounded border border-blue-950">
+              <div className="bg-blue-800 px-1 text-white hover:bg-blue-950">
+                Esp
+              </div>
+              <div className="bg-slate-800 px-1 text-white hover:bg-blue-950">
+                Eng
+              </div>
+            </div>
+          </div>
           <div
             onClick={logOut}
-            className="cursor-pointer rounded-sm bg-blue-800 text-center font-bold text-white transition hover:bg-blue-950"
+            className="flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-blue-800 text-center font-bold text-white transition hover:bg-blue-950"
           >
-            Log Out
+            <MdLogout size={25} /> Log Out
           </div>
         </div>
       )}
