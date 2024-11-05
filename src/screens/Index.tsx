@@ -93,19 +93,29 @@ export default function Index() {
       <main className="flex flex-1 flex-col bg-slate-200 p-8 text-blue-950">
         <div className="flex items-center justify-around">
           <div className="text-xl font-bold text-blue-950">
-            <div className="text-2xl">Drive Check always helps your car</div>
+            <div className="text-2xl">
+              {language === "esp"
+                ? "Drive Check te ayuda con tu auto"
+                : "Drive Check always helps your car"}
+            </div>
             <ul className="flex flex-col gap-3 pt-4">
               <li className="flex items-center gap-4">
-                <LuMilestone size={35} className="text-amber-500" /> Mileage
-                Tracking
+                <LuMilestone size={35} className="text-amber-500" />{" "}
+                {language === "esp"
+                  ? "Seguimiento de kilometraje"
+                  : "Mileage Tracking"}
               </li>
               <li className="flex items-center gap-4">
-                <FaOilCan size={32} className="text-amber-500" /> Service
-                reminders
+                <FaOilCan size={32} className="text-amber-500" />{" "}
+                {language === "esp"
+                  ? "Recordatorios de Mantenimiento"
+                  : "Service reminders"}
               </li>
               <li className="flex items-center gap-4">
                 <MdOutlineHistory size={32} className="text-amber-500" />
-                Repair's history
+                {language === "esp"
+                  ? "Historial de reparaciones"
+                  : "Repair's history"}
               </li>
             </ul>
           </div>
@@ -116,30 +126,52 @@ export default function Index() {
           />
         </div>
         <div className="text-center text-xl font-bold text-blue-950">
-          APP FEATURES
+          {language === "esp" ? "CARACTERÍSTICAS DE LA APP" : "APP FEATURES"}
         </div>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <div className="flex items-center gap-2 border border-slate-400 p-2">
             <MdAttachMoney size={35} className="text-amber-500" />
             <div>
-              <div className="text-center font-bold">Control your expenses</div>
+              <div className="text-center font-bold">
+                {language === "esp"
+                  ? "Controla tus gastos"
+                  : "Control your expenses"}
+              </div>
               <div>
-                Know your vehicle's running costs and plan for your expenses.
+                {language === "esp"
+                  ? "Conoce los costos de uso de tu vehículo y planea tus gastos."
+                  : "Know your vehicle's running costs and plan for your expenses."}
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2 border border-slate-400 p-2">
             <FaOilCan size={35} className="text-amber-500" />
             <div>
-              <div className="text-center font-bold">Service reminders</div>
-              <div>Don’t lose sight of your maintenance and services.</div>
+              <div className="text-center font-bold">
+                {language === "esp"
+                  ? "Recordatorios de Mantenimiento"
+                  : "Service reminders"}
+              </div>
+              <div>
+                {language === "esp"
+                  ? "No pierdas de vista el mantenimiento y los servicios de tu auto."
+                  : "Don’t lose sight of your maintenance and services."}
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-2 border border-slate-400 p-2">
             <LuMilestone size={35} className="text-amber-500" />
             <div>
-              <div className="text-center font-bold">Mileage recording</div>
-              <div>Keep your mileage always tracked easily</div>
+              <div className="text-center font-bold">
+                {language === "esp"
+                  ? "Guarda tu kilometraje"
+                  : "Mileage recording"}
+              </div>
+              <div>
+                {language === "esp"
+                  ? "Lleva el seguimiento de tu kilometraje de forma fácil y constante."
+                  : "Keep your mileage always tracked easily."}
+              </div>
             </div>
           </div>
         </div>
