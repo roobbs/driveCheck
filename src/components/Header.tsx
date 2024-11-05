@@ -8,7 +8,8 @@ import { MdLogout } from "react-icons/md";
 
 function Header() {
   const [menu, setMenu] = useState(false);
-  const { user, deleteUserFromContext } = useContext(AuthContext);
+  const { user, deleteUserFromContext, language, changeLanguage } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const logOut = async () => {
@@ -42,12 +43,24 @@ function Header() {
             <div className="text-lg">{user?.displayName}</div>
           </div>
           <div className="flex items-center justify-around">
-            <div className="text-md font-bold">Language</div>
+            <div className="text-md font-bold">
+              {language === "esp" ? "Idioma" : "Language"}
+            </div>
             <div className="flex cursor-pointer rounded border border-blue-950">
-              <div className="bg-blue-800 px-1 text-white hover:bg-blue-950">
+              <div
+                className={`px-1 text-white hover:bg-blue-900 ${
+                  language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
+                }`}
+                onClick={() => changeLanguage("esp")}
+              >
                 Esp
               </div>
-              <div className="bg-slate-800 px-1 text-white hover:bg-blue-950">
+              <div
+                className={`px-1 text-white hover:bg-blue-900 ${
+                  language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
+                }`}
+                onClick={() => changeLanguage("eng")}
+              >
                 Eng
               </div>
             </div>
@@ -56,7 +69,8 @@ function Header() {
             onClick={logOut}
             className="flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-blue-800 text-center font-bold text-white transition hover:bg-blue-950"
           >
-            <MdLogout size={25} /> Log Out
+            <MdLogout size={25} />{" "}
+            {language === "esp" ? "Cerrar Sesión" : "Log Out"}
           </div>
         </div>
       )}
