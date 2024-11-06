@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../components/auth/AuthContext";
+import { useContext } from "react";
 
 function AuthError() {
   const navigate = useNavigate();
+  const { language } = useContext(AuthContext);
 
   const goHome = () => {
     navigate("/");
@@ -9,15 +12,21 @@ function AuthError() {
 
   return (
     <div className="background flex h-screen flex-col items-center justify-center bg-gray-800 text-white">
-      <h1 className="m-4 text-5xl font-bold">Error de autenticación</h1>
+      <h1 className="m-4 text-5xl font-bold">
+        {language === "esp" ? "Error de autenticación" : "Authentication error"}
+      </h1>
       <p className="mb-8 text-lg">
-        Lo sentimos, para ver esta página debes ingresar a tu cuenta
+        {language === "esp"
+          ? "Lo sentimos, para ver esta página debes ingresar a tu cuenta"
+          : "Sorry, you need to sign in to see this page"}
       </p>
       <button
         onClick={goHome}
         className="rounded-lg bg-green-500 px-4 py-2 font-semibold text-white transition duration-300 hover:bg-green-700"
       >
-        Volver a la página principal
+        {language === "esp"
+          ? "Volver a la página principal"
+          : "Go back to Home page"}
       </button>
       {/* <button
         onClick={() => {
