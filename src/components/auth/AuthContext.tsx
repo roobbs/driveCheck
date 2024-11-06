@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { User, AuthProviderProps } from "../../../utils/Interfaces";
 
 interface AuthContextType {
@@ -21,6 +21,13 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [language, setLanguage] = useState<string>("esp");
 
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
   const addUser = (user: User) => {
     setUser(user);
   };
@@ -32,8 +39,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const changeLanguage = (newLanguage: string) => {
     if (newLanguage === "esp") {
       setLanguage("esp");
+      localStorage.setItem("language", "esp");
     } else if (newLanguage === "eng") {
       setLanguage("eng");
+      localStorage.setItem("language", "eng");
     }
   };
 
