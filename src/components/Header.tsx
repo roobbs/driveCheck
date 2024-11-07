@@ -48,11 +48,11 @@ function Header() {
         <div className="absolute right-4 top-full flex w-1/3 flex-col gap-2 bg-white p-2 text-blue-800">
           <div className="flex items-center gap-2">
             <img
-              src={user?.photoURL}
+              src={user?.profilePicture}
               alt="user"
               className="h-12 rounded-full"
             />
-            <div className="text-lg">{user?.displayName}</div>
+            <div className="text-lg">{user?.name}</div>
           </div>
           <div className="flex items-center justify-around">
             <div className="text-md font-bold">
