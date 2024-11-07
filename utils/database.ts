@@ -1,6 +1,6 @@
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
-import { User } from "./Interfaces";
+import { GoogleUser } from "./Interfaces";
 
 export const signInWithGoogle = async () => {
   try {
@@ -9,7 +9,7 @@ export const signInWithGoogle = async () => {
     const user = result.user;
     console.log(user);
 
-    const mappedUser: User = {
+    const mappedUser: GoogleUser = {
       uid: user.uid,
       email: user.email || "",
       displayName: user.displayName || "",
