@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { db } from "../../config/firebase";
 import { getDoc, doc, setDoc } from "firebase/firestore";
+import { User } from "../../utils/Interfaces";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -27,19 +28,30 @@ export default function Index() {
         if (userDoc.exists()) {
           const userData = userDoc.data();
 
-          addUser({ ...user, ...userData });
+          addUser(userData as User);
 
           console.log("logged user:", { ...user, ...userData });
           console.log("User signed in correctly");
         } else {
-          console.log("User not found in Firestore");
+          console.log("User not found in Firestore, it will be created");
 
-          const newUser = {
+          const newUser: User = {
+            // uid: user.uid,
             email: user.email,
-            name: user.displayName,
-            profilePicture: user.photoURL,
+            name: user.displayName || "",
+            profilePicture: user.photoURL || "",
             joinedAt: new Date().toISOString(),
-            cars: [],
+            car: {
+              summary: {
+                model: "",
+                year: 0,
+                mileage: 0,
+                lastServiceDate: "",
+              },
+              overview: [],
+              upcomingReminders: [],
+              maintenanceHistory: [],
+            },
           };
 
           await setDoc(userRef, newUser);
