@@ -12,7 +12,7 @@ export interface GoogleUser {
 }
 
 export interface User {
-  // uid: string;
+  uid: string;
   email: string;
   name: string;
   profilePicture: string;

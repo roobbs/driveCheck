@@ -36,7 +36,7 @@ export default function Index() {
           console.log("User not found in Firestore, it will be created");
 
           const newUser: User = {
-            // uid: user.uid,
+            uid: user.uid,
             email: user.email,
             name: user.displayName || "",
             profilePicture: user.photoURL || "",
