@@ -60,20 +60,20 @@ function Header() {
             </div>
             <div className="flex cursor-pointer rounded border border-blue-950">
               <div
-                className={`px-1 text-white hover:bg-blue-900 ${
+                className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
                   language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
                 }`}
                 onClick={() => changeLanguage("esp")}
               >
-                Esp
+                Es <img src="../../assets/es_MX.png" alt="" />
               </div>
               <div
-                className={`px-1 text-white hover:bg-blue-900 ${
+                className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
                   language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
                 }`}
                 onClick={() => changeLanguage("eng")}
               >
-                Eng
+                En <img src="../../assets/en_US.png" alt="" />
               </div>
             </div>
           </div>
