@@ -1,28 +1,38 @@
 import { useState, useContext } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { AuthContext } from "./auth/AuthContext";
-// import { db } from "../../config/firebase";
+import { db } from "../../config/firebase";
+import { CiEdit } from "react-icons/ci";
 
 export default function Summary() {
-  const { language } = useContext(AuthContext);
+  const { language, user } = useContext(AuthContext);
 
   const [open, setOpen] = useState(true);
   const [editing, setEditing] = useState(false);
 
-  // Estado para cada campo editable
-  const [model, setModel] = useState("Ford Ranger");
-  const [year, setYear] = useState("1995");
-  const [mileage, setMileage] = useState("221,750");
-  const [lastService, setLastService] = useState("23 ago 2024");
+  const [model, setModel] = useState(user?.car.summary.model);
+  const [year, setYear] = useState(user?.car.summary.year);
+  const [mileage, setMileage] = useState(user?.car.summary.mileage);
+  const [lastService, setLastService] = useState(
+    user?.car.summary.lastServiceDate,
+  );
 
   const saveData = async () => {
     try {
-      // await db.collection("vehicles").doc("yourVehicleId").set({
-      //   model,
-      //   year,
-      //   mileage,
-      //   lastService,
-      // });
+      const uid = user?.uid;
+
+      await db
+        .collection("users")
+        .doc(uid)
+        .update({
+          "car.summary": {
+            model,
+            year: parseInt(year), // Asegúrate de que sea un número
+            mileage: parseInt(mileage), // Asegúrate de que sea un número
+            lastServiceDate: lastService,
+          },
+        });
+
       setEditing(false);
       alert(language === "esp" ? "Datos guardados" : "Data saved");
     } catch (error) {
@@ -35,7 +45,9 @@ export default function Summary() {
     <section className="rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">
-          {language === "esp" ? "Información" : "Vehicle Summary"}
+          {`${user?.car.summary.model}` || language === "esp"
+            ? "Información"
+            : "Vehicle Summary"}
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -46,81 +58,105 @@ export default function Summary() {
         </div>
       </div>
       {open && (
-        <div className="mt-4 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <span className="text-blue-400">
-              {language === "esp" ? "Modelo" : "Model"}
-            </span>
-            {editing ? (
-              <input
-                type="text"
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                className="rounded px-2 text-xl font-bold text-gray-800"
-              />
-            ) : (
-              <div className="text-xl font-bold">{model}</div>
-            )}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-blue-400">
-              {language === "esp" ? "Año" : "Year"}
-            </span>
-            {editing ? (
-              <input
-                type="text"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="rounded px-2 text-xl font-bold text-gray-800"
-              />
-            ) : (
-              <div className="text-xl font-bold">{year}</div>
-            )}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-blue-400">
-              {language === "esp" ? "Kilometraje" : "Mileage"}
-            </span>
-            {editing ? (
-              <input
-                type="text"
-                value={mileage}
-                onChange={(e) => setMileage(e.target.value)}
-                className="rounded px-2 text-xl font-bold text-gray-800"
-              />
-            ) : (
-              <div className="text-xl font-bold">{mileage}</div>
-            )}
-          </div>
-          <div className="flex items-center justify-between">
-            <span className="text-blue-400">
-              {language === "esp" ? "Último Servicio" : "Last Service"}
-            </span>
-            {editing ? (
-              <input
-                type="text"
-                value={lastService}
-                onChange={(e) => setLastService(e.target.value)}
-                className="rounded px-2 text-xl font-bold text-gray-800"
-              />
-            ) : (
-              <div className="text-xl font-bold">{lastService}</div>
-            )}
+        <div className="mt-5 flex flex-col">
+          <div className="flex flex-wrap justify-around gap-8">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-blue-400">
+                {language === "esp" ? "Modelo" : "Model"}
+              </span>
+              {editing ? (
+                <input
+                  type="text"
+                  value={model}
+                  onChange={(e) => setModel(e.target.value)}
+                  className="rounded px-2 py-1 text-xl font-bold"
+                />
+              ) : (
+                <div className="text-xl font-bold">
+                  {user?.car.summary.model ||
+                    (language === "esp" ? "No registrado" : "No record")}
+                </div>
+              )}
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-blue-400">
+                {language === "esp" ? "Año" : "Year"}
+              </span>
+              {editing ? (
+                <input
+                  type="number"
+                  max={2025}
+                  min={1980}
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  className="rounded px-2 py-1 text-xl font-bold"
+                />
+              ) : (
+                <div className="text-xl font-bold">
+                  {user?.car.summary.year ||
+                    (language === "esp" ? "No registrado" : "No record")}
+                </div>
+              )}
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-blue-400">
+                {language === "esp" ? "Kilometraje" : "Mileage"}
+              </span>
+              {editing ? (
+                <input
+                  type="number"
+                  value={mileage}
+                  onChange={(e) => setMileage(e.target.value)}
+                  className="rounded px-2 py-1 text-xl font-bold"
+                />
+              ) : (
+                <div className="text-xl font-bold">
+                  {user?.car.summary.mileage ||
+                    (language === "esp" ? "No registrado" : "No record")}
+                </div>
+              )}
+            </div>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-blue-400">
+                {language === "esp" ? "Último Servicio" : "Last Service"}
+              </span>
+              {editing ? (
+                <input
+                  type="date"
+                  value={lastService}
+                  onChange={(e) => setLastService(e.target.value)}
+                  className="rounded px-2 text-xl font-bold"
+                />
+              ) : (
+                <div className="text-xl font-bold">
+                  {user?.car.summary.lastServiceDate ||
+                    (language === "esp" ? "No registrado" : "No record")}
+                </div>
+              )}
+            </div>
           </div>
           <div className="mt-4 flex justify-end gap-4">
             {editing ? (
-              <button
-                onClick={saveData}
-                className="rounded bg-yellow-500 px-4 py-2 text-white"
-              >
-                {language === "esp" ? "Guardar" : "Save"}
-              </button>
+              <>
+                <button
+                  onClick={saveData}
+                  className="rounded bg-yellow-500 px-4 py-2 font-bold text-white"
+                >
+                  {language === "esp" ? "Guardar" : "Save"}
+                </button>
+                <button
+                  onClick={() => setEditing(false)}
+                  className="rounded bg-red-600 px-4 py-2 font-bold text-white"
+                >
+                  {language === "esp" ? "Cancelar" : "Cancel"}
+                </button>
+              </>
             ) : (
               <button
                 onClick={() => setEditing(true)}
-                className="rounded bg-blue-500 px-4 py-2 text-white"
+                className="flex items-center gap-1 rounded bg-blue-500 px-3 py-1 text-white"
               >
-                {language === "esp" ? "Editar" : "Edit"}
+                <CiEdit size={25} />
               </button>
             )}
           </div>
