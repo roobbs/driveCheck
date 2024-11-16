@@ -62,9 +62,11 @@ export default function Summary() {
     <section className="rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">
-          {`${user?.car.summary.model}` || language === "esp"
-            ? "Información"
-            : "Vehicle Summary"}
+          {open
+            ? language === "esp"
+              ? "Información"
+              : "Vehicle Summary"
+            : `${user?.car.summary.model} ${user?.car.summary.year}`}
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -105,7 +107,7 @@ export default function Summary() {
                   max={2025}
                   min={1980}
                   value={year}
-                  onChange={(e) => setYear(e.target.value)}
+                  onChange={(e) => setYear(Number(e.target.value))}
                   className="rounded px-2 py-1 text-xl font-bold"
                 />
               ) : (
@@ -123,7 +125,7 @@ export default function Summary() {
                 <input
                   type="number"
                   value={mileage}
-                  onChange={(e) => setMileage(e.target.value)}
+                  onChange={(e) => setMileage(Number(e.target.value))}
                   className="rounded px-2 py-1 text-xl font-bold"
                 />
               ) : (
