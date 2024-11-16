@@ -7,6 +7,7 @@ interface AuthContextType {
   deleteUserFromContext: () => void;
   language: string;
   changeLanguage: (language: string) => void;
+  updateUser: (updatedFields: Partial<User>) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -15,6 +16,7 @@ export const AuthContext = createContext<AuthContextType>({
   deleteUserFromContext: () => {},
   language: "eng",
   changeLanguage: () => {},
+  updateUser: () => {},
 });
 
 export default function AuthProvider({ children }: AuthProviderProps) {
@@ -36,6 +38,16 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     setUser(null);
   };
 
+  const updateUser = (updatedFields: Partial<User>) => {
+    setUser((prevUser) => {
+      if (!prevUser) return prevUser;
+      return {
+        ...prevUser,
+        ...updatedFields,
+      };
+    });
+  };
+
   const changeLanguage = (newLanguage: string) => {
     if (newLanguage === "esp") {
       setLanguage("esp");
@@ -52,6 +64,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         user,
         addUser,
         deleteUserFromContext,
+        updateUser,
         language,
         changeLanguage,
       }}

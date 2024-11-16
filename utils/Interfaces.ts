@@ -27,26 +27,26 @@ export interface Car {
   maintenanceHistory: MaintenanceRecord[];
 }
 
-interface Summary {
+export interface Summary {
   model: string;
   year: number;
   mileage: number;
   lastServiceDate: string;
 }
 
-interface OverviewEntry {
+export interface OverviewEntry {
   item: string;
   value: string;
   date: string;
 }
 
-interface Reminder {
+export interface Reminder {
   date: string;
   description: string;
   mileage?: number;
 }
 
-interface MaintenanceRecord {
+export interface MaintenanceRecord {
   date: string;
   description: string;
   cost: number;
