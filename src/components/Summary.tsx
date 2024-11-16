@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { AuthContext } from "./auth/AuthContext";
 import { db } from "../../config/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 import { CiEdit } from "react-icons/ci";
+import type { Summary } from "../../utils/Interfaces";
 
 export default function Summary() {
-  const { language, user } = useContext(AuthContext);
+  const { language, user, updateUser } = useContext(AuthContext);
 
   const [open, setOpen] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -19,19 +21,34 @@ export default function Summary() {
 
   const saveData = async () => {
     try {
-      const uid = user?.uid;
+      if (!user?.uid) {
+        alert(
+          language === "esp"
+            ? "Usuario no autenticado"
+            : "User not authenticated",
+        );
+        return;
+      }
 
-      await db
-        .collection("users")
-        .doc(uid)
-        .update({
-          "car.summary": {
-            model,
-            year: parseInt(year), // Asegúrate de que sea un número
-            mileage: parseInt(mileage), // Asegúrate de que sea un número
-            lastServiceDate: lastService,
-          },
-        });
+      const userDocRef = doc(db, "users", user.uid);
+
+      const updatedSummary: Summary = {
+        model: model || "",
+        year: year || 0,
+        mileage: mileage || 0,
+        lastServiceDate: lastService || "",
+      };
+
+      await updateDoc(userDocRef, {
+        "car.summary": updatedSummary,
+      });
+
+      updateUser({
+        car: {
+          ...user.car,
+          summary: updatedSummary,
+        },
+      });
 
       setEditing(false);
       alert(language === "esp" ? "Datos guardados" : "Data saved");
