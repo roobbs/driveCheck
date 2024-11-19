@@ -28,10 +28,10 @@ export interface Car {
 }
 
 export interface Summary {
+  brand: string;
   model: string;
   year: number;
   mileage: number;
-  lastServiceDate: string;
 }
 
 export interface OverviewEntry {
