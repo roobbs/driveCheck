@@ -15,9 +15,7 @@ export default function Summary() {
   const [model, setModel] = useState(user?.car.summary.model);
   const [year, setYear] = useState(user?.car.summary.year);
   const [mileage, setMileage] = useState(user?.car.summary.mileage);
-  const [lastService, setLastService] = useState(
-    user?.car.summary.lastServiceDate,
-  );
+  const [brand, setBrand] = useState(user?.car.summary.brand);
 
   const saveData = async () => {
     try {
@@ -33,10 +31,10 @@ export default function Summary() {
       const userDocRef = doc(db, "users", user.uid);
 
       const updatedSummary: Summary = {
+        brand: brand || "",
         model: model || "",
         year: year || 0,
         mileage: mileage || 0,
-        lastServiceDate: lastService || "",
       };
 
       await updateDoc(userDocRef, {
@@ -79,6 +77,24 @@ export default function Summary() {
       {open && (
         <div className="mt-5 flex flex-col">
           <div className="flex flex-wrap justify-around gap-8">
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-blue-400">
+                {language === "esp" ? "Marca" : "Brand"}
+              </span>
+              {editing ? (
+                <input
+                  type="text"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                  className="rounded px-2 text-xl font-bold"
+                />
+              ) : (
+                <div className="text-xl font-bold">
+                  {user?.car.summary.brand ||
+                    (language === "esp" ? "No registrado" : "No record")}
+                </div>
+              )}
+            </div>
             <div className="flex items-center justify-between gap-4">
               <span className="text-blue-400">
                 {language === "esp" ? "Modelo" : "Model"}
@@ -131,24 +147,6 @@ export default function Summary() {
               ) : (
                 <div className="text-xl font-bold">
                   {user?.car.summary.mileage ||
-                    (language === "esp" ? "No registrado" : "No record")}
-                </div>
-              )}
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-blue-400">
-                {language === "esp" ? "Último Servicio" : "Last Service"}
-              </span>
-              {editing ? (
-                <input
-                  type="date"
-                  value={lastService}
-                  onChange={(e) => setLastService(e.target.value)}
-                  className="rounded px-2 text-xl font-bold"
-                />
-              ) : (
-                <div className="text-xl font-bold">
-                  {user?.car.summary.lastServiceDate ||
                     (language === "esp" ? "No registrado" : "No record")}
                 </div>
               )}
