@@ -35,8 +35,8 @@ export interface Summary {
 }
 
 export interface OverviewEntry {
-  item: string;
-  value: string;
+  name: string;
+  level: string;
   date: string;
 }
 
