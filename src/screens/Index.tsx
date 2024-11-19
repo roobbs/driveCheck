@@ -43,12 +43,38 @@ export default function Index() {
             joinedAt: new Date().toISOString(),
             car: {
               summary: {
+                brand: "",
                 model: "",
                 year: 0,
                 mileage: 0,
-                lastServiceDate: "",
               },
-              overview: [],
+              overview: [
+                {
+                  name: "Oil Level",
+                  level: "",
+                  date: "",
+                },
+                {
+                  name: "Battery Level",
+                  level: "",
+                  date: "",
+                },
+                {
+                  name: "Tire Pressure",
+                  level: "",
+                  date: "",
+                },
+                {
+                  name: "Coolant Level",
+                  level: "",
+                  date: "",
+                },
+                {
+                  name: "Steering Wheel Oil Level",
+                  level: "",
+                  date: "",
+                },
+              ],
               upcomingReminders: [],
               maintenanceHistory: [],
             },
