@@ -7,11 +7,13 @@ import { AuthContext } from "./auth/AuthContext";
 import OverviewItem from "./OverviewItem";
 
 export default function Overview() {
-  const { user } = useContext(AuthContext);
+  const { user, language } = useContext(AuthContext);
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="font-bold text-yellow-300">Overview</div>
+      <div className="font-bold text-yellow-300">
+        {language === "esp" ? "Estado del vehículo" : "Overview"}
+      </div>
       <section className="grid grid-cols-2 justify-around gap-x-12 gap-y-6 rounded-xl bg-gray-900 p-4 py-6">
         {user?.car.overview.map((entry, index) => {
           let icon;
