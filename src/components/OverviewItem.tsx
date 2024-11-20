@@ -6,9 +6,15 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   return (
     <div className="flex items-center gap-4">
       <div className="text-blue-400">{name}</div>
-      <div className="text-lg font-bold">{level}</div>
+      {name.includes("Battery") && (
+        <div className="text-lg font-bold">{level ? level : "No Data"}</div>
+      )}
+      {name.includes("Tire") && (
+        <div className="text-lg font-bold">{level ? level : "No Data"}</div>
+      )}
+
       {children}
-      <div>{date}</div>
+      <div>{date ? date : "No checked"}</div>
     </div>
   );
 }
