@@ -17,6 +17,12 @@ export default function Summary() {
   const [mileage, setMileage] = useState(user?.car.summary.mileage);
   const [brand, setBrand] = useState(user?.car.summary.brand);
 
+  const title =
+    user?.car.summary.model && user.car.summary.year
+      ? `${user?.car.summary.model} ${user?.car.summary.year}`
+      : false;
+  const openTitle = language === "esp" ? "Información" : "Vehicle Summary";
+
   const saveData = async () => {
     try {
       if (!user?.uid) {
@@ -60,11 +66,7 @@ export default function Summary() {
     <section className="rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">
-          {open
-            ? language === "esp"
-              ? "Información"
-              : "Vehicle Summary"
-            : `${user?.car.summary.model} ${user?.car.summary.year}`}
+          {open && title ? title : openTitle}
         </div>
         <div
           onClick={() => setOpen(!open)}
