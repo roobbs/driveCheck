@@ -51,26 +51,31 @@ export default function Index() {
               overview: [
                 {
                   name: "Oil Level",
+                  nameEs: "Nivel de Aceite",
                   level: "",
                   date: "",
                 },
                 {
-                  name: "Battery Level",
+                  name: "Battery Voltage",
+                  nameEs: "Voltaje de Batería",
                   level: "",
                   date: "",
                 },
                 {
                   name: "Tire Pressure",
+                  nameEs: "Presión de Neumáticos",
                   level: "",
                   date: "",
                 },
                 {
                   name: "Coolant Level",
+                  nameEs: "Nivel de Anticongelante",
                   level: "",
                   date: "",
                 },
                 {
                   name: "Steering Wheel Oil Level",
+                  nameEs: "Nivel de Aceite de Volante",
                   level: "",
                   date: "",
                 },
