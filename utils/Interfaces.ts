@@ -36,6 +36,7 @@ export interface Summary {
 
 export interface OverviewEntry {
   name: string;
+  nameEs: string;
   level: string;
   date: string;
 }
