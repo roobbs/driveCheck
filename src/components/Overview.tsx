@@ -42,6 +42,7 @@ export default function Overview() {
             <OverviewItem
               key={index}
               name={entry.name}
+              nameEs={entry.nameEs}
               level={entry.level}
               date={entry.date}
             >
