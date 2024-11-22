@@ -14,14 +14,13 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
     <div className="flex items-center gap-4">
       <div className="text-blue-400">{language === "esp" ? nameEs : name}</div>
       {name.includes("Battery") && (
-        <div className="text-lg font-bold">{level ? level : data}</div>
+        <div className="text-lg italic">{level ? level : data}</div>
       )}
       {name.includes("Tire") && (
-        <div className="text-lg font-bold">{level ? level : data}</div>
+        <div className="text-lg italic">{level ? level : data}</div>
       )}
-
       {children}
-      <div>{date ? date : checked}</div>
+      <div className="font-bold">{date ? date : checked}</div>
     </div>
   );
 }
