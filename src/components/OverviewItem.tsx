@@ -5,6 +5,8 @@ import { AuthContext } from "./auth/AuthContext";
 import { CiEdit } from "react-icons/ci";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -60,6 +62,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
             type="number"
             min={1}
             max={40}
+            value={level}
             onChange={(e) => setEditedLEvel(e.target.value)}
             className="w-16 rounded border p-1 text-center"
           />
@@ -81,18 +84,16 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
 
       {isEditing ? (
         <>
-          <div
-            className="rounded border border-yellow-300"
+          <IoCheckmarkCircleOutline
+            size={25}
             onClick={handleSave}
-          >
-            Guardar
-          </div>
-          <div
-            className="rounded border border-yellow-300"
+            className="text-blue-500 hover:text-yellow-300"
+          />
+          <IoMdCloseCircleOutline
+            size={25}
             onClick={() => setIsEditing(false)}
-          >
-            cancel
-          </div>
+            className="text-red-700 hover:text-red-600"
+          />
         </>
       ) : (
         <div
