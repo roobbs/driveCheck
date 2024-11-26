@@ -1,8 +1,10 @@
 import type { OverviewEntry } from "../../utils/Interfaces";
-import { ChangeEvent, PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "./auth/AuthContext";
 import { CiEdit } from "react-icons/ci";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -13,25 +15,35 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const data = language === "esp" ? "Sin registro" : "No Data";
   const checked = language === "esp" ? "Sin revisar" : "No checked";
 
-  const handleDateChange = (e) => {
-    setEditedDate(e.target.value);
-  };
+  const handleSave = async () => {
+    try {
+      if (!user?.uid) {
+        alert(
+          language === "esp"
+            ? "Usuario no autenticado"
+            : "User not authenticated",
+        );
+        return;
+      }
 
-  const handleSave = () => {
-    if (!user) return;
+      const userDocRef = doc(db, "users", user.uid);
+      const updatedOverview = user.car.overview.map((entry) =>
+        entry.name === name ? { ...entry, date: editedDate } : entry,
+      );
 
-    const updatedOverview = user.car.overview.map((entry) =>
-      entry.name === name ? { ...entry, date: editedDate } : entry,
-    );
+      await updateDoc(userDocRef, { "car.overview": updatedOverview });
 
-    updateUser({
-      car: {
-        ...user.car,
-        overview: updatedOverview,
-      },
-    });
+      updateUser({
+        car: {
+          ...user.car,
+          overview: updatedOverview,
+        },
+      });
 
-    setIsEditing(false);
+      setIsEditing(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +53,8 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
         isEditing ? (
           <input
             type="number"
-            // value={10}
+            min={0}
+            max={20}
             // onChange={handleDateChange}
             className="w-16 rounded border p-1 text-center"
           />
@@ -55,8 +68,8 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
       ) : (
         <input
           type="date"
-          value={new Date().toJSON().slice(0, 10)}
-          onChange={handleDateChange}
+          value={date ? date : new Date().toJSON().slice(0, 10)}
+          onChange={(e) => setEditedDate(e.target.value)}
           className="rounded border p-1"
         />
       )}
@@ -65,13 +78,13 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
         <>
           <div
             className="rounded border border-yellow-300"
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={handleSave}
           >
             Guardar
           </div>
           <div
             className="rounded border border-yellow-300"
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={() => setIsEditing(false)}
           >
             cancel
           </div>
