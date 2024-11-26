@@ -67,7 +67,11 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
             className="w-16 rounded border p-1 text-center"
           />
         ) : (
-          <div className="text-lg italic">{level || data}</div>
+          <div className="text-lg italic">
+            {level || data}
+            {level && name.includes("Tire") ? " psi" : null}
+            {level && name.includes("Battery") ? " v" : null}
+          </div>
         )
       ) : null}
       {children}
