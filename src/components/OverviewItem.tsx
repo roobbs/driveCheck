@@ -10,7 +10,9 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);
   const { name, nameEs, level, date, children } = props;
   const [isEditing, setIsEditing] = useState(false);
-  const [editedDate, setEditedDate] = useState(date);
+  const [editedDate, setEditedDate] = useState(
+    date || new Date().toJSON().slice(0, 10),
+  );
 
   const data = language === "esp" ? "Sin registro" : "No Data";
   const checked = language === "esp" ? "Sin revisar" : "No checked";
@@ -68,7 +70,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
       ) : (
         <input
           type="date"
-          value={date ? date : new Date().toJSON().slice(0, 10)}
+          value={editedDate}
           onChange={(e) => setEditedDate(e.target.value)}
           className="rounded border p-1"
         />
