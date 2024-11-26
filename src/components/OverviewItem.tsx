@@ -13,6 +13,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const [editedDate, setEditedDate] = useState(
     date || new Date().toJSON().slice(0, 10),
   );
+  const [editedLevel, setEditedLEvel] = useState(level);
 
   const data = language === "esp" ? "Sin registro" : "No Data";
   const checked = language === "esp" ? "Sin revisar" : "No checked";
@@ -30,7 +31,9 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
 
       const userDocRef = doc(db, "users", user.uid);
       const updatedOverview = user.car.overview.map((entry) =>
-        entry.name === name ? { ...entry, date: editedDate } : entry,
+        entry.name === name
+          ? { ...entry, date: editedDate, level: editedLevel }
+          : entry,
       );
 
       await updateDoc(userDocRef, { "car.overview": updatedOverview });
@@ -55,9 +58,9 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
         isEditing ? (
           <input
             type="number"
-            min={0}
-            max={20}
-            // onChange={handleDateChange}
+            min={1}
+            max={40}
+            onChange={(e) => setEditedLEvel(e.target.value)}
             className="w-16 rounded border p-1 text-center"
           />
         ) : (
