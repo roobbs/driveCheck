@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import { AuthContext } from "./auth/AuthContext";
+import { db } from "../../config/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 interface AddRecordModalProps {
   closeModal: () => void;
 }
 
 export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
+  const { user, updateUser } = useContext(AuthContext);
   const [form, setForm] = useState({
     date: "",
     description: "",
@@ -20,6 +24,50 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
       [name]: name === "cost" || name === "mileage" ? Number(value) : value,
     });
     console.log(form);
+  };
+
+  const handleSubmit = async () => {
+    if (form.date && form.description && form.cost && form.mileage) {
+      try {
+        if (!user?.uid) {
+          alert(
+            // language === "esp"
+            //   ? "Usuario no autenticado"
+            //   : "User not authenticated",
+            "user not authenticated",
+          );
+          return;
+        }
+
+        const userDocRef = doc(db, "users", user?.uid);
+
+        const updatedHistoryArray = [
+          ...(user.car.maintenanceHistory || []),
+          form,
+        ];
+        console.log(updatedHistoryArray);
+
+        await updateDoc(userDocRef, {
+          "car.maintenanceHistory": updatedHistoryArray,
+        });
+
+        updateUser({
+          ...user,
+          car: {
+            ...user.car,
+            maintenanceHistory: updatedHistoryArray,
+          },
+        });
+
+        // 4. Cerrar el modal
+        closeModal();
+      } catch (error) {
+        console.error("Error saving maintenance record:", error);
+        alert("Failed to save the record. Please try again.");
+      }
+    } else {
+      alert("Please fill in all fields!");
+    }
   };
 
   return (
@@ -74,7 +122,7 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
           <div className="flex justify-between gap-4">
             <button
               type="button"
-              onClick={() => {}}
+              onClick={handleSubmit}
               className="w-full rounded bg-green-600 py-2 text-white hover:bg-green-500"
             >
               Save
