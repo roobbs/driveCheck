@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import { AuthContext } from "./auth/AuthContext";
 import { db } from "../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
@@ -23,7 +22,6 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
       ...form,
       [name]: name === "cost" || name === "mileage" ? Number(value) : value,
     });
-    console.log(form);
   };
 
   const handleSubmit = async () => {
@@ -45,7 +43,6 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
           ...(user.car.maintenanceHistory || []),
           form,
         ];
-        console.log(updatedHistoryArray);
 
         await updateDoc(userDocRef, {
           "car.maintenanceHistory": updatedHistoryArray,
@@ -59,8 +56,8 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
           },
         });
 
-        // 4. Cerrar el modal
         closeModal();
+        alert("data save correctly");
       } catch (error) {
         console.error("Error saving maintenance record:", error);
         alert("Failed to save the record. Please try again.");
@@ -73,13 +70,7 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-90">
       <div className="relative w-full max-w-lg rounded-lg bg-blue-950 p-6 shadow-lg">
-        <button
-          onClick={closeModal}
-          className="absolute right-3 top-3 text-red-700 hover:text-red-500"
-        >
-          <IoMdCloseCircleOutline size={30} />
-        </button>
-        <h2 className="mb-4 text-2xl font-bold text-yellow-300">
+        <h2 className="mb-4 text-center text-2xl font-bold text-yellow-300">
           Add New Maintenance Record
         </h2>
 
@@ -123,14 +114,14 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
             <button
               type="button"
               onClick={handleSubmit}
-              className="w-full rounded bg-green-600 py-2 text-white hover:bg-green-500"
+              className="w-full rounded bg-green-600 py-2 font-bold text-white hover:bg-green-500"
             >
               Save
             </button>
             <button
               type="button"
               onClick={closeModal}
-              className="w-full rounded bg-red-600 py-2 text-white hover:bg-red-500"
+              className="w-full rounded bg-red-600 py-2 font-bold text-white hover:bg-red-500"
             >
               Cancel
             </button>
