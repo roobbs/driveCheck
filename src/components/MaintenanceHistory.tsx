@@ -8,7 +8,6 @@ export default function MaintenanceHistory() {
   const [modalOpen, setModalOpen] = useState(false);
   const { user } = useContext(AuthContext);
   const records = user?.car.maintenanceHistory;
-  console.log(records);
 
   return (
     <div className="flex flex-col gap-4">
@@ -22,16 +21,17 @@ export default function MaintenanceHistory() {
             Add your first maintenance record here
           </div>
         )}
-        {records && records?.length > 0 && (
+        {records && records.length > 0 && (
           <>
-            {records?.map((rec) => {
+            {records?.map((rec, index) => (
               <MaintenanceRecord
+                key={index}
                 description={rec.description}
                 date={rec.date}
                 cost={rec.cost}
                 mileage={rec.mileage}
-              />;
-            })}
+              />
+            ))}
           </>
         )}
         {modalOpen && <AddRecordModal closeModal={() => setModalOpen(false)} />}
