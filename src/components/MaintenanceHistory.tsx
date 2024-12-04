@@ -12,7 +12,7 @@ export default function MaintenanceHistory() {
   return (
     <div className="flex flex-col gap-4">
       <div className="font-bold text-yellow-300">Maintenance History</div>
-      <section className="relative flex flex-col flex-wrap gap-x-12 gap-y-6 rounded-xl bg-gray-900 p-4 py-6">
+      <section className="flex flex-col flex-wrap gap-x-12 gap-y-6 rounded-xl bg-gray-900 p-4 py-6">
         {records?.length === 0 && (
           <div className="text-center text-xl font-bold">
             Add your first maintenance record here
