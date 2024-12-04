@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaCirclePlus } from "react-icons/fa6";
 import { AuthContext } from "./auth/AuthContext";
 import Reminder from "./Reminder";
+import AddReminderModal from "./AddReminderModal";
 
 export default function UpcomingReminders() {
+  const [modalOpen, setModalOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   const reminders = user?.car.upcomingReminders;
@@ -30,10 +32,13 @@ export default function UpcomingReminders() {
               ))}
             </>
           )}
-          <div>
+          <div onClick={() => setModalOpen(true)}>
             <FaCirclePlus size={45} className="text-yellow-300" />
           </div>
         </div>
+        {modalOpen && (
+          <AddReminderModal closeModal={() => setModalOpen(false)} />
+        )}
       </section>
     </div>
   );
