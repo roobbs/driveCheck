@@ -66,7 +66,7 @@ export default function Summary() {
     <section className="rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">
-          {open && title ? title : openTitle}
+          {open && title ? openTitle : title}
         </div>
         <div
           onClick={() => setOpen(!open)}
