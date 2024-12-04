@@ -1,7 +1,7 @@
 import { MdNotificationsNone } from "react-icons/md";
 import type { Reminder } from "../../utils/Interfaces";
 
-export default function Remider(props: Reminder) {
+export default function Reminder(props: Reminder) {
   const { date, description, mileage } = props;
 
   return (

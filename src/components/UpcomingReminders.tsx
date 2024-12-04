@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaCirclePlus } from "react-icons/fa6";
 import { AuthContext } from "./auth/AuthContext";
+import Reminder from "./Reminder";
 
 export default function UpcomingReminders() {
   const { user } = useContext(AuthContext);
@@ -16,8 +17,22 @@ export default function UpcomingReminders() {
             Add your first reminder here
           </div>
         )}
-        <div>
-          <FaCirclePlus size={45} className="text-yellow-300" />
+        <div className="flex items-center gap-6">
+          {reminders && reminders.length > 0 && (
+            <>
+              {reminders?.map((rec, index) => (
+                <Reminder
+                  key={index}
+                  description={rec.description}
+                  date={rec.date}
+                  mileage={rec.mileage}
+                />
+              ))}
+            </>
+          )}
+          <div>
+            <FaCirclePlus size={45} className="text-yellow-300" />
+          </div>
         </div>
       </section>
     </div>
