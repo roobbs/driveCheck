@@ -80,8 +80,8 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
             { name: "date", type: "date", placeholder: "Date" },
             { name: "cost", type: "number", placeholder: "Cost" },
             { name: "mileage", type: "number", placeholder: "Mileage" },
-          ].map((input) => (
-            <div className="relative mt-2">
+          ].map((input, index) => (
+            <div className="relative mt-2" key={index}>
               <label
                 htmlFor={input.name}
                 className="absolute bottom-full left-2 -translate-y-full pb-1 text-sm font-bold text-white opacity-0 transition-all"
