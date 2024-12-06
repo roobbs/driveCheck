@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface AddReminderModalProps {
   closeModal: () => void;
 }
@@ -5,8 +7,21 @@ interface AddReminderModalProps {
 export default function AddReminderModal({
   closeModal,
 }: AddReminderModalProps) {
+  const [form, setForm] = useState({
+    date: "",
+    description: "",
+    cost: 0,
+    mileage: 0,
+  });
+
   const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: name === "mileage" ? Number(value) : value,
+    });
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-90">
