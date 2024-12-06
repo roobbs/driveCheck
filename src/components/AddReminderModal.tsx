@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "./auth/AuthContext";
+import { db } from "../../config/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 interface AddReminderModalProps {
   closeModal: () => void;
@@ -7,6 +10,7 @@ interface AddReminderModalProps {
 export default function AddReminderModal({
   closeModal,
 }: AddReminderModalProps) {
+  const { user, updateUser } = useContext(AuthContext);
   const [form, setForm] = useState({
     date: "",
     description: "",
@@ -14,13 +18,55 @@ export default function AddReminderModal({
     mileage: 0,
   });
 
-  const handleSubmit = () => {};
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({
       ...form,
       [name]: name === "mileage" ? Number(value) : value,
     });
+  };
+
+  const handleSubmit = async () => {
+    if (form.date && form.description && form.mileage) {
+      try {
+        if (!user?.uid) {
+          alert(
+            // language === "esp"
+            //   ? "Usuario no autenticado"
+            //   : "User not authenticated",
+            "user not authenticated",
+          );
+          return;
+        }
+
+        const userDocRef = doc(db, "users", user?.uid);
+
+        const updatedRemindersArray = [
+          ...(user.car.upcomingReminders || []),
+          form,
+        ];
+
+        await updateDoc(userDocRef, {
+          "car.maintenanceHistory": updatedRemindersArray,
+        });
+
+        updateUser({
+          ...user,
+          car: {
+            ...user.car,
+            upcomingReminders: updatedRemindersArray,
+          },
+        });
+
+        closeModal();
+        alert("data save correctly");
+      } catch (error) {
+        console.error("Error saving maintenance record:", error);
+        alert("Failed to save the record. Please try again.");
+      }
+    } else {
+      alert("Please fill in all fields!");
+    }
   };
 
   return (
