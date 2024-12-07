@@ -47,7 +47,7 @@ export default function AddReminderModal({
         ];
 
         await updateDoc(userDocRef, {
-          "car.maintenanceHistory": updatedRemindersArray,
+          "car.upcomingReminders": updatedRemindersArray,
         });
 
         updateUser({
