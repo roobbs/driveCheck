@@ -6,6 +6,8 @@ import { doc, updateDoc } from "firebase/firestore";
 import { CiEdit } from "react-icons/ci";
 import type { Summary } from "../../utils/Interfaces";
 import EditableField from "./EditableField";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -64,7 +66,7 @@ export default function Summary() {
   };
 
   return (
-    <section className="rounded-xl bg-gray-900 p-3 py-6">
+    <section className="flex flex-col gap-2 rounded-xl bg-gray-900 p-3 py-6">
       <div className="flex justify-around">
         <div className="font-bold text-yellow-300">
           {open && title ? openTitle : title}
@@ -83,8 +85,8 @@ export default function Summary() {
         </div>
       </div>
       {open && (
-        <div className="mt-5 flex flex-col">
-          <div className="flex flex-wrap justify-around gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-around gap-8">
             <EditableField
               label={language === "esp" ? "Marca" : "Brand"}
               value={brand || ""}
@@ -115,29 +117,26 @@ export default function Summary() {
               onChange={(e) => setMileage(Number(e.target.value))}
             />
           </div>
-          <div className="mt-4 flex justify-end gap-4">
+          <div className="flex gap-2">
             {editing ? (
               <>
-                <button
+                <IoCheckmarkCircleOutline
+                  size={40}
                   onClick={saveData}
-                  className="rounded bg-yellow-500 px-4 py-2 font-bold text-white"
-                >
-                  {language === "esp" ? "Guardar" : "Save"}
-                </button>
-                <button
+                  className="text-blue-500 transition-transform hover:scale-110 hover:text-yellow-400 active:scale-95"
+                />
+                <IoMdCloseCircleOutline
+                  size={40}
                   onClick={() => setEditing(false)}
-                  className="rounded bg-red-600 px-4 py-2 font-bold text-white"
-                >
-                  {language === "esp" ? "Cancelar" : "Cancel"}
-                </button>
+                  className="text-red-700 transition-transform hover:scale-110 hover:text-red-500 active:scale-95"
+                />
               </>
             ) : (
-              <button
+              <CiEdit
+                size={30}
                 onClick={() => setEditing(true)}
-                className="flex items-center gap-1 rounded bg-blue-500 px-3 py-1 text-white"
-              >
-                <CiEdit size={25} />
-              </button>
+                className="rounded-lg border border-yellow-300 text-yellow-300 transition-transform hover:scale-105 hover:border-blue-500 hover:text-blue-400 active:scale-95"
+              />
             )}
           </div>
         </div>
