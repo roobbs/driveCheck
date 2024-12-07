@@ -5,6 +5,7 @@ import { db } from "../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { CiEdit } from "react-icons/ci";
 import type { Summary } from "../../utils/Interfaces";
+import EditableField from "./EditableField";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -69,90 +70,50 @@ export default function Summary() {
           {open && title ? openTitle : title}
         </div>
         <div
+          role="button"
+          aria-expanded={open}
           onClick={() => setOpen(!open)}
           className="transition hover:text-yellow-300"
         >
-          {!open && <IoIosArrowDropdown size={25} />}
-          {open && <IoIosArrowDropup size={25} />}
+          {open ? (
+            <IoIosArrowDropup size={25} />
+          ) : (
+            <IoIosArrowDropdown size={25} />
+          )}
         </div>
       </div>
       {open && (
         <div className="mt-5 flex flex-col">
           <div className="flex flex-wrap justify-around gap-8">
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-blue-400">
-                {language === "esp" ? "Marca" : "Brand"}
-              </span>
-              {editing ? (
-                <input
-                  type="text"
-                  value={brand}
-                  onChange={(e) => setBrand(e.target.value)}
-                  className="rounded px-2 text-xl font-bold"
-                />
-              ) : (
-                <div className="text-xl font-bold">
-                  {user?.car.summary.brand ||
-                    (language === "esp" ? "No registrado" : "No record")}
-                </div>
-              )}
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-blue-400">
-                {language === "esp" ? "Modelo" : "Model"}
-              </span>
-              {editing ? (
-                <input
-                  type="text"
-                  value={model}
-                  onChange={(e) => setModel(e.target.value)}
-                  className="rounded px-2 py-1 text-xl font-bold"
-                />
-              ) : (
-                <div className="text-xl font-bold">
-                  {user?.car.summary.model ||
-                    (language === "esp" ? "No registrado" : "No record")}
-                </div>
-              )}
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-blue-400">
-                {language === "esp" ? "Año" : "Year"}
-              </span>
-              {editing ? (
-                <input
-                  type="number"
-                  max={2025}
-                  min={1980}
-                  value={year}
-                  onChange={(e) => setYear(Number(e.target.value))}
-                  className="rounded px-2 py-1 text-xl font-bold"
-                />
-              ) : (
-                <div className="text-xl font-bold">
-                  {user?.car.summary.year ||
-                    (language === "esp" ? "No registrado" : "No record")}
-                </div>
-              )}
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-blue-400">
-                {language === "esp" ? "Kilometraje" : "Mileage"}
-              </span>
-              {editing ? (
-                <input
-                  type="number"
-                  value={mileage}
-                  onChange={(e) => setMileage(Number(e.target.value))}
-                  className="rounded px-2 py-1 text-xl font-bold"
-                />
-              ) : (
-                <div className="text-xl font-bold">
-                  {user?.car.summary.mileage ||
-                    (language === "esp" ? "No registrado" : "No record")}
-                </div>
-              )}
-            </div>
+            <EditableField
+              label={language === "esp" ? "Marca" : "Brand"}
+              value={brand || ""}
+              current={user ? user.car.summary.brand : ""}
+              isEditing={editing}
+              onChange={(e) => setBrand(e.target.value)}
+            />
+            <EditableField
+              label={language === "esp" ? "Modelo" : "Model"}
+              value={model || ""}
+              current={user ? user.car.summary.model : ""}
+              isEditing={editing}
+              onChange={(e) => setModel(e.target.value)}
+            />
+            <EditableField
+              label={language === "esp" ? "Año" : "Year"}
+              value={year || ""}
+              current={user ? user.car.summary.year : ""}
+              isEditing={editing}
+              onChange={(e) => setYear(Number(e.target.value))}
+              type="number"
+            />
+            <EditableField
+              label={language === "esp" ? "Kilometraje" : "Mileage"}
+              value={mileage || ""}
+              current={user ? user.car.summary.mileage : ""}
+              isEditing={editing}
+              onChange={(e) => setMileage(Number(e.target.value))}
+            />
           </div>
           <div className="mt-4 flex justify-end gap-4">
             {editing ? (
