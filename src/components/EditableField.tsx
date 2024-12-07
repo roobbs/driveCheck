@@ -15,17 +15,28 @@ export default function EditableField(props: EditableFieldProps) {
   const { language } = useContext(AuthContext);
 
   return (
-    <div className="flex items-center justify-between gap-4">
-      <span className="text-blue-400">{label}</span>
+    <div
+      className={`flex flex-col gap-1 rounded-md border p-2 transition-all ${
+        isEditing
+          ? "border-blue-500 bg-gray-800"
+          : "border-transparent bg-transparent"
+      }`}
+      style={{ minHeight: "3rem", width: "min-content" }}
+    >
+      <label className="text-sm font-medium text-gray-400">{label}</label>
+
       {isEditing ? (
         <input
           type={type}
           value={value}
           onChange={onChange}
-          className="rounded px-2 py-1 text-xl font-bold"
+          className="w-32 rounded border border-gray-600 bg-gray-900 px-3 py-1.5 text-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       ) : (
-        <div className="text-xl font-bold">
+        <div
+          className="text-2xl font-semibold text-white"
+          style={{ minHeight: "2.5rem", display: "flex", alignItems: "center" }}
+        >
           {current || (language === "esp" ? "No registrado" : "No record")}
         </div>
       )}
