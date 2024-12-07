@@ -35,7 +35,7 @@ export default function MaintenanceHistory() {
           <div className="" onClick={() => setModalOpen(true)}>
             <FaCirclePlus
               size={45}
-              className="text-yellow-300 hover:text-yellow-400"
+              className="text-yellow-300 transition hover:text-yellow-400"
             />
           </div>
         </div>

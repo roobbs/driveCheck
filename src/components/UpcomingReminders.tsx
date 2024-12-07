@@ -33,7 +33,10 @@ export default function UpcomingReminders() {
             </>
           )}
           <div onClick={() => setModalOpen(true)}>
-            <FaCirclePlus size={45} className="text-yellow-300" />
+            <FaCirclePlus
+              size={45}
+              className="text-yellow-300 transition hover:text-yellow-400"
+            />
           </div>
         </div>
         {modalOpen && (

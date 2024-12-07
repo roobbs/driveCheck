@@ -34,8 +34,8 @@ export default function EditableField(props: EditableFieldProps) {
         />
       ) : (
         <div
-          className="text-2xl font-semibold text-white"
-          style={{ minHeight: "2.5rem", display: "flex", alignItems: "center" }}
+          className="flex items-center text-2xl font-semibold text-blue-100"
+          style={{ minHeight: "2.5rem" }}
         >
           {current || (language === "esp" ? "No registrado" : "No record")}
         </div>

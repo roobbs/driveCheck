@@ -8,7 +8,7 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
     <div className="flex flex-col gap-4 rounded border border-gray-500 bg-gray-800 p-4 shadow-md">
       <div className="flex items-center gap-4">
         <MdOutlineMedicalServices size={35} className="text-yellow-300" />
-        <div className="text-lg font-bold text-white">{description}</div>
+        <div className="text-lg font-bold text-blue-100">{description}</div>
       </div>
 
       <div className="grid grid-cols-3 gap-6 text-center">

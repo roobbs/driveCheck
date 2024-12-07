@@ -57,14 +57,14 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
     <div
       className={`flex flex-col gap-2 rounded-lg border px-4 py-2 ${
         isEditing
-          ? "border-blue-500 bg-gray-800"
-          : "border-gray-500 bg-gray-900"
+          ? "border-blue-500 bg-slate-800"
+          : "border-gray-500 bg-gray-800"
       }`}
     >
       <div className="flex items-center justify-between">
         {children && <div>{children}</div>}
 
-        <div className="text-lg font-bold text-blue-400">
+        <div className="text-lg font-bold text-blue-100">
           {language === "esp" ? nameEs : name}
         </div>
         <div className="flex items-center gap-2">
