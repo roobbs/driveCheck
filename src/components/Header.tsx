@@ -25,7 +25,7 @@ function Header() {
         <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
           <IoCarSport size={40} /> Drive Check
         </div>
-        <div className="text-lg font-bold uppercase">
+        <div className="680p:hidden text-lg font-bold uppercase">
           {language === "esp"
             ? "Control de mantenimiento"
             : "Maintenance tracker"}
@@ -45,7 +45,7 @@ function Header() {
         )}
       </div>
       {menu && (
-        <div className="absolute right-4 top-full flex w-1/3 flex-col gap-2 bg-white p-2 text-blue-800">
+        <div className="900p:w-1/2 650p:w-full 650p:right-0 absolute right-4 top-full flex w-1/3 flex-col gap-2 bg-white p-2 text-blue-800">
           <div className="flex items-center gap-2">
             <img
               src={user?.profilePicture}
@@ -79,7 +79,7 @@ function Header() {
           </div>
           <div
             onClick={logOut}
-            className="flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-blue-800 text-center font-bold text-white transition hover:bg-blue-950"
+            className="650p:w-1/2 650p:self-center flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-blue-800 text-center font-bold text-white transition hover:bg-blue-950"
           >
             <MdLogout size={25} />{" "}
             {language === "esp" ? "Cerrar Sesión" : "Log Out"}
