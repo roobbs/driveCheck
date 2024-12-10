@@ -139,10 +139,10 @@ export default function Index() {
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col bg-slate-50 p-8 text-gray-800">
+      <main className="390p:p-4 flex flex-1 flex-col bg-slate-50 p-8 text-gray-800">
         <div className="flex flex-wrap items-center justify-around">
-          <div className="text-xl font-bold">
-            <div className="rounded-xl bg-blue-100 px-4 py-2 text-center text-2xl text-blue-600 shadow-md">
+          <div className="490p:text-lg text-xl font-bold">
+            <div className="490p:text-xl rounded-xl bg-blue-100 px-4 py-2 text-center text-2xl text-blue-600 shadow-md">
               {language === "esp"
                 ? "Drive Check te ayuda con tu auto"
                 : "Drive Check always helps your car"}
@@ -171,16 +171,16 @@ export default function Index() {
           <img
             src="../../assets/car1_transp-01.png"
             alt="car"
-            className="w-1/2"
+            className="750p:w-3/4 680p:w-11/12 w-2/5"
           />
         </div>
 
-        <div className="mt-12 border-b-2 border-blue-300 text-center text-2xl font-bold text-blue-600">
+        <div className="mt-12 border-b-2 border-blue-300 py-1 text-center text-2xl font-bold text-blue-600">
           {language === "esp" ? "Características de la App" : "App Features"}
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-6">
-          <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
+          <div className="390p:p-1 flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
             <MdAttachMoney size={35} className="text-yellow-400" />
             <div>
               <div className="text-center font-bold text-gray-800">
