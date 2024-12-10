@@ -98,45 +98,50 @@ export default function Index() {
 
   return (
     <div className="relative">
-      <header className="sticky top-0 flex items-center justify-between bg-blue-950 px-8 py-3">
-        <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
-          <IoCarSport size={40} /> Drive Check
-        </div>
-        <div className="text-lg font-bold uppercase">
-          {language === "esp"
-            ? "Control de mantenimiento"
-            : "Maintenance tracker"}
-        </div>
-        <div
-          onClick={signInUser}
-          className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white"
-        >
-          <FcGoogle size={25} />{" "}
-          {language === "esp" ? "Ingresar Con Google" : "Sign In With Google"}
-        </div>
-        <div className="flex cursor-pointer overflow-hidden rounded border border-blue-950">
-          <div
-            className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-              language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
-            }`}
-            onClick={() => changeLanguage("esp")}
-          >
-            Es <img src="../../assets/es_MX.png" alt="" />
+      <header className="sticky top-0 flex items-center justify-between gap-4 bg-blue-950 px-8 py-3">
+        <div className="1000p:flex-col-reverse flex items-center gap-2">
+          <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
+            <IoCarSport size={40} />{" "}
+            <span className="490p:hidden">Drive Check</span>
           </div>
+          <div className="580p:hidden text-lg font-bold uppercase">
+            {language === "esp"
+              ? "Control de mantenimiento"
+              : "Maintenance tracker"}
+          </div>
+        </div>
+        <div className="680p:flex-col-reverse 680p:gap-3 750p:gap-4 flex items-center gap-8">
           <div
-            className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-              language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
-            }`}
-            onClick={() => changeLanguage("eng")}
+            onClick={signInUser}
+            className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white"
           >
-            En <img src="../../assets/en_US.png" alt="" />
+            <FcGoogle size={25} />{" "}
+            {language === "esp" ? "Ingresar Con Google" : "Sign In With Google"}
+          </div>
+          <div className="flex cursor-pointer overflow-hidden rounded border border-blue-950">
+            <div
+              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+                language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
+              }`}
+              onClick={() => changeLanguage("esp")}
+            >
+              Es <img src="../../assets/es_MX.png" alt="" />
+            </div>
+            <div
+              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+                language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
+              }`}
+              onClick={() => changeLanguage("eng")}
+            >
+              En <img src="../../assets/en_US.png" alt="" />
+            </div>
           </div>
         </div>
       </header>
       <main className="flex flex-1 flex-col bg-slate-200 p-8 text-blue-950">
-        <div className="flex items-center justify-around">
+        <div className="flex flex-wrap items-center justify-around">
           <div className="text-xl font-bold text-blue-950">
-            <div className="text-2xl">
+            <div className="border-b-4 border-yellow-500 py-4 text-center text-2xl font-bold uppercase text-blue-950">
               {language === "esp"
                 ? "Drive Check te ayuda con tu auto"
                 : "Drive Check always helps your car"}
