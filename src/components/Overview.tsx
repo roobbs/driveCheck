@@ -14,7 +14,7 @@ export default function Overview() {
       <div className="font-bold text-yellow-300">
         {language === "esp" ? "Estado del vehículo" : "Overview"}
       </div>
-      <section className="grid grid-cols-2 justify-around gap-x-12 gap-y-6 rounded-xl bg-gray-900 p-4 py-6">
+      <section className="680p:grid-cols-1 grid grid-cols-2 justify-around gap-6 rounded-xl bg-gray-900 p-4 py-6">
         {user?.car.overview.map((entry, index) => {
           let icon;
           switch (entry.name.toLowerCase()) {

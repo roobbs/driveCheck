@@ -62,7 +62,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
       }`}
     >
       <div className="flex items-center justify-between">
-        {children && <div>{children}</div>}
+        {children && !isEditing && <div>{children}</div>}
 
         <div className="text-lg font-bold text-blue-100">
           {language === "esp" ? nameEs : name}
@@ -91,7 +91,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
         </div>
       </div>
 
-      <div className="flex items-center justify-around">
+      <div className="flex flex-wrap items-center justify-around gap-4">
         <div className="flex items-baseline gap-2">
           <div className="text-sm text-gray-400">
             {language === "esp" ? "Revisado el:" : "Checked on:"}
@@ -101,7 +101,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
               type="date"
               value={editedDate}
               onChange={(e) => setEditedDate(e.target.value)}
-              className="rounded border border-gray-600 bg-gray-900 p-1 text-blue-400"
+              className="w-32 rounded border border-gray-600 bg-gray-900 p-1 text-blue-400"
             />
           ) : (
             <div className="font-semibold text-blue-400">{date || checked}</div>
