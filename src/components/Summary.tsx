@@ -86,7 +86,7 @@ export default function Summary() {
       </div>
       {open && (
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <div className="flex flex-wrap items-center justify-around gap-8">
+          <div className="flex flex-wrap items-center justify-around gap-6">
             <EditableField
               label={language === "esp" ? "Marca" : "Brand"}
               value={brand || ""}
