@@ -11,11 +11,11 @@ function AuthError() {
   };
 
   return (
-    <div className="background flex h-screen flex-col items-center justify-center bg-gray-800 text-white">
-      <h1 className="m-4 text-5xl font-bold">
+    <div className="background flex h-screen flex-col items-center justify-center bg-gray-800 p-4 text-white">
+      <h1 className="372p:text-4xl m-4 text-center text-5xl font-bold">
         {language === "esp" ? "Error de autenticación" : "Authentication error"}
       </h1>
-      <p className="mb-8 text-lg">
+      <p className="mb-8 text-center text-lg">
         {language === "esp"
           ? "Lo sentimos, para ver esta página debes ingresar a tu cuenta"
           : "Sorry, you need to sign in to see this page"}
