@@ -1,8 +1,11 @@
 import { MdNotificationsNone } from "react-icons/md";
 import type { Reminder } from "../../utils/Interfaces";
+import { AuthContext } from "./auth/AuthContext";
+import { useContext } from "react";
 
 export default function Reminder(props: Reminder) {
   const { date, description, mileage } = props;
+  const { language } = useContext(AuthContext);
 
   return (
     <div className="flex flex-col items-center justify-between gap-4 rounded-lg border border-gray-500 bg-gray-800 p-4 shadow-md">
@@ -16,11 +19,14 @@ export default function Reminder(props: Reminder) {
 
       <div className="text-md flex flex-wrap justify-center gap-2 tracking-wider text-gray-400">
         <div>
-          Due at{" "}
-          <span className="font-semibold text-blue-400">{mileage} km</span>{" "}
+          {language === "esp" ? "Realizarse el " : "Scheduled for "}
+          <span className="text-xl font-semibold text-blue-400">{date}</span>
         </div>
         <div>
-          or on <span className="font-semibold text-blue-400">{date}</span>
+          {language === "esp" ? "o al llegar a " : "or at "}
+          <span className="text-xl font-semibold text-blue-400">
+            {mileage} km
+          </span>{" "}
         </div>
       </div>
     </div>
