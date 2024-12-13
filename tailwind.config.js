@@ -20,6 +20,8 @@ export default {
       md: { max: "767px" },
       // => @media (max-width: 767px) { ... }
 
+      "1620p": { max: "1620px" },
+      "1280p": { max: "1280px" },
       "1180p": { max: "1180px" },
       "1000p": { max: "1000px" },
       "900p": { max: "900px" },
