@@ -20,7 +20,7 @@ export default function MaintenanceHistory() {
           />
         </div>
       </div>
-      <section className="grid grid-cols-1 justify-center gap-6 rounded-xl bg-gray-900 p-4 py-6">
+      <section className="grid grid-cols-1 justify-center gap-4 rounded-xl bg-gray-900 p-4 py-6">
         {records?.length === 0 && (
           <div className="text-center text-xl font-bold">
             Add your first maintenance record here
