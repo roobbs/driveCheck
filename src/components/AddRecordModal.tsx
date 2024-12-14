@@ -8,7 +8,7 @@ interface AddRecordModalProps {
 }
 
 export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
-  const { user, updateUser } = useContext(AuthContext);
+  const { user, updateUser, language } = useContext(AuthContext);
   const [form, setForm] = useState({
     date: "",
     description: "",
@@ -71,29 +71,53 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-90">
       <div className="relative m-2 w-full max-w-lg rounded-lg border border-gray-500 bg-gray-900 p-6 shadow-lg">
         <h2 className="mb-4 text-center text-2xl font-bold text-yellow-300">
-          Add New Maintenance Record
+          {language === "esp"
+            ? "Agregar Nuevo Registro de Mantenimiento"
+            : "Add New Maintenance Record "}
         </h2>
 
         <form className="flex flex-col gap-5">
           {[
-            { name: "description", type: "text", placeholder: "Description" },
-            { name: "date", type: "date", placeholder: "Date" },
-            { name: "cost", type: "number", placeholder: "Cost" },
-            { name: "mileage", type: "number", placeholder: "Mileage" },
+            {
+              name: "description",
+              type: "text",
+              placeholder: "Description",
+              placeholderEs: "Descripción",
+            },
+            {
+              name: "date",
+              type: "date",
+              placeholder: "Date",
+              placeholderEs: "Fecha",
+            },
+            {
+              name: "cost",
+              type: "number",
+              placeholder: "Cost",
+              placeholderEs: "Costo",
+            },
+            {
+              name: "mileage",
+              type: "number",
+              placeholder: "Mileage",
+              placeholderEs: "Kilometraje",
+            },
           ].map((input, index) => (
             <div className="relative mt-2" key={index}>
               <label
                 htmlFor={input.name}
                 className="absolute bottom-full left-2 -translate-y-full pb-1 text-sm font-bold text-white opacity-0 transition-all"
               >
-                {input.placeholder}
+                {language === "esp" ? input.placeholderEs : input.placeholder}
               </label>
               <input
                 id={input.name}
                 name={input.name}
                 type={input.type}
                 onChange={handleChange}
-                placeholder={input.placeholder}
+                placeholder={
+                  language === "esp" ? input.placeholderEs : input.placeholder
+                }
                 className="w-full rounded border border-gray-700 bg-gray-800 p-2 text-white"
                 onFocus={(e) =>
                   e.target.previousElementSibling?.classList.add(
@@ -116,14 +140,14 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
               onClick={handleSubmit}
               className="w-full rounded bg-green-600 py-2 font-bold text-white hover:bg-green-500"
             >
-              Save
+              {language === "esp" ? "Guardar" : "Save"}
             </button>
             <button
               type="button"
               onClick={closeModal}
               className="w-full rounded bg-red-600 py-2 font-bold text-white hover:bg-red-500"
             >
-              Cancel
+              {language === "esp" ? "Cancelar" : "Cancel"}
             </button>
           </div>
         </form>
