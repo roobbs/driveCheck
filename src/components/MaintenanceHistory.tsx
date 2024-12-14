@@ -6,13 +6,17 @@ import AddRecordModal from "./AddRecordModal";
 
 export default function MaintenanceHistory() {
   const [modalOpen, setModalOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, language } = useContext(AuthContext);
   const records = user?.car.maintenanceHistory;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-12">
-        <div className="font-bold text-yellow-300">Maintenance History</div>
+        <div className="font-bold text-yellow-300">
+          {language === "esp"
+            ? "Historial de Mantenimiento"
+            : "Maintenance History"}
+        </div>
         <div className="" onClick={() => setModalOpen(true)}>
           <FaCirclePlus
             size={45}

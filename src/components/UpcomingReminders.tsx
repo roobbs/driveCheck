@@ -6,14 +6,16 @@ import AddReminderModal from "./AddReminderModal";
 
 export default function UpcomingReminders() {
   const [modalOpen, setModalOpen] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, language } = useContext(AuthContext);
 
   const reminders = user?.car.upcomingReminders;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-12">
-        <div className="font-bold text-yellow-300">Upcoming Reminders</div>
+        <div className="font-bold text-yellow-300">
+          {language === "esp" ? "Recordatorios" : "Upcoming Reminders"}
+        </div>
         <div onClick={() => setModalOpen(true)}>
           <FaCirclePlus
             size={45}
