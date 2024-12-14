@@ -1,0 +1,49 @@
+.expand {
+  /*element must use flex*/
+  animation: expand 0.4s ease-in-out;
+  transform-origin: top;
+  display: flex;
+}
+.vanish {
+  animation: hide 0.2s linear;
+  transform-origin: top;
+}
+.borderRounded {
+  animation: border 0.8s;
+}
+
+@keyframes expand {
+  0% {
+    transform: scaleY(0);
+  }
+
+  70% {
+    transform: scaleY(1.1);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hide {
+  0% {
+    display: flex;
+    transform: scaleY(1);
+  }
+
+  100% {
+    display: none;
+    transform: scaleY(0);
+  }
+}
+@keyframes border {
+  0% {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  100% {
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+  }
+}
