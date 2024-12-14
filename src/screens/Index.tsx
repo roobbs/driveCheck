@@ -99,18 +99,18 @@ export default function Index() {
   return (
     <div>
       <header className="sticky top-0 flex items-center justify-between gap-4 bg-blue-950 px-8 py-3">
-        <div className="1000p:flex-col-reverse flex items-center gap-2">
+        <div className="flex items-center gap-2 1000p:flex-col-reverse">
           <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
             <IoCarSport size={40} />{" "}
             <span className="490p:hidden">Drive Check</span>
           </div>
-          <div className="580p:hidden text-lg font-bold uppercase">
+          <div className="text-lg font-bold uppercase 580p:hidden">
             {language === "esp"
               ? "Control de mantenimiento"
               : "Maintenance tracker"}
           </div>
         </div>
-        <div className="680p:flex-col-reverse 680p:gap-3 750p:gap-4 flex items-center gap-8">
+        <div className="flex items-center gap-8 750p:gap-4 680p:flex-col-reverse 680p:gap-3">
           <div
             onClick={signInUser}
             className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white"
@@ -139,10 +139,10 @@ export default function Index() {
         </div>
       </header>
 
-      <main className="390p:p-4 flex flex-1 flex-col bg-slate-50 p-8 text-gray-800">
+      <main className="flex flex-1 flex-col bg-slate-50 p-8 text-gray-800 390p:p-4">
         <div className="flex flex-wrap items-center justify-around">
-          <div className="490p:text-lg text-xl font-bold">
-            <div className="490p:text-xl rounded-xl bg-blue-100 px-4 py-2 text-center text-2xl text-blue-600 shadow-md">
+          <div className="text-xl font-bold 490p:text-lg">
+            <div className="rounded-xl bg-blue-100 px-4 py-2 text-center text-2xl text-blue-600 shadow-md 490p:text-xl">
               {language === "esp"
                 ? "Drive Check te ayuda con tu auto"
                 : "Drive Check always helps your car"}
@@ -169,9 +169,9 @@ export default function Index() {
             </ul>
           </div>
           <img
-            src="../../assets/car1_transp-01.png"
+            src="../../assets/car1_transp-01.webp"
             alt="car"
-            className="750p:w-3/4 680p:w-11/12 w-2/5"
+            className="w-2/5 750p:w-3/4 680p:w-11/12"
           />
         </div>
 
@@ -180,7 +180,7 @@ export default function Index() {
         </div>
 
         <div className="mt-8 flex flex-wrap justify-center gap-6">
-          <div className="390p:p-1 flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
+          <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg 390p:p-1">
             <MdAttachMoney size={35} className="text-yellow-400" />
             <div>
               <div className="text-center font-bold text-gray-800">
