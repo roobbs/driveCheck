@@ -8,6 +8,7 @@ import type { Summary } from "../../utils/Interfaces";
 import EditableField from "./EditableField";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import "../styles/animations.css";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -66,8 +67,10 @@ export default function Summary() {
   };
 
   return (
-    <section className="flex flex-col gap-2 rounded-xl bg-gray-900 p-3 py-6">
-      <div className="flex justify-around">
+    <section className="flex flex-col gap-0">
+      <div
+        className={`flex justify-around rounded-b-xl rounded-t-xl bg-gray-900 p-3 ${open ? "rounded-b-none" : "borderRounded"}`}
+      >
         <div className="font-bold text-yellow-300">
           {open && title ? openTitle : title}
         </div>
@@ -75,7 +78,7 @@ export default function Summary() {
           role="button"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
-          className="transition hover:text-yellow-300"
+          className="text-yellow-300 transition hover:text-white"
         >
           {open ? (
             <IoIosArrowDropup size={25} />
@@ -84,63 +87,63 @@ export default function Summary() {
           )}
         </div>
       </div>
-      {open && (
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <div className="flex flex-wrap items-center justify-around gap-6">
-            <EditableField
-              label={language === "esp" ? "Marca" : "Brand"}
-              value={brand || ""}
-              current={user ? user.car.summary.brand : ""}
-              isEditing={editing}
-              onChange={(e) => setBrand(e.target.value)}
-            />
-            <EditableField
-              label={language === "esp" ? "Modelo" : "Model"}
-              value={model || ""}
-              current={user ? user.car.summary.model : ""}
-              isEditing={editing}
-              onChange={(e) => setModel(e.target.value)}
-            />
-            <EditableField
-              label={language === "esp" ? "Año" : "Year"}
-              value={year || ""}
-              current={user ? user.car.summary.year : ""}
-              isEditing={editing}
-              onChange={(e) => setYear(Number(e.target.value))}
-              type="number"
-            />
-            <EditableField
-              label={language === "esp" ? "Kilometraje" : "Mileage"}
-              value={mileage || ""}
-              current={user ? user.car.summary.mileage : ""}
-              isEditing={editing}
-              onChange={(e) => setMileage(Number(e.target.value))}
-            />
-          </div>
-          <div className="flex gap-2">
-            {editing ? (
-              <>
-                <IoCheckmarkCircleOutline
-                  size={40}
-                  onClick={saveData}
-                  className="text-blue-500 transition-transform hover:scale-110 hover:text-yellow-400 active:scale-95"
-                />
-                <IoMdCloseCircleOutline
-                  size={40}
-                  onClick={() => setEditing(false)}
-                  className="text-red-700 transition-transform hover:scale-110 hover:text-red-500 active:scale-95"
-                />
-              </>
-            ) : (
-              <CiEdit
-                size={30}
-                onClick={() => setEditing(true)}
-                className="rounded-lg border border-yellow-300 text-yellow-300 transition-transform hover:scale-105 hover:border-blue-500 hover:text-blue-400 active:scale-95"
-              />
-            )}
-          </div>
+      <div
+        className={`flex-wrap items-center justify-center gap-4 rounded-b-xl bg-gray-900 p-3 ${open ? "expand" : "vanish hidden"}`}
+      >
+        <div className="flex flex-wrap items-center justify-around gap-6">
+          <EditableField
+            label={language === "esp" ? "Marca" : "Brand"}
+            value={brand || ""}
+            current={user ? user.car.summary.brand : ""}
+            isEditing={editing}
+            onChange={(e) => setBrand(e.target.value)}
+          />
+          <EditableField
+            label={language === "esp" ? "Modelo" : "Model"}
+            value={model || ""}
+            current={user ? user.car.summary.model : ""}
+            isEditing={editing}
+            onChange={(e) => setModel(e.target.value)}
+          />
+          <EditableField
+            label={language === "esp" ? "Año" : "Year"}
+            value={year || ""}
+            current={user ? user.car.summary.year : ""}
+            isEditing={editing}
+            onChange={(e) => setYear(Number(e.target.value))}
+            type="number"
+          />
+          <EditableField
+            label={language === "esp" ? "Kilometraje" : "Mileage"}
+            value={mileage || ""}
+            current={user ? user.car.summary.mileage : ""}
+            isEditing={editing}
+            onChange={(e) => setMileage(Number(e.target.value))}
+          />
         </div>
-      )}
+        <div className="flex gap-2">
+          {editing ? (
+            <>
+              <IoCheckmarkCircleOutline
+                size={40}
+                onClick={saveData}
+                className="text-blue-500 transition-transform hover:scale-110 hover:text-yellow-400 active:scale-95"
+              />
+              <IoMdCloseCircleOutline
+                size={40}
+                onClick={() => setEditing(false)}
+                className="text-red-700 transition-transform hover:scale-110 hover:text-red-500 active:scale-95"
+              />
+            </>
+          ) : (
+            <CiEdit
+              size={30}
+              onClick={() => setEditing(true)}
+              className="rounded-lg border border-yellow-300 text-yellow-300 transition-transform hover:scale-105 hover:border-blue-500 hover:text-blue-400 active:scale-95"
+            />
+          )}
+        </div>
+      </div>
     </section>
   );
 }
