@@ -21,11 +21,11 @@ export default function Summary() {
   const [mileage, setMileage] = useState(user?.car.summary.mileage);
   const [brand, setBrand] = useState(user?.car.summary.brand);
 
+  const openTitle = language === "esp" ? "Información" : "Vehicle Summary";
   const title =
     user?.car.summary.model && user.car.summary.year
       ? `${user?.car.summary.model} ${user?.car.summary.year}`
-      : false;
-  const openTitle = language === "esp" ? "Información" : "Vehicle Summary";
+      : openTitle;
 
   const saveData = async () => {
     try {
@@ -72,7 +72,7 @@ export default function Summary() {
         className={`flex justify-around rounded-b-xl rounded-t-xl bg-gray-900 p-3 ${open ? "rounded-b-none" : "borderRounded"}`}
       >
         <div className="font-bold text-yellow-300">
-          {open && title ? openTitle : title}
+          {open ? openTitle : title}
         </div>
         <div
           role="button"
