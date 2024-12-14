@@ -70,8 +70,8 @@ export default function AddReminderModal({
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-slate-900 bg-opacity-90">
-      <div className="relative w-full max-w-lg rounded-lg bg-blue-950 p-6 shadow-lg">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-90">
+      <div className="relative m-2 w-full max-w-lg rounded-lg border border-gray-500 bg-gray-900 p-6 shadow-lg">
         <h2 className="mb-4 text-center text-2xl font-bold text-yellow-300">
           Add New Reminder
         </h2>
