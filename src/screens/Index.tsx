@@ -11,6 +11,7 @@ import { AuthContext } from "../components/auth/AuthContext";
 import { db } from "../../config/firebase";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { User } from "../../utils/Interfaces";
+import carImage from "../images/car1_transp-01.webp";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -169,8 +170,8 @@ export default function Index() {
             </ul>
           </div>
           <img
-            src="../../public/images/car1_transp-01.webp"
-            alt="car"
+            src={carImage}
+            alt="mainCarImage"
             className="w-2/5 750p:w-3/4 680p:w-11/12"
           />
         </div>
