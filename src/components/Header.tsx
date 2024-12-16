@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import "../styles/animations.css";
+import enImage from "../images/en_US.png";
+import esImage from "../images/es_MX.png";
 
 function Header() {
   const [menu, setMenu] = useState(false);
@@ -67,7 +69,7 @@ function Header() {
               }`}
               onClick={() => changeLanguage("esp")}
             >
-              Es <img src="../../assets/es_MX.png" alt="" />
+              Es <img src={esImage} alt="" />
             </div>
             <div
               className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
@@ -75,7 +77,7 @@ function Header() {
               }`}
               onClick={() => changeLanguage("eng")}
             >
-              En <img src="../../assets/en_US.png" alt="" />
+              En <img src={enImage} alt="" />
             </div>
           </div>
         </div>

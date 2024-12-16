@@ -12,6 +12,8 @@ import { db } from "../../config/firebase";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { User } from "../../utils/Interfaces";
 import carImage from "../images/car1_transp-01.webp";
+import enImage from "../images/en_US.png";
+import esImage from "../images/es_MX.png";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -126,7 +128,7 @@ export default function Index() {
               }`}
               onClick={() => changeLanguage("esp")}
             >
-              Es <img src="../../assets/es_MX.png" alt="" />
+              Es <img src={esImage} alt="" />
             </div>
             <div
               className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
@@ -134,7 +136,7 @@ export default function Index() {
               }`}
               onClick={() => changeLanguage("eng")}
             >
-              En <img src="../../assets/en_US.png" alt="" />
+              En <img src={enImage} alt="" />
             </div>
           </div>
         </div>
