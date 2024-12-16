@@ -169,7 +169,7 @@ export default function Index() {
             </ul>
           </div>
           <img
-            src="../../assets/car1_transp-01.webp"
+            src="../../public/images/car1_transp-01.webp"
             alt="car"
             className="w-2/5 750p:w-3/4 680p:w-11/12"
           />
