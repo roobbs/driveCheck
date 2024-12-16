@@ -27,7 +27,9 @@ export default function MaintenanceHistory() {
       <section className="grid grid-cols-1 justify-center gap-4 rounded-xl bg-gray-900 p-4 py-6">
         {records?.length === 0 && (
           <div className="text-center text-xl font-bold">
-            Add your first maintenance record here
+            {language === "esp"
+              ? "Agrega un registro de mantenimiento"
+              : "Add a maintenance record"}
           </div>
         )}
         {records && records.length > 0 && (

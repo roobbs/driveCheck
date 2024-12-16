@@ -26,7 +26,7 @@ export default function UpcomingReminders() {
       <section className="grid grid-cols-2 justify-around gap-6 rounded-xl bg-gray-900 p-4 py-6 680p:grid-cols-1">
         {reminders?.length === 0 && (
           <div className="text-center text-xl font-bold">
-            Add your first reminder here
+            {language === "esp" ? "Agrega un recordatorio" : "Add a reminder"}
           </div>
         )}
         {reminders && reminders.length > 0 && (
