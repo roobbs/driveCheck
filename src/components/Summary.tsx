@@ -69,7 +69,7 @@ export default function Summary() {
   return (
     <section className="flex flex-col gap-0">
       <div
-        className={`flex justify-around rounded-b-xl rounded-t-xl bg-gray-900 p-3 ${open ? "rounded-b-none" : "borderRounded rounded-t-xl"}`}
+        className={`flex justify-around rounded-t-xl bg-gray-900 p-3 ${open ? "rounded-b-none" : "borderRounded rounded-b-xl"}`}
       >
         <div className="font-bold text-yellow-300">
           {open ? openTitle : title}
