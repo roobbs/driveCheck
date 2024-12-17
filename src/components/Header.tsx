@@ -11,10 +11,12 @@ import enImage from "../images/en_US.png";
 import esImage from "../images/es_MX.png";
 import { FaLanguage } from "react-icons/fa6";
 import { TbRulerMeasure } from "react-icons/tb";
+import { db } from "../../config/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 function Header() {
   const [menu, setMenu] = useState(false);
-  const { user, deleteUserFromContext, language, changeLanguage } =
+  const { user, deleteUserFromContext, language, changeLanguage, updateUser } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -24,11 +26,42 @@ function Header() {
     navigate("/");
   };
 
-  const changeUnitOfMeasure = (newUnit: string) => {
-    if (newUnit === "km") {
-      // changeUserInFirebase
-    } else if (newUnit === "mi") {
-      // changeUserInFirebase
+  const changeUnitOfMeasure = async (newUnit: string) => {
+    try {
+      if (!user?.uid) {
+        alert(
+          language === "esp"
+            ? "Usuario no autenticado"
+            : "User not authenticated",
+        );
+        return;
+      }
+
+      if (newUnit === user.unitOfMeasure) {
+        return;
+      }
+
+      const userDocRef = doc(db, "users", user.uid);
+
+      await updateDoc(userDocRef, { unitOfMeasure: newUnit });
+
+      updateUser({
+        ...user,
+        unitOfMeasure: newUnit,
+      });
+
+      console.log(
+        language === "esp"
+          ? `Unidad de medida actualizada a ${newUnit === "km" ? "Kilometros" : "Millas"}`
+          : `Unit of measure updated to ${newUnit === "km" ? "Kilometers" : "Miles"}`,
+      );
+    } catch (error) {
+      console.error("Error al actualizar la unidad de medida:", error);
+      alert(
+        language === "esp"
+          ? "Ocurrió un error al actualizar la unidad de medida."
+          : "An error occurred while updating the unit of measure.",
+      );
     }
   };
 
@@ -66,25 +99,25 @@ function Header() {
             alt="user"
             className="h-11 rounded-full"
           />
-          <div className="text-lg">{user?.name}</div>
+          <div className="text-lg text-blue-950">{user?.name}</div>
         </div>
         <div className="flex items-center justify-center gap-8">
           <div className="text-md flex items-center gap-1 font-bold">
-            <FaLanguage size={25} />{" "}
+            <FaLanguage size={25} className="text-blue-950" />{" "}
             {language === "esp" ? "Idioma" : "Language"}
           </div>
           <div className="flex cursor-pointer rounded border border-blue-950">
             <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-                language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
+              className={`flex items-center gap-1 px-1 hover:bg-blue-900 hover:text-white ${
+                language === "esp" ? "bg-blue-950 font-bold text-white" : ""
               }`}
               onClick={() => changeLanguage("esp")}
             >
               Es <img src={esImage} alt="" />
             </div>
             <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-                language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
+              className={`flex items-center gap-1 px-1 hover:bg-blue-900 hover:text-white ${
+                language === "eng" ? "bg-blue-950 font-bold text-white" : ""
               }`}
               onClick={() => changeLanguage("eng")}
             >
@@ -94,25 +127,25 @@ function Header() {
         </div>
         <div className="flex items-center justify-center gap-8">
           <div className="text-md flex items-center gap-1 font-bold">
-            <TbRulerMeasure size={25} />
+            <TbRulerMeasure size={25} className="text-blue-950" />
             {language === "esp" ? "Unidad de medida" : "Unit of measure"}
           </div>
           <div className="flex cursor-pointer rounded border border-blue-950">
             <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+              className={`flex items-center gap-1 px-1 transition-colors hover:bg-blue-900 hover:text-white ${
                 user?.unitOfMeasure === "km"
-                  ? "bg-blue-800 font-bold"
-                  : "bg-slate-600"
+                  ? "bg-blue-950 font-bold text-white"
+                  : ""
               }`}
               onClick={() => changeUnitOfMeasure("km")}
             >
               Km
             </div>
             <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+              className={`flex items-center gap-1 px-1 transition-colors hover:bg-blue-900 hover:text-white ${
                 user?.unitOfMeasure === "mi"
-                  ? "bg-blue-800 font-bold"
-                  : "bg-slate-600"
+                  ? "bg-blue-950 font-bold text-white"
+                  : ""
               }`}
               onClick={() => changeUnitOfMeasure("mi")}
             >
