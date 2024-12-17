@@ -18,6 +18,7 @@ export interface User {
   profilePicture: string;
   joinedAt: string;
   car: Car;
+  unitOfMeasure: string;
 }
 
 export interface Car {
