@@ -9,6 +9,8 @@ import { IoClose } from "react-icons/io5";
 import "../styles/animations.css";
 import enImage from "../images/en_US.png";
 import esImage from "../images/es_MX.png";
+import { FaLanguage } from "react-icons/fa6";
+import { TbRulerMeasure } from "react-icons/tb";
 
 function Header() {
   const [menu, setMenu] = useState(false);
@@ -67,7 +69,8 @@ function Header() {
           <div className="text-lg">{user?.name}</div>
         </div>
         <div className="flex items-center justify-center gap-8">
-          <div className="text-md font-bold">
+          <div className="text-md flex items-center gap-1 font-bold">
+            <FaLanguage size={25} />{" "}
             {language === "esp" ? "Idioma" : "Language"}
           </div>
           <div className="flex cursor-pointer rounded border border-blue-950">
@@ -90,7 +93,8 @@ function Header() {
           </div>
         </div>
         <div className="flex items-center justify-center gap-8">
-          <div className="text-md font-bold">
+          <div className="text-md flex items-center gap-1 font-bold">
+            <TbRulerMeasure size={25} />
             {language === "esp" ? "Unidad de medida" : "Unit of measure"}
           </div>
           <div className="flex cursor-pointer rounded border border-blue-950">
