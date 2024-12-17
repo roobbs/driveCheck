@@ -44,6 +44,7 @@ export default function Index() {
             name: user.displayName || "",
             profilePicture: user.photoURL || "",
             joinedAt: new Date().toISOString(),
+            unitOfMeasure: language === "esp" ? "km" : "mi",
             car: {
               summary: {
                 brand: "",
