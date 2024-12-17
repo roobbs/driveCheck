@@ -7,6 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+import dateFormat from "../../utils/formatDate";
 
 export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -104,7 +105,9 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
               className="w-32 rounded border border-gray-600 bg-gray-900 p-1 text-blue-400"
             />
           ) : (
-            <div className="font-semibold text-blue-400">{date || checked}</div>
+            <div className="font-semibold text-blue-400">
+              {date ? dateFormat(date, language) : checked}
+            </div>
           )}
         </div>
 
