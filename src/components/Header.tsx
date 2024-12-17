@@ -22,6 +22,14 @@ function Header() {
     navigate("/");
   };
 
+  const changeUnitOfMeasure = (newUnit: string) => {
+    if (newUnit === "km") {
+      // changeUserInFirebase
+    } else if (newUnit === "mi") {
+      // changeUserInFirebase
+    }
+  };
+
   return (
     <header className="relative flex items-center justify-between bg-blue-950 px-8 py-3">
       <div className="flex items-center gap-4">
@@ -78,6 +86,33 @@ function Header() {
               onClick={() => changeLanguage("eng")}
             >
               En <img src={enImage} alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-center gap-8">
+          <div className="text-md font-bold">
+            {language === "esp" ? "Unidad de medida" : "Unit of measure"}
+          </div>
+          <div className="flex cursor-pointer rounded border border-blue-950">
+            <div
+              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+                user?.unitOfMeasure === "km"
+                  ? "bg-blue-800 font-bold"
+                  : "bg-slate-600"
+              }`}
+              onClick={() => changeUnitOfMeasure("km")}
+            >
+              Km
+            </div>
+            <div
+              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
+                user?.unitOfMeasure === "mi"
+                  ? "bg-blue-800 font-bold"
+                  : "bg-slate-600"
+              }`}
+              onClick={() => changeUnitOfMeasure("mi")}
+            >
+              Mi
             </div>
           </div>
         </div>
