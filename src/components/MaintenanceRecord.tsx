@@ -2,6 +2,7 @@ import { MdOutlineMedicalServices } from "react-icons/md";
 import type { MaintenanceRecord } from "../../utils/Interfaces";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
+import formatDate from "../../utils/formatDate";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
   const { date, description, cost, mileage } = props;
@@ -19,7 +20,9 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
           <div className="text-sm font-bold text-gray-400">
             {language === "esp" ? "Fecha" : "Date"}
           </div>
-          <div className="font-semibold text-blue-400">{date}</div>
+          <div className="font-semibold text-blue-400">
+            {formatDate(date, language)}
+          </div>
         </div>
 
         <div>
