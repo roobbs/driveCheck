@@ -2,6 +2,7 @@ import { MdNotificationsNone } from "react-icons/md";
 import type { Reminder } from "../../utils/Interfaces";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
+import formatDate from "../../utils/formatDate";
 
 export default function Reminder(props: Reminder) {
   const { date, description, mileage } = props;
@@ -20,7 +21,9 @@ export default function Reminder(props: Reminder) {
       <div className="text-md flex w-full flex-wrap justify-around gap-1 tracking-wider text-gray-400">
         <div>
           {language === "esp" ? "Realizarse el " : "Scheduled for "}
-          <span className="text-xl font-semibold text-blue-400">{date}</span>
+          <span className="text-xl font-semibold text-blue-400">
+            {formatDate(date, language)}
+          </span>
         </div>
         <div>
           {language === "esp" ? "o al llegar a " : "or at "}
