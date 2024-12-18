@@ -13,19 +13,19 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
     date: "",
     description: "",
     cost: 0,
-    mileage: 0,
+    odometer: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: name === "cost" || name === "mileage" ? Number(value) : value,
+      [name]: name === "cost" || name === "odometer" ? Number(value) : value,
     });
   };
 
   const handleSubmit = async () => {
-    if (form.date && form.description && form.cost && form.mileage) {
+    if (form.date && form.description && form.cost && form.odometer) {
       try {
         if (!user?.uid) {
           alert(
@@ -97,7 +97,7 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
               placeholderEs: "Costo",
             },
             {
-              name: "mileage",
+              name: "odometer",
               type: "number",
               placeholder: "Mileage",
               placeholderEs: "Kilometraje",

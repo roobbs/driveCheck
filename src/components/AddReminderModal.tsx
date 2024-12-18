@@ -14,20 +14,19 @@ export default function AddReminderModal({
   const [form, setForm] = useState({
     date: "",
     description: "",
-    cost: 0,
-    mileage: 0,
+    odometer: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: name === "mileage" ? Number(value) : value,
+      [name]: name === "odometer" ? Number(value) : value,
     });
   };
 
   const handleSubmit = async () => {
-    if (form.date && form.description && form.mileage) {
+    if (form.date && form.description && form.odometer) {
       try {
         if (!user?.uid) {
           alert(
@@ -93,7 +92,7 @@ export default function AddReminderModal({
               placeholderEs: "Fecha",
             },
             {
-              name: "mileage",
+              name: "odometer",
               type: "number",
               placeholder: "Mileage",
               placeholderEs: "Kilometraje",
