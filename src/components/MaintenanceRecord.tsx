@@ -6,7 +6,7 @@ import formatDate from "../../utils/formatDate";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
   const { date, description, cost, mileage } = props;
-  const { language } = useContext(AuthContext);
+  const { language, user } = useContext(AuthContext);
 
   return (
     <div className="maintenanceContainer grid w-[900px] grid-cols-2 items-center gap-6 justify-self-center rounded border border-gray-500 bg-gray-800 p-4 shadow-md 1280p:w-[70%] 1180p:w-[80%] 900p:w-[100%] 650p:grid-cols-1 650p:gap-1">
@@ -29,7 +29,9 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
           <div className="text-sm font-bold text-gray-400">
             {language === "esp" ? "Kilometraje" : "Mileage"}
           </div>
-          <div className="font-semibold text-blue-400">{mileage} km</div>
+          <div className="font-semibold text-blue-400">
+            {mileage} {user?.unitOfMeasure}
+          </div>
         </div>
 
         <div>
