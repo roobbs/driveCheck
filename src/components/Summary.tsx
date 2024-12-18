@@ -114,7 +114,15 @@ export default function Summary() {
             type="number"
           />
           <EditableField
-            label={language === "esp" ? "Kilometraje" : "Mileage"}
+            label={
+              language === "esp"
+                ? user?.unitOfMeasure === "km"
+                  ? "Kilómetros"
+                  : "Millas"
+                : user?.unitOfMeasure === "km"
+                  ? "Kilometers"
+                  : "Miles"
+            }
             value={mileage || ""}
             current={user ? user.car.summary.mileage : ""}
             isEditing={editing}
