@@ -45,12 +45,12 @@ export interface OverviewEntry {
 export interface Reminder {
   date: string;
   description: string;
-  mileage?: number;
+  odometer?: number;
 }
 
 export interface MaintenanceRecord {
   date: string;
   description: string;
   cost: number;
-  mileage: number;
+  odometer: number;
 }
