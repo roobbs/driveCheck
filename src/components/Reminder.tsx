@@ -6,7 +6,7 @@ import formatDate from "../../utils/formatDate";
 
 export default function Reminder(props: Reminder) {
   const { date, description, mileage } = props;
-  const { language } = useContext(AuthContext);
+  const { language, user } = useContext(AuthContext);
 
   return (
     <div className="flex flex-col items-center justify-between gap-2 rounded-lg border border-gray-500 bg-gray-800 p-4 shadow-md 900p:p-2 680p:gap-1">
@@ -28,7 +28,7 @@ export default function Reminder(props: Reminder) {
         <div>
           {language === "esp" ? "o al llegar a " : "or at "}
           <span className="text-xl font-semibold text-blue-400">
-            {mileage} km
+            {mileage} {user?.unitOfMeasure}
           </span>{" "}
         </div>
       </div>
