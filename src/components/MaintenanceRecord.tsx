@@ -27,7 +27,13 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
 
         <div>
           <div className="text-sm font-bold text-gray-400">
-            {language === "esp" ? "Kilometraje" : "Mileage"}
+            {language === "esp"
+              ? user?.unitOfMeasure === "km"
+                ? "Kilómetros"
+                : "Millas"
+              : user?.unitOfMeasure === "km"
+                ? "Kilometers"
+                : "Miles"}
           </div>
           <div className="font-semibold text-blue-400">
             {odometer} {user?.unitOfMeasure}
