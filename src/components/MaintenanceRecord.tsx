@@ -5,7 +5,7 @@ import { useContext } from "react";
 import formatDate from "../../utils/formatDate";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
-  const { date, description, cost, mileage } = props;
+  const { date, description, cost, odometer } = props;
   const { language, user } = useContext(AuthContext);
 
   return (
@@ -30,7 +30,7 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
             {language === "esp" ? "Kilometraje" : "Mileage"}
           </div>
           <div className="font-semibold text-blue-400">
-            {mileage} {user?.unitOfMeasure}
+            {odometer} {user?.unitOfMeasure}
           </div>
         </div>
 

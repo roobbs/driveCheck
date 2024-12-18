@@ -40,7 +40,7 @@ export default function MaintenanceHistory() {
                 description={rec.description}
                 date={rec.date}
                 cost={rec.cost}
-                mileage={rec.mileage}
+                odometer={rec.odometer}
               />
             ))}
           </>
