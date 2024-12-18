@@ -32,7 +32,7 @@ export interface Summary {
   brand: string;
   model: string;
   year: number;
-  mileage: number;
+  odometer: number;
 }
 
 export interface OverviewEntry {

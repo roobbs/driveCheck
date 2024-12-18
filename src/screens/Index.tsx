@@ -50,7 +50,7 @@ export default function Index() {
                 brand: "",
                 model: "",
                 year: 0,
-                mileage: 0,
+                odometer: 0,
               },
               overview: [
                 {

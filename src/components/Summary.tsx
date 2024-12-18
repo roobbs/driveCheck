@@ -18,7 +18,7 @@ export default function Summary() {
 
   const [model, setModel] = useState(user?.car.summary.model);
   const [year, setYear] = useState(user?.car.summary.year);
-  const [mileage, setMileage] = useState(user?.car.summary.mileage);
+  const [odometer, setOdometer] = useState(user?.car.summary.odometer);
   const [brand, setBrand] = useState(user?.car.summary.brand);
 
   const openTitle = language === "esp" ? "Información" : "Vehicle Summary";
@@ -44,7 +44,7 @@ export default function Summary() {
         brand: brand || "",
         model: model || "",
         year: year || 0,
-        mileage: mileage || 0,
+        odometer: odometer || 0,
       };
 
       await updateDoc(userDocRef, {
@@ -123,10 +123,10 @@ export default function Summary() {
                   ? "Kilometers"
                   : "Miles"
             }
-            value={mileage || ""}
-            current={user ? user.car.summary.mileage : ""}
+            value={odometer || ""}
+            current={user ? user.car.summary.odometer : ""}
             isEditing={editing}
-            onChange={(e) => setMileage(Number(e.target.value))}
+            onChange={(e) => setOdometer(Number(e.target.value))}
           />
         </div>
         <div className="flex gap-2">
