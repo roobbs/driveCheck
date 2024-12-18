@@ -36,7 +36,7 @@ export default function UpcomingReminders() {
                 key={index}
                 description={rec.description}
                 date={rec.date}
-                mileage={rec.mileage}
+                odometer={rec.odometer}
               />
             ))}
           </>
