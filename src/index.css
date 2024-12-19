@@ -24,10 +24,12 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative;
 }
 
 body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  position: relative;
 }

@@ -16,7 +16,7 @@ export default function NavMenu() {
           }`
         }
       >
-        <MdHomeFilled size={18} /> Home
+        <MdHomeFilled size={18} /> <span className="750p:hidden">Home</span>
       </NavLink>
       <NavLink
         to="/reminders"
@@ -28,7 +28,8 @@ export default function NavMenu() {
           } `
         }
       >
-        <IoMdNotifications size={20} /> Reminders
+        <IoMdNotifications size={20} />{" "}
+        <span className="750p:hidden">Reminders</span>
       </NavLink>
       <NavLink
         to="/maintenance"
@@ -40,7 +41,8 @@ export default function NavMenu() {
           } `
         }
       >
-        <RiToolsFill size={21} /> Maintenance History
+        <RiToolsFill size={21} />{" "}
+        <span className="750p:hidden">Maintenance History</span>
       </NavLink>
     </nav>
   );
