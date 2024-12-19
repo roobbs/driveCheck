@@ -5,6 +5,8 @@ import Error from "./screens/Error";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./screens/Home";
 import Layout from "./components/Layout";
+import Maintenance from "./screens/Maintenance";
+import Reminders from "./screens/Reminders";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -21,8 +23,8 @@ export default function Router() {
           element: <Layout />,
           children: [
             { path: "home", element: <Home /> },
-            // { path: "maintenanceHistory", element: <MaintenanceHistory /> },
-            // { path: "reminders", element: <Reminders /> },
+            { path: "maintenance", element: <Maintenance /> },
+            { path: "reminders", element: <Reminders /> },
           ],
         },
       ],
