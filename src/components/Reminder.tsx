@@ -3,6 +3,7 @@ import type { Reminder } from "../../utils/Interfaces";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
 import formatDate from "../../utils/formatDate";
+import formatNumber from "../../utils/formatNumber";
 
 export default function Reminder(props: Reminder) {
   const { date, description, odometer } = props;
@@ -28,7 +29,7 @@ export default function Reminder(props: Reminder) {
         <div>
           {language === "esp" ? "o al llegar a " : "or at "}
           <span className="text-xl font-semibold text-blue-400">
-            {odometer} {user?.unitOfMeasure}
+            {formatNumber(odometer ? odometer : 0)} {user?.unitOfMeasure}
           </span>{" "}
         </div>
       </div>

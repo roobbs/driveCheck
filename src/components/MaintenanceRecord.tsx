@@ -3,6 +3,7 @@ import type { MaintenanceRecord } from "../../utils/Interfaces";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
 import formatDate from "../../utils/formatDate";
+import formatNumber from "../../utils/formatNumber";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
   const { date, description, cost, odometer } = props;
@@ -36,7 +37,7 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
                 : "Miles"}
           </div>
           <div className="font-semibold text-blue-400">
-            {odometer} {user?.unitOfMeasure}
+            {formatNumber(odometer)} {user?.unitOfMeasure}
           </div>
         </div>
 
@@ -44,7 +45,9 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
           <div className="text-sm font-bold text-gray-400">
             {language === "esp" ? "Costo" : "Cost"}
           </div>
-          <div className="font-semibold text-blue-400">${cost}</div>
+          <div className="font-semibold text-blue-400">
+            ${formatNumber(cost)}
+          </div>
         </div>
       </div>
     </div>
