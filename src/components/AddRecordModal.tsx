@@ -29,10 +29,9 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
       try {
         if (!user?.uid) {
           alert(
-            // language === "esp"
-            //   ? "Usuario no autenticado"
-            //   : "User not authenticated",
-            "user not authenticated",
+            language === "esp"
+              ? "Usuario no autenticado"
+              : "User not authenticated",
           );
           return;
         }
@@ -57,13 +56,25 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
         });
 
         closeModal();
-        alert("data save correctly");
+        alert(
+          language === "esp"
+            ? "Datos guardados correctamente"
+            : "Data saved correctly",
+        );
       } catch (error) {
         console.error("Error saving maintenance record:", error);
-        alert("Failed to save the record. Please try again.");
+        alert(
+          language === "esp"
+            ? "Hubo un error al intentar guardar los datos"
+            : "Failed to save the record. Please try again",
+        );
       }
     } else {
-      alert("Please fill in all fields!");
+      alert(
+        language === "esp"
+          ? "Por favor llena todos los datos"
+          : "Please fill in all fields!",
+      );
     }
   };
 
