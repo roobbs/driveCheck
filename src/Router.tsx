@@ -4,6 +4,7 @@ import Index from "./screens/Index";
 import Error from "./screens/Error";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./screens/Home";
+import Layout from "./components/Layout";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -12,13 +13,18 @@ export default function Router() {
       element: <Index />,
       errorElement: <Error />,
     },
-
     {
-      path: "/home",
+      path: "/",
       element: <PrivateRoute />,
       children: [
-        { index: true, element: <Home /> },
-        // { path: "createBusiness", element: <CreateBusiness /> },
+        {
+          element: <Layout />,
+          children: [
+            { path: "home", element: <Home /> },
+            // { path: "maintenanceHistory", element: <MaintenanceHistory /> },
+            // { path: "reminders", element: <Reminders /> },
+          ],
+        },
       ],
     },
   ]);
