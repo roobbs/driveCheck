@@ -9,6 +9,7 @@ import EditableField from "./EditableField";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import "../styles/animations.css";
+import formatNumber from "../../utils/formatNumber";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -124,7 +125,11 @@ export default function Summary() {
                   : "Miles"
             }
             value={odometer || ""}
-            current={user ? user.car.summary.odometer : ""}
+            current={
+              user
+                ? `${formatNumber(user.car.summary.odometer)} ${user.unitOfMeasure}`
+                : ""
+            }
             isEditing={editing}
             onChange={(e) => setOdometer(Number(e.target.value))}
           />
