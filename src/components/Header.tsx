@@ -13,6 +13,7 @@ import { FaLanguage } from "react-icons/fa6";
 import { TbRulerMeasure } from "react-icons/tb";
 import { db } from "../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [menu, setMenu] = useState(false);
@@ -68,9 +69,11 @@ function Header() {
   return (
     <header className="relative flex items-center justify-between bg-blue-950 px-8 py-3">
       <div className="flex items-center gap-4">
-        <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
-          <IoCarSport size={40} /> Drive Check
-        </div>
+        <Link to={"/home"}>
+          <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
+            <IoCarSport size={40} /> Drive Check
+          </div>
+        </Link>
         <div className="text-lg font-bold uppercase 680p:hidden">
           {language === "esp"
             ? "Control de mantenimiento"

@@ -3,6 +3,7 @@ import MaintenanceRecord from "./MaintenanceRecord";
 import { useContext, useState } from "react";
 import { AuthContext } from "./auth/AuthContext";
 import AddRecordModal from "./AddRecordModal";
+import { Link } from "react-router-dom";
 
 export default function MaintenanceHistory() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,6 +24,12 @@ export default function MaintenanceHistory() {
             className="text-yellow-300 transition hover:text-yellow-400"
           />
         </div>
+        <Link
+          to={"/maintenance"}
+          className="self-end text-sm text-blue-500 underline transition hover:text-yellow-400"
+        >
+          {language === "esp" ? "Ver historial completo" : "View full history"}
+        </Link>
       </div>
       <section className="grid grid-cols-1 justify-center gap-4 rounded-xl bg-gray-900 p-4 py-6">
         {records?.length === 0 && (

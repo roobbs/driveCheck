@@ -3,6 +3,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { AuthContext } from "./auth/AuthContext";
 import Reminder from "./Reminder";
 import AddReminderModal from "./AddReminderModal";
+import { Link } from "react-router-dom";
 
 export default function UpcomingReminders() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,6 +23,12 @@ export default function UpcomingReminders() {
             className="text-yellow-300 transition hover:text-yellow-400"
           />
         </div>
+        <Link
+          to={"/maintenance"}
+          className="self-end text-sm text-blue-500 underline transition hover:text-yellow-400"
+        >
+          {language === "esp" ? "Ver más recordatorios" : "View all reminders"}
+        </Link>
       </div>
       <section className="grid grid-cols-2 justify-around gap-6 rounded-xl bg-gray-900 p-4 py-6 680p:grid-cols-1">
         {reminders?.length === 0 && (
