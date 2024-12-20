@@ -8,15 +8,19 @@ import { Link } from "react-router-dom";
 export default function MaintenanceHistory() {
   const [modalOpen, setModalOpen] = useState(false);
   const { user, language } = useContext(AuthContext);
-  const records = user?.car.maintenanceHistory;
+  const records = user?.car.maintenanceHistory
+    .sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA;
+    })
+    .slice(0, 4);
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-12">
         <div className="font-bold text-yellow-300">
-          {language === "esp"
-            ? "Historial de Mantenimiento"
-            : "Maintenance History"}
+          {language === "esp" ? "Últimos servicios" : "Last services"}
         </div>
         <div className="" onClick={() => setModalOpen(true)}>
           <FaCirclePlus
