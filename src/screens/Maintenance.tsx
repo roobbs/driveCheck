@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import formatNumber from "../../utils/formatNumber";
+import formatDate from "../../utils/formatDate";
 
 export default function Maintenance() {
-  const { user } = useContext(AuthContext);
+  const { user, language } = useContext(AuthContext);
   const maintenanceHistory = (user?.car?.maintenanceHistory || []).sort(
     (a, b) => {
       const dateA = new Date(a.date);
@@ -18,10 +19,24 @@ export default function Maintenance() {
       <table className="w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
         <thead>
           <tr className="bg-gray-900 text-yellow-300">
-            <th className="p-3 text-left">Date</th>
-            <th className="p-3 text-left">Service</th>
-            <th className="p-3 text-left">Cost</th>
-            <th className="p-3 text-left">Odometer</th>
+            <th className="p-3 text-left">
+              {language === "esp" ? "Fecha" : "Date"}
+            </th>
+            <th className="p-3 text-left">
+              {language === "esp" ? "Servicio" : "Service"}
+            </th>
+            <th className="p-3 text-left">
+              {language === "esp" ? "Costo" : "Cost"}
+            </th>
+            <th className="p-3 text-left">
+              {language === "esp"
+                ? user?.unitOfMeasure === "km"
+                  ? "Kilometros"
+                  : "Millas"
+                : user?.unitOfMeasure === "km"
+                  ? "Lilometers"
+                  : "Miles"}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +47,9 @@ export default function Maintenance() {
                 index % 2 === 0 ? "bg-slate-700" : "bg-slate-800"
               }`}
             >
-              <td className="p-3 font-medium text-gray-300">{record.date}</td>
+              <td className="p-3 font-medium text-gray-300">
+                {formatDate(record.date, language)}
+              </td>
               <td className="p-3 font-medium text-blue-100">
                 {record.description}
               </td>
