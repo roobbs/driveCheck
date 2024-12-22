@@ -14,13 +14,13 @@ import formatNumber from "../../utils/formatNumber";
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
 
-  const [open, setOpen] = useState(true);
-  const [editing, setEditing] = useState(false);
-
   const [model, setModel] = useState(user?.car.summary.model);
   const [year, setYear] = useState(user?.car.summary.year);
   const [odometer, setOdometer] = useState(user?.car.summary.odometer);
   const [brand, setBrand] = useState(user?.car.summary.brand);
+
+  const [open, setOpen] = useState(model && year ? false : true);
+  const [editing, setEditing] = useState(false);
 
   const openTitle = language === "esp" ? "Información" : "Vehicle Summary";
   const title =
