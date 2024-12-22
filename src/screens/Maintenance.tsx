@@ -18,9 +18,9 @@ export default function Maintenance() {
       <h1 className="sticky left-1 text-xl font-bold text-yellow-300">
         Maintenance History
       </h1>
-      <table className="w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
+      <table className="relative w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
         <thead>
-          <tr className="bg-gray-900 text-yellow-300">
+          <tr className="sticky top-0 bg-gray-900 text-yellow-300">
             <th className="p-3 text-left">
               {language === "esp" ? "Fecha" : "Date"}
             </th>
