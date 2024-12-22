@@ -28,6 +28,15 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
 
         <div>
           <div className="text-sm font-bold text-gray-400">
+            {language === "esp" ? "Costo" : "Cost"}
+          </div>
+          <div className="font-semibold text-blue-400">
+            ${formatNumber(cost)}
+          </div>
+        </div>
+
+        <div>
+          <div className="text-sm font-bold text-gray-400">
             {language === "esp"
               ? user?.unitOfMeasure === "km"
                 ? "Kilómetros"
@@ -38,15 +47,6 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
           </div>
           <div className="font-semibold text-blue-400">
             {formatNumber(odometer)} {user?.unitOfMeasure}
-          </div>
-        </div>
-
-        <div>
-          <div className="text-sm font-bold text-gray-400">
-            {language === "esp" ? "Costo" : "Cost"}
-          </div>
-          <div className="font-semibold text-blue-400">
-            ${formatNumber(cost)}
           </div>
         </div>
       </div>
