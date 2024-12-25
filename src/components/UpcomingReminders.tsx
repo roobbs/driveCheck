@@ -9,7 +9,9 @@ export default function UpcomingReminders() {
   const [modalOpen, setModalOpen] = useState(false);
   const { user, language } = useContext(AuthContext);
 
-  const reminders = user?.car.upcomingReminders;
+  const reminders = user?.car?.upcomingReminders
+    ?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    ?.slice(0, 4);
 
   return (
     <div className="flex flex-col gap-4">
@@ -24,7 +26,7 @@ export default function UpcomingReminders() {
           />
         </div>
         <Link
-          to={"/maintenance"}
+          to={"/reminders"}
           className="self-end text-sm text-blue-500 underline transition hover:text-yellow-400"
         >
           {language === "esp" ? "Ver más recordatorios" : "View all reminders"}
@@ -38,7 +40,7 @@ export default function UpcomingReminders() {
         )}
         {reminders && reminders.length > 0 && (
           <>
-            {reminders?.map((rec, index) => (
+            {reminders.map((rec, index) => (
               <Reminder
                 key={index}
                 description={rec.description}
