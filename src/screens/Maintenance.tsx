@@ -14,7 +14,7 @@ export default function Maintenance() {
   );
 
   return (
-    <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
+    <main className="440p:px-2 flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4 400p:px-1">
       <h1 className="sticky left-1 text-xl font-bold text-yellow-300">
         Maintenance History
       </h1>
