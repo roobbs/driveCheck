@@ -8,6 +8,7 @@ import { db } from "../../config/firebase";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import dateFormat from "../../utils/formatDate";
+import getDays from "../../utils/getDays";
 
 export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);
@@ -20,6 +21,23 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
 
   const data = language === "esp" ? "Sin registro" : "No Data";
   const checked = language === "esp" ? "Sin revisar" : "No checked";
+
+  const daysFromChecked = date ? getDays(date) : null;
+
+  let borderColor = "border-gray-500";
+  let textColor = "text-blue-400";
+  if (daysFromChecked !== null) {
+    if (daysFromChecked <= -21) {
+      borderColor = "border-red-500";
+      textColor = "text-red-500";
+    } else if (daysFromChecked <= -14) {
+      borderColor = "border-yellow-500";
+      textColor = "text-yellow-500";
+    }
+  }
+  if (isEditing) {
+    borderColor = "border-blue-400";
+  }
 
   const handleSave = async () => {
     try {
@@ -56,10 +74,8 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
 
   return (
     <div
-      className={`flex flex-col gap-2 rounded-lg border px-4 py-2 ${
-        isEditing
-          ? "border-blue-500 bg-slate-800"
-          : "border-gray-500 bg-gray-800"
+      className={`flex flex-col ${borderColor} gap-2 rounded-lg border px-4 py-2 ${
+        isEditing ? "bg-slate-800" : "bg-gray-800"
       }`}
     >
       <div className="flex items-center justify-between">
@@ -105,7 +121,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
               className="w-32 rounded border border-gray-600 bg-gray-900 p-1 text-blue-400"
             />
           ) : (
-            <div className="font-semibold text-blue-400">
+            <div className={`font-semibold ${textColor}`}>
               {date ? dateFormat(date, language) : checked}
             </div>
           )}
@@ -126,7 +142,7 @@ export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
                 className="w-16 rounded border border-gray-600 bg-gray-900 p-1 text-center text-blue-400"
               />
             ) : (
-              <div className="text-lg font-semibold text-blue-400">
+              <div className={`text-lg font-semibold ${textColor}`}>
                 {level || data}{" "}
                 <span className="text-sm text-gray-400">
                   {level && name.includes("Tire") ? "psi" : null}
