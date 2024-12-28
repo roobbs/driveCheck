@@ -31,6 +31,7 @@ export default {
       "650p": { max: "650px" },
       "580p": { max: "580px" },
       "490p": { max: "490px" },
+      "440p": { max: "440px" },
       "400p": { max: "400px" },
       "390p": { max: "390px" },
       "372p": { max: "372px" },
