@@ -106,7 +106,7 @@ export default function Index() {
         <div className="flex items-center gap-2 1000p:flex-col-reverse">
           <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
             <IoCarSport size={40} />{" "}
-            <span className="490p:hidden">Drive Check</span>
+            <span className="490p:hidden">Drive Tracker</span>
           </div>
           <div className="text-lg font-bold uppercase 580p:hidden">
             {language === "esp"
@@ -148,8 +148,8 @@ export default function Index() {
           <div className="text-xl font-bold 490p:text-lg">
             <div className="rounded-xl bg-blue-100 px-4 py-2 text-center text-2xl text-blue-600 shadow-md 490p:text-xl">
               {language === "esp"
-                ? "Drive Check te ayuda con tu auto"
-                : "Drive Check always helps your car"}
+                ? "Drive Tracker te ayuda con tu auto"
+                : "Drive Tracker always helps your car"}
             </div>
             <ul className="flex flex-col gap-4 pt-4">
               <li className="flex items-center gap-4">

@@ -71,7 +71,7 @@ function Header() {
       <div className="flex items-center gap-4">
         <Link to={"/home"}>
           <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
-            <IoCarSport size={40} /> Drive Check
+            <IoCarSport size={40} /> Drive Tracker
           </div>
         </Link>
         <div className="text-lg font-bold uppercase 680p:hidden">
