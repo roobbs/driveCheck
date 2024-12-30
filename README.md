@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# Vehicular Maintenance Tracker 🚗
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application designed to help you monitor and manage the maintenance of your vehicles. The tool allows you to keep track of reminders, inspections, and other essential details to maintain your vehicle in top condition.
 
-Currently, two official plugins are available:
+## 📋 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Maintenance Management**:
+  - Record inspection dates.
+  - Track levels of key components like batteries and tires.
+- **Visual Alerts**:
+  - **Yellow**: Indicates upcoming inspections (less than 14 days remaining).
+  - **Red**: Indicates urgent inspections (less than 7 days remaining).
+- **Multilingual Support**:
+  - Available in Spanish and English for a personalized experience.
+- **Dynamic Editing and Updates**:
+  - Real-time modification of dates and levels through the interface.
+- **Secure Authentication**:
+  - Powered by Firebase Authentication.
+- **Cloud Synchronization**:
+  - Data is stored and synchronized with Firestore.
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### **Frontend**
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: Framework for building interactive user interfaces.
+- **Firebase Authentication**: Secure session management.
+- **Tailwind CSS**: Modern and responsive design framework.
+- **React Icons**: Icon library for improved visual experience.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### **Backend**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Firebase Firestore**: Cloud database for storing data.
+- **Node.js (under development)**: For future, more robust integrations.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🚀 Installation and Usage
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Prerequisites
+
+- **Node.js** (v16+ recommended)
+- **npm**
+- **Firebase Project** configured
+
+### Installation Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/roobbs/driveCheck.git
+   ```
