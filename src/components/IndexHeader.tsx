@@ -9,7 +9,7 @@ export default function IndexHeader() {
   const { language, changeLanguage } = useContext(AuthContext);
 
   return (
-    <header className="sticky top-0 flex items-center justify-between gap-4 bg-blue-950 px-8 py-3">
+    <header className="sticky top-0 flex items-center justify-between gap-4 bg-gradient-to-r from-blue-950 to-blue-600 px-8 py-3">
       <div className="flex items-center gap-2 1000p:flex-col-reverse">
         <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
           <IoCarSport size={40} />{" "}
