@@ -1,148 +1,20 @@
-import { IoCarSport } from "react-icons/io5";
-import { FcGoogle } from "react-icons/fc";
-import { MdAttachMoney } from "react-icons/md";
+import { MdAttachMoney, MdOutlineHistory } from "react-icons/md";
 import { FaOilCan } from "react-icons/fa";
 import { LuMilestone } from "react-icons/lu";
-import { MdOutlineHistory } from "react-icons/md";
-import { signInWithGoogle } from "../../utils/database";
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
-import { db } from "../../config/firebase";
-import { getDoc, doc, setDoc } from "firebase/firestore";
-import { User } from "../../utils/Interfaces";
 import carImage from "../images/car1_transp-01.webp";
-import enImage from "../images/en_US.png";
-import esImage from "../images/es_MX.png";
+import IndexHeader from "../components/IndexHeader";
 
 export default function Index() {
-  const navigate = useNavigate();
-  const { addUser, language, changeLanguage } = useContext(AuthContext);
+  const { language } = useContext(AuthContext);
 
-  const signInUser = async () => {
-    try {
-      const user = await signInWithGoogle();
-      if (user) {
-        const uid = user.uid;
-
-        const userRef = doc(db, "users", uid);
-        const userDoc = await getDoc(userRef);
-
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-
-          addUser(userData as User);
-
-          console.log("logged user:", { ...user, ...userData });
-          console.log("User signed in correctly");
-        } else {
-          console.log("User not found in Firestore, it will be created");
-
-          const newUser: User = {
-            uid: user.uid,
-            email: user.email,
-            name: user.displayName || "",
-            profilePicture: user.photoURL || "",
-            joinedAt: new Date().toISOString(),
-            unitOfMeasure: language === "esp" ? "km" : "mi",
-            car: {
-              summary: {
-                brand: "",
-                model: "",
-                year: 0,
-                odometer: 0,
-              },
-              overview: [
-                {
-                  name: "Oil Level",
-                  nameEs: "Nivel de Aceite",
-                  level: "",
-                  date: "",
-                },
-                {
-                  name: "Battery Voltage",
-                  nameEs: "Voltaje de Batería",
-                  level: "",
-                  date: "",
-                },
-                {
-                  name: "Tire Pressure",
-                  nameEs: "Presión de Neumáticos",
-                  level: "",
-                  date: "",
-                },
-                {
-                  name: "Coolant Level",
-                  nameEs: "Nivel de Anticongelante",
-                  level: "",
-                  date: "",
-                },
-                {
-                  name: "Steering Wheel Oil Level",
-                  nameEs: "Nivel de Aceite de Volante",
-                  level: "",
-                  date: "",
-                },
-              ],
-              upcomingReminders: [],
-              maintenanceHistory: [],
-            },
-          };
-
-          await setDoc(userRef, newUser);
-          console.log("New user created:", { ...user, ...newUser });
-          console.log("User signed in correctly");
-        }
-        navigate("/home");
-      }
-    } catch (error) {
-      console.log("Error signing in:", error);
-    }
-  };
+  const remindersImage = "";
+  const maintenanceTableImage = "";
 
   return (
-    <div>
-      <header className="sticky top-0 flex items-center justify-between gap-4 bg-blue-950 px-8 py-3">
-        <div className="flex items-center gap-2 1000p:flex-col-reverse">
-          <div className="flex cursor-pointer items-center gap-2 rounded-xl border border-transparent bg-white px-2 font-bold text-blue-800 transition-colors hover:border-white hover:bg-transparent hover:text-white">
-            <IoCarSport size={40} />{" "}
-            <span className="490p:hidden">Drive Tracker</span>
-          </div>
-          <div className="text-lg font-bold uppercase 580p:hidden">
-            {language === "esp"
-              ? "Control de mantenimiento"
-              : "Maintenance tracker"}
-          </div>
-        </div>
-        <div className="flex items-center gap-8 750p:gap-4 680p:flex-col-reverse 680p:gap-3">
-          <div
-            onClick={signInUser}
-            className="flex items-center gap-2 rounded-lg border border-white bg-white p-1 px-3 text-blue-950 transition hover:cursor-pointer hover:bg-transparent hover:text-white"
-          >
-            <FcGoogle size={25} />{" "}
-            {language === "esp" ? "Ingresar Con Google" : "Sign In With Google"}
-          </div>
-          <div className="flex cursor-pointer overflow-hidden rounded border border-blue-950">
-            <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-                language === "esp" ? "bg-blue-800 font-bold" : "bg-slate-600"
-              }`}
-              onClick={() => changeLanguage("esp")}
-            >
-              Es <img src={esImage} alt="" />
-            </div>
-            <div
-              className={`flex items-center gap-1 px-1 text-white hover:bg-blue-900 ${
-                language === "eng" ? "bg-blue-800 font-bold" : "bg-slate-600"
-              }`}
-              onClick={() => changeLanguage("eng")}
-            >
-              En <img src={enImage} alt="" />
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <>
+      <IndexHeader />
       <main className="flex flex-1 flex-col bg-slate-50 p-8 text-gray-800 390p:p-4">
         <div className="flex flex-wrap items-center justify-around">
           <div className="text-xl font-bold 490p:text-lg">
@@ -232,7 +104,34 @@ export default function Index() {
             </div>
           </div>
         </div>
+
+        <div className="mt-12 flex flex-wrap justify-center gap-8">
+          <div className="w-full md:w-1/2">
+            <img
+              src={remindersImage}
+              alt="Reminders Preview"
+              className="rounded-lg shadow-lg"
+            />
+            <div className="mt-4 text-center text-gray-700">
+              {language === "esp"
+                ? "Recordatorios personalizados para el mantenimiento de tu auto."
+                : "Custom reminders for your car’s maintenance."}
+            </div>
+          </div>
+          <div className="w-full md:w-1/2">
+            <img
+              src={maintenanceTableImage}
+              alt="Maintenance Table"
+              className="rounded-lg shadow-lg"
+            />
+            <div className="mt-4 text-center text-gray-700">
+              {language === "esp"
+                ? "Historial de mantenimiento detallado y organizado."
+                : "Detailed and organized maintenance history."}
+            </div>
+          </div>
+        </div>
       </main>
-    </div>
+    </>
   );
 }
