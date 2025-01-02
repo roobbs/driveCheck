@@ -3,17 +3,20 @@ import { FaOilCan } from "react-icons/fa";
 import { LuMilestone } from "react-icons/lu";
 import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
+import IndexTitle from "./IndexTitle";
 
 export default function BenefitsSection() {
   const { language } = useContext(AuthContext);
 
   return (
     <section className="mb-12">
-      <h2 className="mb-6 text-center text-2xl font-bold text-blue-600">
-        {language === "esp"
-          ? "Por qué elegir Drive Tracker"
-          : "Why Choose Drive Tracker"}
-      </h2>
+      <IndexTitle
+        title={
+          language === "esp"
+            ? "¿Por qué elegir Drive Tracker?"
+            : "Why Choose Drive Tracker?"
+        }
+      />
       <div className="flex flex-wrap justify-around gap-8">
         <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg 390p:p-1">
           <MdAttachMoney size={35} className="text-yellow-400" />
