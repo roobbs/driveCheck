@@ -8,19 +8,20 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="grid grid-cols-2 items-center">
-        <div className="flex flex-col items-center gap-6 text-xl 490p:text-lg">
-          <h1 className="rounded-xl bg-blue-100 px-4 py-2 text-center text-3xl text-blue-900 shadow-md 490p:text-xl">
+      <section className="grid grid-cols-5 flex-col items-center 750p:flex">
+        <div className="col-span-3 flex flex-col items-center gap-6 text-xl 490p:text-lg">
+          <h1 className="rounded-lg bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 px-6 py-4 text-center text-4xl text-white shadow-lg shadow-blue-900 md:px-8 md:py-6 md:text-5xl 490p:text-2xl">
             {language === "esp"
               ? "Organiza el mantenimiento y control de tus gastos automotrices"
               : "Organize maintenance and control your automotive expenses"}
           </h1>
+
           <p className="text-lg font-bold text-gray-700 490p:text-base">
             {language === "esp"
               ? "Optimiza el cuidado de tu auto con seguimiento de kilometraje, recordatorios de mantenimiento y mucho más."
               : "Optimize your car care with mileage tracking, maintenance reminders, and more."}
           </p>
-          <div className="rounded-lg bg-gradient-to-r from-blue-900 to-blue-700 p-6 shadow-lg">
+          <div className="rounded-lg bg-gradient-to-r from-yellow-600 to-yellow-500 p-6 shadow-lg 750p:hidden">
             <h3 className="mb-4 text-center text-xl font-bold text-white">
               {language === "esp"
                 ? "¿Listo para empezar?"
@@ -29,12 +30,15 @@ export default function HeroSection() {
             <SignInButton />
           </div>
         </div>
-        <img
-          src={carImage}
-          alt="mainCarImage"
-          className=""
-          // 750p:w-3/4 680p:w-11/12
-        />
+        <img src={carImage} alt="mainCarImage" className="col-span-2" />
+        <div className="hidden w-4/5 flex-col items-center rounded-lg bg-gradient-to-r from-yellow-600 to-yellow-500 p-6 shadow-lg 750p:flex 390p:w-full">
+          <h3 className="mb-4 text-center text-xl font-bold text-white">
+            {language === "esp"
+              ? "¿Listo para empezar?"
+              : "Ready to get started?"}
+          </h3>
+          <SignInButton />
+        </div>
       </section>
     </>
   );
