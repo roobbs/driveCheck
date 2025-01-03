@@ -10,7 +10,7 @@ export default function HeroSection() {
     <>
       <section className="grid grid-cols-5 flex-col items-center 750p:flex">
         <div className="col-span-3 flex flex-col items-center gap-6 text-xl 490p:text-lg">
-          <h1 className="bg-gradient-to-r from-indigo-900 via-blue-950 to-cyan-800 bg-clip-text text-center text-5xl font-bold text-transparent md:text-5xl 490p:text-2xl">
+          <h1 className="bg-gradient-to-r from-indigo-900 via-blue-950 to-cyan-800 bg-clip-text text-center text-5xl font-bold text-transparent 580p:text-4xl">
             {language === "esp" ? (
               <>
                 Organiza el mantenimiento <br />
