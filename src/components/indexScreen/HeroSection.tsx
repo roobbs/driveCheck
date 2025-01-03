@@ -10,10 +10,22 @@ export default function HeroSection() {
     <>
       <section className="grid grid-cols-5 flex-col items-center 750p:flex">
         <div className="col-span-3 flex flex-col items-center gap-6 text-xl 490p:text-lg">
-          <h1 className="rounded-lg bg-gradient-to-r from-blue-700 via-blue-600 to-blue-500 px-6 py-4 text-center text-4xl text-white shadow-lg shadow-blue-900 md:px-8 md:py-6 md:text-5xl 490p:text-2xl">
-            {language === "esp"
-              ? "Organiza el mantenimiento y control de tus gastos automotrices"
-              : "Organize maintenance and control your automotive expenses"}
+          <h1 className="bg-gradient-to-r from-indigo-900 via-blue-950 to-cyan-800 bg-clip-text text-center text-5xl font-bold text-transparent md:text-5xl 490p:text-2xl">
+            {language === "esp" ? (
+              <>
+                Organiza el mantenimiento <br />
+                <span className="bg-gradient-to-r from-blue-900 to-indigo-700 bg-clip-text text-transparent">
+                  y controla tus gastos automotrices
+                </span>
+              </>
+            ) : (
+              <>
+                Organize maintenance <br />
+                <span className="bg-gradient-to-r from-blue-800 to-indigo-700 bg-clip-text text-transparent">
+                  and control your automotive expenses
+                </span>
+              </>
+            )}
           </h1>
 
           <p className="text-lg font-bold text-gray-700 490p:text-base">
