@@ -17,8 +17,8 @@ export default function BenefitsSection() {
             : "Why Choose Drive Tracker?"
         }
       />
-      <div className="flex flex-wrap justify-around gap-8">
-        <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg 390p:p-1">
+      <div className="mt-8 flex flex-wrap justify-around gap-8">
+        <div className="flex items-center gap-2 rounded-lg border border-blue-900 bg-white p-4 shadow-lg 390p:p-1">
           <MdAttachMoney size={35} className="text-yellow-400" />
           <div>
             <div className="text-center font-bold text-gray-800">
@@ -34,7 +34,7 @@ export default function BenefitsSection() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
+        <div className="flex items-center gap-2 rounded-lg border border-blue-900 bg-white p-4 shadow-lg">
           <FaOilCan size={35} className="text-blue-500" />
           <div>
             <div className="text-center font-bold text-gray-800">
@@ -50,7 +50,7 @@ export default function BenefitsSection() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 rounded-lg border border-gray-300 bg-white p-4 shadow-lg">
+        <div className="flex items-center gap-2 rounded-lg border border-blue-900 bg-white p-4 shadow-lg">
           <LuMilestone size={35} className="text-blue-500" />
           <div>
             <div className="text-center font-bold text-gray-800">
