@@ -1,6 +1,22 @@
-import { signInWithPopup, signOut } from "firebase/auth";
+import {
+  signInWithPopup,
+  signOut,
+  setPersistence,
+  browserLocalPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
 import { GoogleUser } from "./Interfaces";
+import { User as FirebaseUser } from "firebase/auth";
+
+export const configurePersistence = async () => {
+  try {
+    await setPersistence(auth, browserLocalPersistence);
+    console.log("Persistence set localStorage");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const signInWithGoogle = async () => {
   try {
@@ -27,5 +43,22 @@ export const signUserOut = async () => {
     await signOut(auth);
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getCurrentUser = async (): Promise<FirebaseUser | null> => {
+  try {
+    return new Promise((resolve) => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          resolve(user);
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  } catch (error) {
+    console.log("Error getting current user:", error);
+    return null;
   }
 };
