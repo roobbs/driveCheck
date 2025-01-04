@@ -7,8 +7,15 @@ import HeroSection from "../components/indexScreen/HeroSection";
 import BenefitsSection from "../components/indexScreen/BenefitsSection";
 import FeaturesSection from "../components/indexScreen/FeaturesSection";
 
+import { useNavigate } from "react-router-dom";
+
 export default function Index() {
-  const { language } = useContext(AuthContext);
+  const { language, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  if (user) {
+    navigate("/home");
+  }
 
   return (
     <>
