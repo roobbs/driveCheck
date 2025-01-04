@@ -20,7 +20,7 @@ export default function Reminders() {
               : "You have no scheduled reminders."}
           </div>
         ) : (
-          <div className="sm:grid-cols-2 grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 780p:grid-cols-1">
             {reminders.map((reminder, index) => (
               <Reminder
                 key={index}
