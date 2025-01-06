@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import formatNumber from "../../utils/formatNumber";
 import formatDate from "../../utils/formatDate";
+import { MdOutlineEdit } from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
@@ -14,9 +16,10 @@ export default function Maintenance() {
   );
 
   return (
-    <main className="440p:px-2 flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4 400p:px-1">
+    <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
       <h1 className="sticky left-1 text-xl font-bold text-yellow-300">
-        Maintenance History
+        Maintenance History{" "}
+        <span className="text-sm text-gray-400">{`(${maintenanceHistory.length} ${language === "esp" ? "registros" : "records"})`}</span>
       </h1>
       <table className="relative w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
         <thead>
@@ -39,6 +42,8 @@ export default function Maintenance() {
                   ? "Lilometers"
                   : "Miles"}
             </th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +65,18 @@ export default function Maintenance() {
               </td>
               <td className="whitespace-nowrap p-3 font-medium text-blue-400">
                 {`${formatNumber(record.odometer)} ${user?.unitOfMeasure}`}
+              </td>
+              <td
+                className="whitespace-nowrap p-3 font-medium text-yellow-300"
+                onClick={() => {}}
+              >
+                <MdOutlineEdit />
+              </td>
+              <td
+                className="whitespace-nowrap p-3 font-medium text-red-400"
+                onClick={() => {}}
+              >
+                <MdOutlineDelete />
               </td>
             </tr>
           ))}
