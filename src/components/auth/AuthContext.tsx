@@ -25,6 +25,7 @@ export const AuthContext = createContext<AuthContextType>({
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [language, setLanguage] = useState<string>("esp");
+  const [isAuthInitialized, setIsAuthInitialized] = useState(false);
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -42,18 +43,22 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             console.log("logged user:", { ...user, ...userData });
             console.log("User signed with persistence");
           }
+          setIsAuthInitialized(true);
         }
       } catch (error) {
         console.error("Error initializing authentication:", error);
       }
     };
 
-    initializeAuth();
+    if (!isAuthInitialized) {
+      initializeAuth();
+    }
+
     const storedLanguage = localStorage.getItem("language");
     if (storedLanguage) {
       setLanguage(storedLanguage);
     }
-  }, [user]);
+  }, [isAuthInitialized]);
 
   const addUser = (user: User) => {
     setUser(user);
