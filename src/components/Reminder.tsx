@@ -7,6 +7,7 @@ import formatNumber from "../../utils/formatNumber";
 import getDays from "../../utils/getDays";
 import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
+import { MdFileDownloadDone } from "react-icons/md";
 
 export default function Reminder(props: Reminder) {
   const { date, description, odometer } = props;
@@ -53,13 +54,18 @@ export default function Reminder(props: Reminder) {
           </span>{" "}
         </div>
       </div>
-
-      <div
-        className="flex justify-center text-red-500 transition duration-300 hover:scale-110 hover:text-red-600"
-        onClick={() => {}}
-      >
-        <MdOutlineDelete size={22} />
-      </div>
+      {daysUntilReminder <= 14 ? (
+        <div className="flex justify-center text-yellow-400 transition duration-300 hover:scale-110 hover:text-blue-400">
+          <MdFileDownloadDone size={22} />
+        </div>
+      ) : (
+        <div
+          className="flex justify-center text-red-500 transition duration-300 hover:scale-110 hover:text-red-600"
+          onClick={() => {}}
+        >
+          <MdOutlineDelete size={22} />
+        </div>
+      )}
     </div>
   );
 }
