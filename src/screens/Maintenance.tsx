@@ -17,13 +17,13 @@ export default function Maintenance() {
 
   return (
     <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
-      <h1 className="sticky left-1 text-xl font-bold text-yellow-300">
+      <h1 className="text-xl font-bold text-yellow-300">
         Maintenance History{" "}
         <span className="text-sm text-gray-400">{`(${maintenanceHistory.length} ${language === "esp" ? "registros" : "records"})`}</span>
       </h1>
-      <table className="relative w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
+      <table className="w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
         <thead>
-          <tr className="sticky top-0 bg-gray-900 text-yellow-300">
+          <tr className="bg-gray-900 text-yellow-300">
             <th className="p-3 text-left">
               {language === "esp" ? "Fecha" : "Date"}
             </th>
@@ -31,7 +31,13 @@ export default function Maintenance() {
               {language === "esp" ? "Servicio" : "Service"}
             </th>
             <th className="p-3 text-left">
-              {language === "esp" ? "Costo" : "Cost"}
+              {language === "esp" ? "Piezas" : "Parts"}
+            </th>
+            <th className="p-3 text-left">
+              {language === "esp" ? "Mano de obra" : "Labor cost"}
+            </th>
+            <th className="p-3 text-left">
+              {language === "esp" ? "Costo total" : "Total cost"}
             </th>
             <th className="p-3 text-left">
               {language === "esp"
@@ -60,8 +66,14 @@ export default function Maintenance() {
               <td className="p-3 font-medium text-blue-100">
                 {record.description}
               </td>
-              <td className="whitespace-nowrap p-3 font-medium text-green-500">
-                ${formatNumber(record.cost)}
+              <td className="whitespace-nowrap p-3 text-center font-medium text-blue-400">
+                ${formatNumber(record.partCost)}
+              </td>
+              <td className="whitespace-nowrap p-3 text-center font-medium text-blue-400">
+                ${formatNumber(record.laborCost)}
+              </td>
+              <td className="whitespace-nowrap p-3 text-center font-medium text-green-500">
+                ${formatNumber(record.laborCost + record.partCost)}
               </td>
               <td className="whitespace-nowrap p-3 font-medium text-blue-400">
                 {`${formatNumber(record.odometer)} ${user?.unitOfMeasure}`}
