@@ -51,6 +51,7 @@ export interface Reminder {
 export interface MaintenanceRecord {
   date: string;
   description: string;
-  cost: number;
+  partCost: number;
+  laborCost: number;
   odometer: number;
 }
