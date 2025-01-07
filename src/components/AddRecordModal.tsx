@@ -12,7 +12,8 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
   const [form, setForm] = useState({
     date: "",
     description: "",
-    cost: 0,
+    partCost: 0,
+    laborCost: 0,
     odometer: 0,
   });
 
@@ -20,12 +21,15 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: name === "cost" || name === "odometer" ? Number(value) : value,
+      [name]:
+        name === "laborCost" || name === "partCost" || name === "odometer"
+          ? Number(value)
+          : value,
     });
   };
 
   const handleSubmit = async () => {
-    if (form.date && form.description && form.cost && form.odometer) {
+    if (form.date && form.description && form.odometer) {
       try {
         if (!user?.uid) {
           alert(
@@ -102,10 +106,16 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
               placeholderEs: "Fecha",
             },
             {
-              name: "cost",
+              name: "partCost",
               type: "number",
-              placeholder: "Cost",
-              placeholderEs: "Costo",
+              placeholder: "Part Cost",
+              placeholderEs: "Costo de piezas",
+            },
+            {
+              name: "laborCost",
+              type: "number",
+              placeholder: "Labor Cost",
+              placeholderEs: "Costo de mano de obra",
             },
             {
               name: "odometer",
