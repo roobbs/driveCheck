@@ -50,7 +50,8 @@ export default function MaintenanceHistory() {
                 key={index}
                 description={rec.description}
                 date={rec.date}
-                cost={rec.cost}
+                laborCost={rec.laborCost}
+                partCost={rec.partCost}
                 odometer={rec.odometer}
               />
             ))}

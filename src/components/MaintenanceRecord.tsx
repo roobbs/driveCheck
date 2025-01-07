@@ -6,7 +6,7 @@ import formatDate from "../../utils/formatDate";
 import formatNumber from "../../utils/formatNumber";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
-  const { date, description, cost, odometer } = props;
+  const { date, description, laborCost, partCost, odometer } = props;
   const { language, user } = useContext(AuthContext);
 
   return (
@@ -28,10 +28,10 @@ export default function MaintenanceRecord(props: MaintenanceRecord) {
 
         <div>
           <div className="text-sm font-bold text-gray-400">
-            {language === "esp" ? "Costo" : "Cost"}
+            {language === "esp" ? "Costo Total" : "Total Cost"}
           </div>
           <div className="font-semibold text-blue-400">
-            ${formatNumber(cost)}
+            ${formatNumber(laborCost + partCost)}
           </div>
         </div>
 
