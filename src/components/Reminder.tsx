@@ -1,17 +1,19 @@
 import { MdNotificationsNone } from "react-icons/md";
 import type { Reminder } from "../../utils/Interfaces";
 import { AuthContext } from "./auth/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import formatDate from "../../utils/formatDate";
 import formatNumber from "../../utils/formatNumber";
 import getDays from "../../utils/getDays";
 import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdFileDownloadDone } from "react-icons/md";
+import DeleteReminderModal from "./DeleteReminder";
 
 export default function Reminder(props: Reminder) {
   const { date, description, odometer } = props;
   const { language, user } = useContext(AuthContext);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const daysUntilReminder = getDays(date);
 
@@ -55,16 +57,29 @@ export default function Reminder(props: Reminder) {
         </div>
       </div>
       {daysUntilReminder <= 14 ? (
-        <div className="flex justify-center text-yellow-400 transition duration-300 hover:scale-110 hover:text-blue-400">
-          <MdFileDownloadDone size={22} />
+        <div
+          className="flex justify-center text-yellow-400 transition duration-300 hover:scale-110 hover:text-blue-400"
+          onClick={() => setShowConfirm(true)}
+        >
+          <MdFileDownloadDone size={25} />
         </div>
       ) : (
         <div
           className="flex justify-center text-red-500 transition duration-300 hover:scale-110 hover:text-red-600"
-          onClick={() => {}}
+          onClick={() => setShowConfirm(true)}
         >
           <MdOutlineDelete size={22} />
         </div>
+      )}
+
+      {showConfirm && (
+        <DeleteReminderModal
+          date={date}
+          description={description}
+          odometer={odometer}
+          setShowConfirm={setShowConfirm}
+          daysUntilReminder={daysUntilReminder}
+        />
       )}
     </div>
   );
