@@ -33,9 +33,11 @@ export default function DeleteReminderModal(props: DeleteReminderProps) {
 
       const updatedReminders = user.car.upcomingReminders.filter(
         (entry) =>
-          entry.date !== date &&
-          entry.description !== description &&
-          entry.odometer !== odometer,
+          !(
+            entry.date === date &&
+            entry.description === description &&
+            entry.odometer === odometer
+          ),
       );
 
       await updateDoc(userDocRef, {
