@@ -36,11 +36,13 @@ export default function DeleteMaintenanceModal(props: DeleteMaintenanceProps) {
 
       const updatedMaintenance = user.car.maintenanceHistory.filter(
         (entry) =>
-          entry.date !== date &&
-          entry.description !== description &&
-          entry.partCost !== partCost &&
-          entry.laborCost !== laborCost &&
-          entry.odometer !== odometer,
+          !(
+            entry.date === date &&
+            entry.description === description &&
+            entry.partCost === partCost &&
+            entry.laborCost === laborCost &&
+            entry.odometer === odometer
+          ),
       );
 
       await updateDoc(userDocRef, {
