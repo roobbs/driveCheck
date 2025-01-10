@@ -1,12 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import formatNumber from "../../utils/formatNumber";
 import formatDate from "../../utils/formatDate";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
+import DeleteMaintenanceModal from "../components/DeleteMaintenance";
+import { MaintenanceRecord } from "../../utils/Interfaces";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [selectedRecord, setSelectedRecord] =
+    useState<MaintenanceRecord | null>(null);
+
   const maintenanceHistory = (user?.car?.maintenanceHistory || []).sort(
     (a, b) => {
       const dateA = new Date(a.date).getTime();
@@ -86,7 +92,10 @@ export default function Maintenance() {
               </td>
               <td
                 className="whitespace-nowrap p-3 font-medium text-red-400"
-                onClick={() => {}}
+                onClick={() => {
+                  setShowConfirm(true);
+                  setSelectedRecord(record);
+                }}
               >
                 <MdOutlineDelete />
               </td>
@@ -94,6 +103,16 @@ export default function Maintenance() {
           ))}
         </tbody>
       </table>
+      {showConfirm && selectedRecord && (
+        <DeleteMaintenanceModal
+          date={selectedRecord.date}
+          description={selectedRecord.description}
+          partCost={selectedRecord.partCost}
+          laborCost={selectedRecord.laborCost}
+          odometer={selectedRecord.odometer}
+          setShowConfirm={setShowConfirm}
+        />
+      )}
     </main>
   );
 }
