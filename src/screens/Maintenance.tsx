@@ -6,10 +6,12 @@ import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import DeleteMaintenanceModal from "../components/DeleteMaintenance";
 import { MaintenanceRecord } from "../../utils/Interfaces";
+import EditRecordModal from "../components/EditRecord";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [selectedRecord, setSelectedRecord] =
     useState<MaintenanceRecord | null>(null);
 
@@ -86,15 +88,18 @@ export default function Maintenance() {
               </td>
               <td
                 className="whitespace-nowrap p-3 font-medium text-yellow-300"
-                onClick={() => {}}
+                onClick={() => {
+                  setSelectedRecord(record);
+                  setShowEdit(true);
+                }}
               >
                 <MdOutlineEdit />
               </td>
               <td
                 className="whitespace-nowrap p-3 font-medium text-red-400"
                 onClick={() => {
-                  setShowConfirm(true);
                   setSelectedRecord(record);
+                  setShowDelete(true);
                 }}
               >
                 <MdOutlineDelete />
@@ -103,14 +108,25 @@ export default function Maintenance() {
           ))}
         </tbody>
       </table>
-      {showConfirm && selectedRecord && (
+
+      {showEdit && selectedRecord && (
+        <EditRecordModal
+          date={selectedRecord.date}
+          description={selectedRecord.description}
+          partCost={selectedRecord.partCost}
+          laborCost={selectedRecord.laborCost}
+          odometer={selectedRecord.odometer}
+          closeModal={() => setShowEdit(false)}
+        />
+      )}
+      {showDelete && selectedRecord && (
         <DeleteMaintenanceModal
           date={selectedRecord.date}
           description={selectedRecord.description}
           partCost={selectedRecord.partCost}
           laborCost={selectedRecord.laborCost}
           odometer={selectedRecord.odometer}
-          setShowConfirm={setShowConfirm}
+          setShowConfirm={setShowDelete}
         />
       )}
     </main>
