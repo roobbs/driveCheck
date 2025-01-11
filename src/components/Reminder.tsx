@@ -9,11 +9,13 @@ import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdFileDownloadDone } from "react-icons/md";
 import DeleteReminderModal from "./DeleteReminder";
+import EditReminderModal from "./EditReminder";
 
 export default function Reminder(props: Reminder) {
   const { date, description, odometer } = props;
   const { language, user } = useContext(AuthContext);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
 
   const daysUntilReminder = getDays(date);
 
@@ -38,7 +40,7 @@ export default function Reminder(props: Reminder) {
         <MdOutlineEdit
           size={22}
           className="text-yellow-300 transition hover:scale-125"
-          onClick={() => {}}
+          onClick={() => setShowEdit(true)}
         />
       </div>
 
@@ -59,26 +61,35 @@ export default function Reminder(props: Reminder) {
       {daysUntilReminder <= 14 ? (
         <div
           className="flex justify-center text-yellow-400 transition duration-300 hover:scale-110 hover:text-blue-400"
-          onClick={() => setShowConfirm(true)}
+          onClick={() => setShowDelete(true)}
         >
           <MdFileDownloadDone size={25} />
         </div>
       ) : (
         <div
           className="flex justify-center text-red-500 transition duration-300 hover:scale-110 hover:text-red-600"
-          onClick={() => setShowConfirm(true)}
+          onClick={() => setShowDelete(true)}
         >
           <MdOutlineDelete size={22} />
         </div>
       )}
 
-      {showConfirm && (
+      {showDelete && (
         <DeleteReminderModal
           date={date}
           description={description}
           odometer={odometer}
-          setShowConfirm={setShowConfirm}
+          setShowConfirm={setShowDelete}
           daysUntilReminder={daysUntilReminder}
+        />
+      )}
+
+      {showEdit && (
+        <EditReminderModal
+          date={date}
+          description={description}
+          odometer={odometer ? odometer : 0}
+          closeModal={() => setShowEdit(false)}
         />
       )}
     </div>
