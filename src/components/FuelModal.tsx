@@ -1,25 +1,20 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "./auth/AuthContext";
+import { db } from "../../config/firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 interface FuelModalProps {
   closeModal: () => void;
-  onAddRecord: (record: {
-    date: string;
-    odometer: number;
-    fuelAmount: number;
-  }) => void;
-  language: "esp" | "eng";
 }
 
-export default function FuelModal({
-  closeModal,
-  onAddRecord,
-  language,
-}: FuelModalProps) {
+export default function FuelModal({ closeModal }: FuelModalProps) {
   const [form, setForm] = useState({
     date: "",
     odometer: 0,
     fuelAmount: 0,
+    cost: 0,
   });
+  const { user, updateUser, language } = useContext(AuthContext);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,19 +25,55 @@ export default function FuelModal({
     });
   };
 
-  const handleSubmit = () => {
-    if (form.date && form.odometer && form.fuelAmount) {
-      onAddRecord(form);
-      closeModal();
-      alert(
-        language === "esp"
-          ? "Registro guardado correctamente"
-          : "Record saved successfully",
-      );
+  const handleSubmit = async () => {
+    if (form.date && form.odometer && form.fuelAmount && form.cost) {
+      try {
+        if (!user?.uid) {
+          alert(
+            language === "esp"
+              ? "Usuario no autenticado"
+              : "User not authenticated",
+          );
+          return;
+        }
+
+        const userDocRef = doc(db, "users", user.uid);
+
+        const updatedFuelRecordsArray = [
+          ...(user.car?.fuelRecords || []),
+          form,
+        ];
+
+        await updateDoc(userDocRef, {
+          "car.fuelRecords": updatedFuelRecordsArray,
+        });
+
+        updateUser({
+          ...user,
+          car: {
+            ...user.car,
+            fuelRecords: updatedFuelRecordsArray,
+          },
+        });
+
+        closeModal();
+        alert(
+          language === "esp"
+            ? "Registro de combustible guardado correctamente"
+            : "Fuel record saved successfully",
+        );
+      } catch (error) {
+        console.error("Error saving fuel record:", error);
+        alert(
+          language === "esp"
+            ? "Hubo un error al intentar guardar el registro"
+            : "Failed to save the fuel record. Please try again",
+        );
+      }
     } else {
       alert(
         language === "esp"
-          ? "Por favor, completa todos los campos"
+          ? "Por favor completa todos los campos"
           : "Please fill in all fields",
       );
     }
@@ -77,6 +108,12 @@ export default function FuelModal({
               placeholder: "Fuel Amount (L)",
               placeholderEs: "Cantidad de Combustible (L)",
             },
+            {
+              name: "cost",
+              type: "number",
+              placeholder: "Cost",
+              placeholderEs: "Costo",
+            },
           ].map((input, index) => (
             <div className="relative mt-2" key={index}>
               <label
@@ -89,7 +126,6 @@ export default function FuelModal({
                 id={input.name}
                 name={input.name}
                 type={input.type}
-                value={form[input.name as keyof typeof form]}
                 onChange={handleChange}
                 placeholder={
                   language === "esp" ? input.placeholderEs : input.placeholder
