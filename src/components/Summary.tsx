@@ -9,14 +9,12 @@ import EditableField from "./EditableField";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import "../styles/animations.css";
-import formatNumber from "../../utils/formatNumber";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);
 
   const [model, setModel] = useState(user?.car.summary.model);
   const [year, setYear] = useState(user?.car.summary.year);
-  const [odometer, setOdometer] = useState(user?.car.summary.odometer);
   const [brand, setBrand] = useState(user?.car.summary.brand);
 
   const [open, setOpen] = useState(model && year ? false : true);
@@ -45,7 +43,6 @@ export default function Summary() {
         brand: brand || "",
         model: model || "",
         year: year || 0,
-        odometer: odometer || 0,
       };
 
       await updateDoc(userDocRef, {
@@ -113,25 +110,6 @@ export default function Summary() {
             isEditing={editing}
             onChange={(e) => setYear(Number(e.target.value))}
             type="number"
-          />
-          <EditableField
-            label={
-              language === "esp"
-                ? user?.unitOfMeasure === "km"
-                  ? "Kilómetros"
-                  : "Millas"
-                : user?.unitOfMeasure === "km"
-                  ? "Kilometers"
-                  : "Miles"
-            }
-            value={odometer || ""}
-            current={
-              user
-                ? `${formatNumber(user.car.summary.odometer)} ${user.unitOfMeasure}`
-                : ""
-            }
-            isEditing={editing}
-            onChange={(e) => setOdometer(Number(e.target.value))}
           />
         </div>
         <div className="flex gap-2">
