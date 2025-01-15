@@ -38,7 +38,6 @@ export function useSignIn() {
                 brand: "",
                 model: "",
                 year: 0,
-                odometer: 0,
               },
               overview: [
                 {
@@ -74,6 +73,7 @@ export function useSignIn() {
               ],
               upcomingReminders: [],
               maintenanceHistory: [],
+              fuelRecords: [],
             },
           };
 
