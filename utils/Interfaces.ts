@@ -26,13 +26,20 @@ export interface Car {
   overview: OverviewEntry[];
   upcomingReminders: Reminder[];
   maintenanceHistory: MaintenanceRecord[];
+  fuelRecords: FuelRecord[];
+}
+
+export interface FuelRecord {
+  date: string;
+  odometer: number;
+  fuelAmount: number;
+  cost: number;
 }
 
 export interface Summary {
   brand: string;
   model: string;
   year: number;
-  odometer: number;
 }
 
 export interface OverviewEntry {
