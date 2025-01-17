@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import FuelModal from "./FuelModal";
 import { AuthContext } from "./auth/AuthContext";
 import { FaCirclePlus } from "react-icons/fa6";
+import FuelChart2 from "./OdometerChart";
 
 export default function FuelTracker() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,8 +22,8 @@ export default function FuelTracker() {
         </div>
       </div>
 
-      <section className="grid grid-cols-2 justify-around gap-6 rounded-xl bg-gray-900 p-4 py-6 680p:grid-cols-1">
-        hola
+      <section className="justify-around gap-6 rounded-xl bg-gray-900 p-4 py-6 680p:grid-cols-1">
+        <FuelChart2 />
       </section>
 
       {isModalOpen && <FuelModal closeModal={() => setIsModalOpen(false)} />}
