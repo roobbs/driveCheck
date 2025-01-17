@@ -15,25 +15,26 @@ export default function Buttons() {
     <section className="flex flex-wrap items-center justify-center gap-8 bg-gray-800 p-4">
       <button
         onClick={() => setOpenModal("fuel")}
-        className="flex items-center gap-1 rounded bg-yellow-300 px-4 py-2 font-bold text-blue-950 shadow transition hover:bg-yellow-400"
+        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-3/4"
       >
         <BsFuelPump size={22} />
-        Add Fuel Record
+        Fuel recharge
       </button>
 
       <button
         onClick={() => setOpenModal("reminder")}
-        className="flex items-center gap-1 rounded bg-yellow-300 px-4 py-2 font-bold text-blue-950 shadow transition hover:bg-yellow-400"
+        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-3/4"
       >
         <IoMdNotifications size={22} />
-        Add Reminder
+        New Reminder
       </button>
 
       <button
         onClick={() => setOpenModal("record")}
-        className="flex items-center gap-1 rounded bg-yellow-300 px-4 py-2 font-bold text-blue-950 shadow transition hover:bg-yellow-400"
+        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-3/4"
       >
-        <AiFillTool size={22} /> Add Maintenance Record
+        <AiFillTool size={22} />
+        New Maintenance
       </button>
 
       {openModal === "record" && <AddRecordModal closeModal={handleClose} />}
