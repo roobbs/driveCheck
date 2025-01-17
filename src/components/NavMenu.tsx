@@ -4,6 +4,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { RiToolsFill } from "react-icons/ri";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
+import { BsFillFuelPumpFill } from "react-icons/bs";
 
 export default function NavMenu() {
   const { language } = useContext(AuthContext);
@@ -37,6 +38,21 @@ export default function NavMenu() {
         <IoMdNotifications size={20} />{" "}
         <span className="750p:hidden">
           {language === "esp" ? "Recordatorios" : "Reminders"}
+        </span>
+      </NavLink>
+      <NavLink
+        to="/fuelRecords"
+        className={({ isActive }) =>
+          `flex items-center gap-1 rounded px-4 py-1 text-sm font-medium transition duration-300 ${
+            isActive
+              ? "text-blue-500"
+              : "text-slate-300 hover:bg-slate-700 hover:text-white"
+          } `
+        }
+      >
+        <BsFillFuelPumpFill size={18} />{" "}
+        <span className="750p:hidden">
+          {language === "esp" ? "Registros de combustible" : "Fuel records"}
         </span>
       </NavLink>
       <NavLink
