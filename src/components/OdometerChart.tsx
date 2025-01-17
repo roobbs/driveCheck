@@ -31,7 +31,7 @@ export default function OdometerChart() {
         <XAxis
           dataKey="date"
           label={{
-            value: "Fecha",
+            value: language === "esp" ? "Fecha" : "Date",
             position: "insideBottom",
             offset: -5,
             fill: "white",
@@ -41,7 +41,12 @@ export default function OdometerChart() {
         />
         <YAxis
           label={{
-            value: "Kilometraje",
+            value:
+              language === "esp"
+                ? user?.unitOfMeasure === "km"
+                  ? "Kilómetraje:"
+                  : "Millas:"
+                : "Mileage",
             angle: -90,
             position: "outsideLeft",
             dx: -30,
@@ -58,15 +63,27 @@ export default function OdometerChart() {
               return (
                 <div className="flex flex-col items-center rounded border border-yellow-300 bg-slate-950 p-2">
                   <p>
-                    <strong className="text-yellow-300">Fecha:</strong>{" "}
+                    <strong className="text-yellow-300">
+                      {language === "esp" ? "Fecha:" : "Date:"}
+                    </strong>{" "}
                     {formatDate(date, language)}
                   </p>
                   <p>
-                    <strong className="text-yellow-300">Kilometraje:</strong>{" "}
-                    {formatNumber(odometer)}
+                    <strong className="text-yellow-300">
+                      {language === "esp"
+                        ? user?.unitOfMeasure === "km"
+                          ? "Kilómetros:"
+                          : "Millas:"
+                        : user?.unitOfMeasure === "km"
+                          ? "Kilometers:"
+                          : "Miles:"}
+                    </strong>{" "}
+                    {`${formatNumber(odometer)} ${user?.unitOfMeasure}`}
                   </p>
                   <p>
-                    <strong className="text-yellow-300">Cantidad:</strong>{" "}
+                    <strong className="text-yellow-300">
+                      {language === "esp" ? "Cantidad:" : "Amount:"}
+                    </strong>{" "}
                     {fuelAmount} L
                   </p>
                 </div>
@@ -79,6 +96,7 @@ export default function OdometerChart() {
         <Area
           type="monotone"
           dataKey="odometer"
+          name={language === "esp" ? "Odómetro" : "Odometer"}
           stroke="#facc15"
           fill="#0f172a"
         />
