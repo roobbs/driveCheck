@@ -1,12 +1,10 @@
-import { FaCirclePlus } from "react-icons/fa6";
 import MaintenanceRecord from "./MaintenanceRecord";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./auth/AuthContext";
-import AddRecordModal from "./AddRecordModal";
 import { Link } from "react-router-dom";
+import { RiToolsFill } from "react-icons/ri";
 
 export default function MaintenanceHistory() {
-  const [modalOpen, setModalOpen] = useState(false);
   const { user, language } = useContext(AuthContext);
   const records = user?.car.maintenanceHistory
     .sort((a, b) => {
@@ -18,20 +16,16 @@ export default function MaintenanceHistory() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-12">
+      <div className="flex items-center justify-between gap-12">
         <div className="font-bold text-yellow-300">
           {language === "esp" ? "Últimos servicios" : "Last services"}
         </div>
-        <div className="" onClick={() => setModalOpen(true)}>
-          <FaCirclePlus
-            size={45}
-            className="text-yellow-300 transition hover:text-yellow-400"
-          />
-        </div>
+
         <Link
           to={"/maintenance"}
-          className="self-end text-sm text-blue-500 underline transition hover:text-yellow-400"
+          className="flex gap-1 rounded-lg border border-blue-500 bg-blue-700 p-2 text-sm font-semibold transition hover:bg-blue-800"
         >
+          <RiToolsFill size={21} />
           {language === "esp" ? "Ver historial completo" : "View full history"}
         </Link>
       </div>
@@ -57,8 +51,6 @@ export default function MaintenanceHistory() {
             ))}
           </>
         )}
-
-        {modalOpen && <AddRecordModal closeModal={() => setModalOpen(false)} />}
       </section>
     </div>
   );
