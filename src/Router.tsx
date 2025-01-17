@@ -7,6 +7,7 @@ import Home from "./screens/Home";
 import Layout from "./components/Layout";
 import Maintenance from "./screens/Maintenance";
 import Reminders from "./screens/Reminders";
+import Fuel from "./screens/Fuel";
 
 export default function Router() {
   const router = createBrowserRouter([
@@ -25,6 +26,7 @@ export default function Router() {
             { path: "home", element: <Home /> },
             { path: "maintenance", element: <Maintenance /> },
             { path: "reminders", element: <Reminders /> },
+            { path: "fuelRecords", element: <Fuel /> },
           ],
         },
       ],
