@@ -65,19 +65,14 @@ export default function Summary() {
   };
 
   return (
-    <section className="flex flex-col gap-0">
+    <section className="flex cursor-pointer flex-col gap-0">
       <div
-        className={`flex justify-around rounded-t-xl bg-gray-900 p-3 ${open ? "rounded-b-none" : "borderRounded rounded-b-xl"}`}
+        aria-expanded={open}
+        onClick={() => setOpen(!open)}
+        className={`flex justify-around rounded-t-xl bg-gray-900 p-3 text-yellow-300 transition hover:text-blue-400 ${open ? "rounded-b-none" : "borderRounded rounded-b-xl"}`}
       >
-        <div className="font-bold text-yellow-300">
-          {open ? openTitle : title}
-        </div>
-        <div
-          role="button"
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-          className="text-yellow-300 transition hover:text-white"
-        >
+        <div className="font-bold">{open ? openTitle : title}</div>
+        <div role="button">
           {open ? (
             <IoIosArrowDropup size={25} />
           ) : (
