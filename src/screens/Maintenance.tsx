@@ -7,11 +7,15 @@ import { MdOutlineDelete } from "react-icons/md";
 import DeleteMaintenanceModal from "../components/DeleteMaintenance";
 import { MaintenanceRecord } from "../../utils/Interfaces";
 import EditRecordModal from "../components/EditRecord";
+import { FaCirclePlus } from "react-icons/fa6";
+import AddRecordModal from "../components/AddRecordModal";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const [selectedRecord, setSelectedRecord] =
     useState<MaintenanceRecord | null>(null);
 
@@ -25,10 +29,19 @@ export default function Maintenance() {
 
   return (
     <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
-      <h1 className="text-xl font-bold text-yellow-300">
-        Maintenance History{" "}
-        <span className="text-sm text-gray-400">{`(${maintenanceHistory.length} ${language === "esp" ? "registros" : "records"})`}</span>
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-bold text-yellow-300">
+          Maintenance History{" "}
+          <p className="text-sm text-gray-400">{`(${maintenanceHistory.length} ${language === "esp" ? "registros" : "records"})`}</p>
+        </h1>
+        <div onClick={() => setModalOpen(true)}>
+          <FaCirclePlus
+            size={50}
+            className="text-yellow-300 transition hover:text-yellow-400"
+          />
+        </div>
+      </div>
+
       <table className="w-full border-collapse overflow-hidden rounded-lg shadow-lg shadow-gray-950">
         <thead>
           <tr className="bg-gray-900 text-yellow-300">
@@ -129,6 +142,7 @@ export default function Maintenance() {
           setShowConfirm={setShowDelete}
         />
       )}
+      {modalOpen && <AddRecordModal closeModal={() => setModalOpen(false)} />}
     </main>
   );
 }

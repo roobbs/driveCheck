@@ -32,7 +32,7 @@ export default function Reminders() {
         </h2>
         <div onClick={() => setModalOpen(true)}>
           <FaCirclePlus
-            size={45}
+            size={50}
             className="text-yellow-300 transition hover:text-yellow-400"
           />
         </div>
