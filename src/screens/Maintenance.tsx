@@ -3,8 +3,8 @@ import { AuthContext } from "../components/auth/AuthContext";
 import { FaCirclePlus } from "react-icons/fa6";
 import AddRecordModal from "../components/AddRecordModal";
 import { TbFilterSearch } from "react-icons/tb";
-import { TbFilterX } from "react-icons/tb";
 import MaintenanceTable from "../components/MaintenanceTable";
+import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
@@ -54,12 +54,19 @@ export default function Maintenance() {
       return true;
     });
 
+  const resetFilters = () => {
+    setDateRange({ start: "", end: "" });
+    setMinCost(0);
+    setMaxCost(maxCostValue);
+    setSearchQuery("");
+  };
+
   return (
     <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-yellow-300">
           Maintenance History{" "}
-          <p className="text-sm text-gray-400">{`(${maintenanceArray.length} ${language === "esp" ? "registros" : "records"})`}</p>
+          <p className="text-sm text-gray-400">{`(${user?.car.maintenanceHistory.length} ${language === "esp" ? "registros" : "records"})`}</p>
         </h1>
         <FaCirclePlus
           onClick={() => setModalOpen(true)}
@@ -73,9 +80,14 @@ export default function Maintenance() {
       <div></div>
 
       <div className="fixed bottom-4 right-4 z-[1] flex flex-col gap-1">
-        {filtersOpen && (
-          <div className="flex flex-col gap-4 rounded-lg border bg-slate-950 p-4 shadow-lg">
-            <div>
+        {filtersOpen ? (
+          <div className="flex flex-col gap-4 rounded-lg border border-blue-300 bg-slate-950 p-4 shadow-sm shadow-yellow-300">
+            <IoMdCloseCircle
+              size={30}
+              className="absolute self-end text-red-500 transition duration-300 hover:text-red-800"
+              onClick={() => setFiltersOpen(false)}
+            />
+            <div className="mt-4 flex flex-col gap-1">
               <label className="font-semibold text-blue-500">
                 {language === "esp" ? "Buscar" : "Search"}
               </label>
@@ -155,19 +167,24 @@ export default function Maintenance() {
                 onChange={(e) => setMaxCost(Number(e.target.value))}
               />
             </div>
+            <button
+              onClick={resetFilters}
+              className="rounded border bg-blue-900 p-1 font-semibold transition duration-300 hover:bg-blue-700"
+            >
+              {language === "esp" ? "Restablecer filtros" : "Reset filters"}
+            </button>
           </div>
+        ) : (
+          <button
+            className={`flex w-48 items-center justify-center gap-2 self-end rounded-lg border border-blue-500 bg-slate-950 p-2 text-blue-500 shadow-sm transition duration-300 hover:border-blue-400 hover:text-blue-400 hover:shadow-blue-500`}
+            onClick={() => setFiltersOpen(!filtersOpen)}
+          >
+            <TbFilterSearch size={38} />
+            <div className="font-semibold text-gray-300">
+              {language === "esp" ? "Buscar y filtrar" : "Search and filter"}
+            </div>
+          </button>
         )}
-        <button
-          className={`flex w-48 items-center justify-center gap-2 self-end rounded-lg border border-blue-400 bg-slate-950 p-2 shadow-sm transition ${filtersOpen ? "border-red-600 shadow-red-600" : "border-yellow-500 shadow-yellow-600"}`}
-          onClick={() => setFiltersOpen(!filtersOpen)}
-        >
-          {filtersOpen ? <TbFilterX size={38} /> : <TbFilterSearch size={38} />}
-          {filtersOpen ? (
-            <div>Close filters</div>
-          ) : (
-            <div>Search and filter</div>
-          )}
-        </button>
       </div>
 
       {modalOpen && <AddRecordModal closeModal={() => setModalOpen(false)} />}
