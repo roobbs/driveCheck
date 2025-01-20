@@ -62,7 +62,7 @@ export default function DeleteMaintenanceModal(props: DeleteMaintenanceProps) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-70">
       <div className="rounded-lg border border-blue-400 bg-gray-900 p-6 text-center">
         <p className="font-bold text-white">
           {language === "esp"

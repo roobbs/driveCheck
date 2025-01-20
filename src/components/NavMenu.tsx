@@ -9,7 +9,7 @@ import { BsFillFuelPumpFill } from "react-icons/bs";
 export default function NavMenu() {
   const { language } = useContext(AuthContext);
   return (
-    <nav className="sticky top-0 flex items-center justify-around bg-slate-950 px-4 py-2 shadow-md">
+    <nav className="sticky top-0 z-[1] flex items-center justify-around bg-slate-950 px-4 py-2 shadow-md">
       <NavLink
         to="/home"
         className={({ isActive }) =>

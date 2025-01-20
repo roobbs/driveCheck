@@ -80,7 +80,7 @@ export default function FuelModal({ closeModal }: FuelModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-90">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-800 bg-opacity-90">
       <div className="relative m-2 w-full max-w-lg rounded-lg border border-gray-500 bg-gray-900 p-6 shadow-lg">
         <h2 className="mb-4 text-center text-2xl font-bold text-yellow-300">
           {language === "esp"
