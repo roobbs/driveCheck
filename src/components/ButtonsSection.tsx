@@ -18,41 +18,24 @@ export default function Buttons() {
     {
       id: "fuel",
       icon: <BsFuelPump size={32} />,
-<<<<<<< HEAD
       tooltip:
         language === "esp"
           ? "Registra una carga de combustible"
           : "Log your fuel charge",
-=======
-      text: language === "esp" ? "Carga de Combustible" : "Fuel Recharge",
-      tooltip: language === "esp" ? "Registra tu combustible" : "Log your fuel",
->>>>>>> 57f709ee712a8ef32e8bd43e375fe5877056be4c
     },
     {
       id: "reminder",
       icon: <IoMdNotifications size={32} />,
-<<<<<<< HEAD
-
-=======
       text: language === "esp" ? "Agregar Recordatorio" : "New Reminder",
->>>>>>> 57f709ee712a8ef32e8bd43e375fe5877056be4c
       tooltip:
         language === "esp"
           ? "Crea un recordatorio importante"
           : "Set an important reminder",
-<<<<<<< HEAD
-=======
-      badge: 3, // Ejemplo: Número de recordatorios nuevos
->>>>>>> 57f709ee712a8ef32e8bd43e375fe5877056be4c
     },
     {
       id: "record",
       icon: <AiFillTool size={32} />,
-<<<<<<< HEAD
-
-=======
-      text: language === "esp" ? "Nuevo Mantenimiento" : "Maintenance Record",
->>>>>>> 57f709ee712a8ef32e8bd43e375fe5877056be4c
+      ext: language === "esp" ? "Nuevo Mantenimiento" : "Maintenance Record",
       tooltip:
         language === "esp"
           ? "Registra un nuevo mantenimiento"
