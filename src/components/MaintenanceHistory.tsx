@@ -23,7 +23,7 @@ export default function MaintenanceHistory() {
 
         <Link
           to={"/maintenance"}
-          className="flex gap-1 rounded-lg border border-blue-500 bg-blue-700 p-2 text-sm font-semibold transition hover:bg-blue-800"
+          className="flex items-center gap-1 rounded-lg border border-blue-500 bg-blue-700 p-2 text-sm font-semibold transition hover:bg-blue-800"
         >
           <RiToolsFill size={21} />
           {language === "esp" ? "Ver historial completo" : "View full history"}
