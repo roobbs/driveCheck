@@ -9,9 +9,9 @@ export default function Home() {
     <main className="flex flex-1 flex-col gap-8 bg-gray-800 p-4">
       <Summary />
       <Overview />
-      <Buttons />
       <FuelTracker />
       <MaintenanceHistory />
+      <Buttons />
     </main>
   );
 }
