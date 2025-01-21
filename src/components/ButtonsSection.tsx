@@ -6,6 +6,7 @@ import { BsFuelPump } from "react-icons/bs";
 import { AiFillTool } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
 import { AuthContext } from "./auth/AuthContext";
+import { BsFillPlusCircleFill } from "react-icons/bs";
 
 export default function Buttons() {
   const [openModal, setOpenModal] = useState<string | null>(null); // "record", "reminder", "fuel", or null
@@ -13,33 +14,50 @@ export default function Buttons() {
 
   const handleClose = () => setOpenModal(null);
 
+  const buttons = [
+    {
+      id: "fuel",
+      icon: <BsFuelPump size={32} />,
+      text: language === "esp" ? "Carga de Combustible" : "Fuel Recharge",
+      tooltip: language === "esp" ? "Registra tu combustible" : "Log your fuel",
+    },
+    {
+      id: "reminder",
+      icon: <IoMdNotifications size={32} />,
+      text: language === "esp" ? "Agregar Recordatorio" : "New Reminder",
+      tooltip:
+        language === "esp"
+          ? "Crea un recordatorio importante"
+          : "Set an important reminder",
+      badge: 3, // Ejemplo: Número de recordatorios nuevos
+    },
+    {
+      id: "record",
+      icon: <AiFillTool size={32} />,
+      text: language === "esp" ? "Nuevo Mantenimiento" : "Maintenance Record",
+      tooltip:
+        language === "esp"
+          ? "Registra un nuevo mantenimiento"
+          : "Add a maintenance record",
+    },
+  ];
+
   return (
-    <section className="flex flex-wrap items-center justify-center gap-8 bg-gray-800 p-4">
-      <button
-        onClick={() => setOpenModal("fuel")}
-        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-11/12"
-      >
-        <BsFuelPump size={22} />
-        {language === "esp" ? "Carga de combustible" : "Fuel recharge"}
-      </button>
-
-      <button
-        onClick={() => setOpenModal("reminder")}
-        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-11/12"
-      >
-        <IoMdNotifications size={22} />
-        {language === "esp" ? "Agregar recordartorio" : "New Reminder"}
-      </button>
-
-      <button
-        onClick={() => setOpenModal("record")}
-        className="flex items-center justify-center gap-1 rounded-lg border border-blue-500 bg-blue-900 px-4 py-2 font-bold shadow transition hover:bg-slate-900 440p:w-11/12"
-      >
-        <AiFillTool size={22} />
-        {language === "esp"
-          ? "Nuevo registro de mantenimiento"
-          : "New Maintenance Record"}
-      </button>
+    <section className="sticky bottom-0 flex items-center justify-center gap-8 390p:gap-4">
+      {buttons.map((button) => (
+        <div
+          key={button.id}
+          className="group relative flex flex-col items-center justify-center rounded-lg border border-blue-500 bg-gradient-to-b from-blue-600 to-blue-900 p-4 text-white transition-transform hover:scale-105 hover:from-blue-700 hover:to-blue-900 active:scale-95"
+          onClick={() => setOpenModal(button.id)}
+        >
+          <BsFillPlusCircleFill className="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-slate-800 font-bold text-yellow-500" />
+          {button.icon}
+          {/* Tooltip */}
+          <div className="absolute bottom-full hidden rounded-lg border bg-blue-950 px-3 py-2 text-center text-sm text-white group-hover:block">
+            {button.tooltip}
+          </div>
+        </div>
+      ))}
 
       {openModal === "record" && <AddRecordModal closeModal={handleClose} />}
       {openModal === "reminder" && (
