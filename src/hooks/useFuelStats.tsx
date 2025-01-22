@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 
-type MonthStats = { [key: string]: number };
+type MonthStatEntry = [string, number];
 
 export function useFuelStats() {
   const { user } = useContext(AuthContext);
@@ -31,14 +31,14 @@ export function useFuelStats() {
 
     const costPerLiter = totalFuel > 0 ? totalCost / totalFuel : 0;
 
-    const costByMonth: MonthStats = {};
+    const costByMonth: Record<string, number> = {};
     fuelRecords.forEach((record) => {
       const [year, month] = record.date.split("-");
       const key = `${year}-${month}`;
       costByMonth[key] = (costByMonth[key] || 0) + Number(record.cost);
     });
 
-    const distanceByMonth: MonthStats = {};
+    const distanceByMonth: Record<string, number> = {};
     fuelRecords.forEach((record, index) => {
       if (index === 0) return;
       const distance = record.odometer - fuelRecords[index - 1].odometer;
@@ -56,21 +56,27 @@ export function useFuelStats() {
         ? distances.reduce((sum, d) => sum + d, 0) / distances.length
         : 0;
 
-    const fuelByMonth: MonthStats = {};
+    const fuelByMonth: Record<string, number> = {};
     fuelRecords.forEach((record) => {
       const [year, month] = record.date.split("-");
       const key = `${year}-${month}`;
       fuelByMonth[key] = (fuelByMonth[key] || 0) + record.fuelAmount;
     });
 
+    // Convert objects to arrays
+    const costByMonthArr: MonthStatEntry[] = Object.entries(costByMonth);
+    const distanceByMonthArr: MonthStatEntry[] =
+      Object.entries(distanceByMonth);
+    const fuelByMonthArr: MonthStatEntry[] = Object.entries(fuelByMonth);
+
     return {
       totalDistance,
       costPerKm,
       efficiency,
       costPerLiter,
-      costByMonth,
-      fuelByMonth,
-      distanceByMonth,
+      costByMonthArr,
+      fuelByMonthArr,
+      distanceByMonthArr,
       avgDistanceBetweenFills,
     };
   }, [fuelRecords]);
