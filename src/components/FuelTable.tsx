@@ -66,7 +66,7 @@ export default function FuelTable({ data }: { data: FuelRecord[] }) {
                 {`${formatNumber(record.odometer)} ${user?.unitOfMeasure}`}
               </td>
               <td className="whitespace-nowrap p-3 font-medium text-blue-400">
-                {`$ ${record.cost / record.fuelAmount}`}
+                {`$ ${(record.cost / record.fuelAmount).toFixed(2)}`}
               </td>
               <td
                 className="whitespace-nowrap p-3 font-medium text-yellow-300"
