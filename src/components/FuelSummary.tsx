@@ -48,10 +48,10 @@ export default function FuelStatsSummary() {
             key={index}
             className="flex cursor-pointer flex-col items-center rounded-lg border border-transparent bg-gradient-to-br from-slate-800 to-gray-800 px-6 py-1 shadow-lg transition-transform hover:scale-105 hover:border-blue-300 hover:from-slate-700 hover:to-slate-800"
           >
-            <span className="mt-2 text-sm font-medium text-gray-400">
+            <span className="mt-2 text-sm font-medium text-blue-200">
               {stat.label}
             </span>
-            <hr className="my-2 w-full border-gray-300" />
+            <hr className="my-2 w-full border-gray-200" />
             <span className="text-2xl font-bold text-yellow-300">
               {stat.value}
             </span>
