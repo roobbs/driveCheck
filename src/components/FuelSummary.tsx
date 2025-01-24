@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { useFuelStats } from "../hooks/useFuelStats";
+import { AuthContext } from "./auth/AuthContext";
 
 export default function FuelStatsSummary() {
   const fuelStats = useFuelStats();
+  const { user } = useContext(AuthContext);
 
   if (!fuelStats) {
     return (
@@ -22,11 +25,19 @@ export default function FuelStatsSummary() {
   const stats = [
     {
       label: "Total Distance",
-      value: `${totalDistance.toFixed(2)} km`,
+      value: `${totalDistance.toFixed(2)} ${user?.unitOfMeasure}`,
       icon: "🚗",
     },
-    { label: "Cost per Km", value: `$${costPerKm.toFixed(2)}`, icon: "💸" },
-    { label: "Efficiency", value: `${efficiency.toFixed(2)} km/L`, icon: "⚙️" },
+    {
+      label: `Cost per ${user?.unitOfMeasure}`,
+      value: `$${costPerKm.toFixed(2)}`,
+      icon: "💸",
+    },
+    {
+      label: "Efficiency",
+      value: `${efficiency.toFixed(2)} ${user?.unitOfMeasure}/L`,
+      icon: "⚙️",
+    },
     {
       label: "Cost per Liter",
       value: `$${costPerLiter.toFixed(2)}`,
@@ -34,7 +45,7 @@ export default function FuelStatsSummary() {
     },
     {
       label: "Avg Distance Between Fills",
-      value: `${avgDistanceBetweenFills.toFixed(2)} km`,
+      value: `${avgDistanceBetweenFills.toFixed(2)} ${user?.unitOfMeasure}`,
       icon: "📏",
     },
   ];
