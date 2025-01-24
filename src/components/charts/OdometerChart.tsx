@@ -8,10 +8,10 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
-import formatNumber from "../../utils/formatNumber";
-import formatDate from "../../utils/formatDate";
+import formatNumber from "../../../utils/formatNumber";
+import formatDate from "../../../utils/formatDate";
 
 export default function OdometerChart() {
   const { user, language } = useContext(AuthContext);
