@@ -37,6 +37,7 @@ export default function OdometerChart() {
             fill: "white",
           }}
           stroke="#0ea5e9"
+          strokeWidth={2}
           tick={{ fill: "#0ea5e9" }}
         />
         <YAxis
@@ -53,6 +54,7 @@ export default function OdometerChart() {
             fill: "white",
           }}
           stroke="#0ea5e9"
+          strokeWidth={2}
           tick={{ fill: "#0ea5e9" }}
           domain={["dataMin - 5", "dataMax + 5"]}
         />
@@ -61,7 +63,7 @@ export default function OdometerChart() {
             if (active && payload && payload.length) {
               const { date, odometer, fuelAmount } = payload[0].payload;
               return (
-                <div className="flex flex-col items-center rounded border border-yellow-300 bg-slate-950 p-2">
+                <div className="flex flex-col items-center rounded border border-yellow-300 bg-slate-900 p-2">
                   <p>
                     <strong className="text-yellow-300">
                       {language === "esp" ? "Fecha:" : "Date:"}
@@ -92,13 +94,23 @@ export default function OdometerChart() {
             return null;
           }}
         />
-        <Legend wrapperStyle={{ color: "#facc15" }} />
+        <Legend
+          wrapperStyle={{
+            width: "30%",
+            // top: 0,
+            // right: 50,
+            backgroundColor: "#1f2937",
+            border: "1px solid #facc15",
+            borderRadius: 5,
+          }}
+        />
         <Area
           type="monotone"
           dataKey="odometer"
           name={language === "esp" ? "Odómetro" : "Odometer"}
           stroke="#facc15"
-          fill="#0f172a"
+          fill="#374151"
+          strokeWidth={2}
         />
       </AreaChart>
     </ResponsiveContainer>
