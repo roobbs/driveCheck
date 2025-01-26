@@ -28,51 +28,50 @@ export default function CostByMonthChart() {
   }));
 
   return (
-    <ResponsiveContainer width={"100%"} height={180}>
-      <BarChart
-        data={costByMonthData}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 6" stroke="#475569" />
+    <ResponsiveContainer width={"100%"} height={200}>
+      <BarChart data={costByMonthData}>
+        <CartesianGrid strokeDasharray="6" stroke="#4B5563" />
+
         <XAxis
           dataKey="month"
           label={{
             value: language === "esp" ? "Mes" : "Month",
             position: "insideBottom",
             offset: -5,
-            fill: "white",
+            fill: "#FDE047",
+            fontSize: 14,
           }}
-          stroke="#0ea5e9"
-          strokeWidth={2}
-          tick={{ fill: "#0ea5e9" }}
+          stroke="#FEF9C3"
+          tick={{ fill: "#FEF9C3", fontSize: 12 }}
         />
+
         <YAxis
           label={{
             value: language === "esp" ? "Costo" : "Cost",
             angle: -90,
             position: "outsideLeft",
-            dx: -30,
-            fill: "white",
+            dx: -20,
+            fill: "#FDE047",
+            fontSize: 14,
           }}
-          strokeWidth={2}
-          stroke="#0ea5e9"
-          tick={{ fill: "#0ea5e9" }}
-          // domain={["dataMin - 5", "dataMax + 5"]}
+          stroke="#FEF9C3"
+          tick={{ fill: "#FEF9C3", fontSize: 12 }}
         />
+
         <Tooltip
           content={({ active, payload }) => {
             if (active && payload && payload.length) {
               const { month, cost } = payload[0].payload;
               return (
-                <div className="flex flex-col items-center rounded border border-yellow-300 bg-slate-900 p-2">
-                  <p>
-                    <strong className="text-yellow-300">
+                <div className="flex flex-col items-center rounded border border-blue-500 bg-gray-800 p-3 shadow-lg">
+                  <p className="text-sm text-white">
+                    <strong className="text-blue-400">
                       {language === "esp" ? "Mes:" : "Month:"}
                     </strong>{" "}
                     {month}
                   </p>
-                  <p>
-                    <strong className="text-yellow-300">
+                  <p className="text-sm text-white">
+                    <strong className="text-blue-400">
                       {language === "esp" ? "Costo:" : "Cost:"}
                     </strong>{" "}
                     ${formatNumber(cost)}
@@ -86,21 +85,30 @@ export default function CostByMonthChart() {
 
         <Legend
           wrapperStyle={{
-            width: "20%",
-            // top: 20,
-            // right: 10,
-            backgroundColor: "#facc15",
-            border: "1px solid #facc15",
-            borderRadius: 5,
+            border: "1px solid #3182bd",
+            borderRadius: "8px",
+            padding: "5px",
+            width: 100,
+            backgroundColor: "#020617",
+            color: "#3182bd",
+            fontWeight: "bold",
           }}
         />
+
+        <defs>
+          <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="50%" stopColor="#3B82F6" stopOpacity={0.4} />
+            <stop offset="100%" stopColor="#1D4ED8" stopOpacity={0} />
+          </linearGradient>
+        </defs>
         <Bar
           dataKey="cost"
           name={language === "esp" ? "Costo" : "Cost"}
-          fill="#1F2937"
-          radius={[4, 4, 4, 4]}
-          stroke="#facc15"
+          fill="url(#barGradient)"
+          stroke="#3182bd"
           strokeWidth={2}
+          // background={{ fill: "#020617" }}
+          radius={[4, 4, 0, 0]}
         />
       </BarChart>
     </ResponsiveContainer>
