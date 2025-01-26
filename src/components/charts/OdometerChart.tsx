@@ -22,24 +22,23 @@ export default function OdometerChart() {
   });
 
   return (
-    <ResponsiveContainer width={"100%"} height={180}>
-      <AreaChart
-        data={lastFourData}
-        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-      >
-        <CartesianGrid strokeDasharray="3 6" stroke="#475569" />
+    <ResponsiveContainer width={"100%"} height={200}>
+      <AreaChart data={lastFourData}>
+        <CartesianGrid strokeDasharray="6" stroke="#4B5563" />
+
         <XAxis
           dataKey="date"
           label={{
             value: language === "esp" ? "Fecha" : "Date",
             position: "insideBottom",
             offset: -5,
-            fill: "white",
+            fill: "#FDE047",
+            fontSize: 14,
           }}
-          stroke="#0ea5e9"
-          strokeWidth={2}
-          tick={{ fill: "#0ea5e9" }}
+          stroke="#FEF9C3"
+          tick={{ fill: "#FEF9C3", fontSize: 12 }}
         />
+
         <YAxis
           label={{
             value:
@@ -50,28 +49,29 @@ export default function OdometerChart() {
                 : "Mileage",
             angle: -90,
             position: "outsideLeft",
-            dx: -30,
-            fill: "white",
+            dx: -20,
+            fill: "#FDE047",
+            fontSize: 14,
           }}
-          stroke="#0ea5e9"
-          strokeWidth={2}
-          tick={{ fill: "#0ea5e9" }}
-          domain={["dataMin - 5", "dataMax + 5"]}
+          stroke="#FEF9C3"
+          tick={{ fill: "#FEF9C3", fontSize: 12 }}
+          domain={["dataMin - 50", "dataMax + 50"]}
         />
+
         <Tooltip
           content={({ active, payload }) => {
             if (active && payload && payload.length) {
               const { date, odometer, fuelAmount } = payload[0].payload;
               return (
-                <div className="flex flex-col items-center rounded border border-yellow-300 bg-slate-900 p-2">
-                  <p>
-                    <strong className="text-yellow-300">
+                <div className="flex flex-col items-center rounded border border-blue-500 bg-gray-800 p-3 shadow-lg">
+                  <p className="text-sm text-white">
+                    <strong className="text-blue-400">
                       {language === "esp" ? "Fecha:" : "Date:"}
                     </strong>{" "}
                     {formatDate(date, language)}
                   </p>
-                  <p>
-                    <strong className="text-yellow-300">
+                  <p className="text-sm text-white">
+                    <strong className="text-blue-400">
                       {language === "esp"
                         ? user?.unitOfMeasure === "km"
                           ? "Kilómetros:"
@@ -82,8 +82,8 @@ export default function OdometerChart() {
                     </strong>{" "}
                     {`${formatNumber(odometer)} ${user?.unitOfMeasure}`}
                   </p>
-                  <p>
-                    <strong className="text-yellow-300">
+                  <p className="text-sm text-white">
+                    <strong className="text-blue-400">
                       {language === "esp" ? "Cantidad:" : "Amount:"}
                     </strong>{" "}
                     {fuelAmount} L
@@ -94,23 +94,31 @@ export default function OdometerChart() {
             return null;
           }}
         />
+
         <Legend
           wrapperStyle={{
-            width: "30%",
-            // top: 0,
-            // right: 50,
-            backgroundColor: "#1f2937",
-            border: "1px solid #facc15",
-            borderRadius: 5,
+            border: "1px solid #3182bd",
+            borderRadius: "8px",
+            padding: "5px",
+            width: 120,
+            backgroundColor: "#020617",
+            fontWeight: "bold",
           }}
         />
+
+        <defs>
+          <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="60%" stopColor="#3B82F6" stopOpacity={0.4} />
+            <stop offset="100%" stopColor="#1D4ED8" stopOpacity={0} />
+          </linearGradient>
+        </defs>
         <Area
           type="monotone"
           dataKey="odometer"
           name={language === "esp" ? "Odómetro" : "Odometer"}
-          stroke="#facc15"
-          fill="#374151"
-          strokeWidth={2}
+          stroke="#3182bd"
+          fill="url(#areaGradient)"
+          strokeWidth={3}
         />
       </AreaChart>
     </ResponsiveContainer>
