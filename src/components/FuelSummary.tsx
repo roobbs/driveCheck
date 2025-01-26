@@ -65,17 +65,17 @@ export default function FuelStatsSummary() {
           ? "Estadísticas de Combustible"
           : "Fuel Stats Summary"}
       </h2>
-      <section className="flex flex-wrap items-center justify-center gap-6 rounded-xl bg-gray-900 p-4 490p:gap-4 440p:gap-3">
+      <section className="flex flex-wrap items-center justify-center gap-6 rounded-xl bg-gray-900 p-4">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="flex cursor-pointer flex-col items-center rounded-lg border border-transparent bg-gradient-to-br from-slate-800 to-gray-800 px-6 py-1 shadow-lg transition-transform hover:scale-105 hover:border-blue-300 hover:from-slate-700 hover:to-slate-800"
+            className="flex cursor-pointer flex-col items-center rounded-lg transition-transform hover:scale-105"
           >
-            <span className="mt-2 text-sm font-medium text-blue-200">
+            <span className="mt-2 text-sm font-medium text-yellow-100">
               {stat.label}
             </span>
-            <hr className="my-2 w-full border-gray-200" />
-            <span className="text-2xl font-bold text-yellow-300">
+            <hr className="my-2 w-full border-yellow-100" />
+            <span className="rounded-lg border-2 border-yellow-500 bg-gradient-to-br from-yellow-900 to-yellow-600 p-3 text-2xl font-semibold text-white shadow-lg transition-all hover:border-yellow-400 hover:shadow-2xl">
               {stat.value}
             </span>
           </div>
