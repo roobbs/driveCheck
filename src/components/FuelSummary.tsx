@@ -4,12 +4,14 @@ import { AuthContext } from "./auth/AuthContext";
 
 export default function FuelStatsSummary() {
   const fuelStats = useFuelStats();
-  const { user } = useContext(AuthContext);
+  const { user, language } = useContext(AuthContext);
 
   if (!fuelStats) {
     return (
       <section className="text-center text-gray-500">
-        No fuel data available. Add some records to see your stats.
+        {language === "esp"
+          ? "No hay datos de combustible disponibles. Agrega algunos registros para ver tus estadísticas."
+          : "No fuel data available. Add some records to see your stats."}
       </section>
     );
   }
@@ -24,27 +26,33 @@ export default function FuelStatsSummary() {
 
   const stats = [
     {
-      label: "Total Distance",
+      label: language === "esp" ? "Distancia Total" : "Total Distance",
       value: `${totalDistance.toFixed(2)} ${user?.unitOfMeasure}`,
       icon: "🚗",
     },
     {
-      label: `Cost per ${user?.unitOfMeasure}`,
+      label:
+        language === "esp"
+          ? `Costo por ${user?.unitOfMeasure}`
+          : `Cost per ${user?.unitOfMeasure}`,
       value: `$${costPerKm.toFixed(2)}`,
       icon: "💸",
     },
     {
-      label: "Efficiency",
+      label: language === "esp" ? "Eficiencia" : "Efficiency",
       value: `${efficiency.toFixed(2)} ${user?.unitOfMeasure}/L`,
       icon: "⚙️",
     },
     {
-      label: "Cost per Liter",
+      label: language === "esp" ? "Costo p/Litro" : "Cost per Liter",
       value: `$${costPerLiter.toFixed(2)}`,
       icon: "⛽",
     },
     {
-      label: "Avg Distance Between Fills",
+      label:
+        language === "esp"
+          ? "Promedio de Distancia entre Cargas"
+          : "Avg Distance Between Fills",
       value: `${avgDistanceBetweenFills.toFixed(2)} ${user?.unitOfMeasure}`,
       icon: "📏",
     },
@@ -52,7 +60,11 @@ export default function FuelStatsSummary() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-bold text-yellow-300">Fuel Stats Summary</h2>
+      <h2 className="font-bold text-yellow-300">
+        {language === "esp"
+          ? "Estadísticas de Combustible"
+          : "Fuel Stats Summary"}
+      </h2>
       <section className="flex flex-wrap items-center justify-center gap-6 rounded-xl bg-gray-900 p-4 490p:gap-4 440p:gap-3">
         {stats.map((stat, index) => (
           <div
