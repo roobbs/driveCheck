@@ -3,6 +3,7 @@ import Overview from "../components/Overview";
 import MaintenanceHistory from "../components/MaintenanceHistory";
 import Buttons from "../components/ButtonsSection";
 import FuelStatsSummary from "../components/FuelSummary";
+import Charts from "../components/Charts";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Summary />
       <Overview />
       <FuelStatsSummary />
+      <Charts />
       <MaintenanceHistory />
       <Buttons />
     </main>
