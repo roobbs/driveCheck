@@ -63,102 +63,114 @@ export default function Fuel() {
         </div>
       </div>
 
-      <FuelTable data={fuelRecords} />
-      <div></div>
-      <div></div>
+      {fuelRecords.length ? (
+        <>
+          <FuelTable data={fuelRecords} />
+          <div></div>
+          <div></div>
+        </>
+      ) : (
+        <div className="text-center font-bold text-yellow-200">
+          {language === "esp"
+            ? "¡Aún no has registrado cargas de combustible! Agrega tu primera carga para comenzar a visualizar tus datos."
+            : "You haven't logged any fuel entries yet! Add your first one to start visualize your data."}
+        </div>
+      )}
 
-      <div className="fixed bottom-4 right-4 z-[1] flex flex-col gap-1">
-        {filtersOpen ? (
-          <div className="flex flex-col gap-4 rounded-lg border border-blue-300 bg-slate-950 p-4 shadow-sm shadow-yellow-300">
-            <IoMdCloseCircle
-              size={30}
-              className="absolute self-end text-red-500 transition duration-300 hover:text-red-800"
-              onClick={() => setFiltersOpen(false)}
-            />
+      {fuelRecords.length > 0 && (
+        <div className="fixed bottom-4 right-4 z-[1] flex flex-col gap-1">
+          {filtersOpen ? (
+            <div className="flex flex-col gap-4 rounded-lg border border-blue-300 bg-slate-950 p-4 shadow-sm shadow-yellow-300">
+              <IoMdCloseCircle
+                size={30}
+                className="absolute self-end text-red-500 transition duration-300 hover:text-red-800"
+                onClick={() => setFiltersOpen(false)}
+              />
 
-            <div className="mt-10 flex items-center justify-between gap-4">
-              <label className="font-semibold text-blue-500">
-                {language === "esp" ? "Fecha inicio" : "Start date"}
-              </label>
-              <input
-                type="date"
-                className="rounded border bg-gray-800 p-2 text-gray-200"
-                value={dateRange.start}
-                onChange={(e) =>
-                  setDateRange({ ...dateRange, start: e.target.value })
-                }
-              />
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <label className="font-semibold text-blue-500">
-                {language === "esp" ? "Fecha fin" : "End date"}
-              </label>
-              <input
-                type="date"
-                className="ml-2 rounded border bg-gray-800 p-2 text-gray-200"
-                value={dateRange.end}
-                onChange={(e) =>
-                  setDateRange({ ...dateRange, end: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <div className="flex justify-between">
+              <div className="mt-10 flex items-center justify-between gap-4">
                 <label className="font-semibold text-blue-500">
-                  {language === "esp" ? "Costo mínimo" : "Min cost"}
+                  {language === "esp" ? "Fecha inicio" : "Start date"}
                 </label>
-                <div className="block text-center font-bold text-gray-200">
-                  ${minCost}
+                <input
+                  type="date"
+                  className="rounded border bg-gray-800 p-2 text-gray-200"
+                  value={dateRange.start}
+                  onChange={(e) =>
+                    setDateRange({ ...dateRange, start: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <label className="font-semibold text-blue-500">
+                  {language === "esp" ? "Fecha fin" : "End date"}
+                </label>
+                <input
+                  type="date"
+                  className="ml-2 rounded border bg-gray-800 p-2 text-gray-200"
+                  value={dateRange.end}
+                  onChange={(e) =>
+                    setDateRange({ ...dateRange, end: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <div className="flex justify-between">
+                  <label className="font-semibold text-blue-500">
+                    {language === "esp" ? "Costo mínimo" : "Min cost"}
+                  </label>
+                  <div className="block text-center font-bold text-gray-200">
+                    ${minCost}
+                  </div>
                 </div>
+                <input
+                  type="range"
+                  min="0"
+                  max={maxCostValue - 100}
+                  step="100"
+                  className="w-full"
+                  value={minCost}
+                  onChange={(e) => setMinCost(Number(e.target.value))}
+                />
               </div>
-              <input
-                type="range"
-                min="0"
-                max={maxCostValue - 100}
-                step="100"
-                className="w-full"
-                value={minCost}
-                onChange={(e) => setMinCost(Number(e.target.value))}
-              />
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <label className="font-semibold text-blue-500">
-                  {language === "esp" ? "Costo máximo" : "Max cost"}
-                </label>
-                <span className="block text-center font-bold text-gray-200">
-                  ${maxCost}
-                </span>
+              <div>
+                <div className="flex justify-between">
+                  <label className="font-semibold text-blue-500">
+                    {language === "esp" ? "Costo máximo" : "Max cost"}
+                  </label>
+                  <span className="block text-center font-bold text-gray-200">
+                    ${maxCost}
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={maxCostValue}
+                  step="100"
+                  className="w-full"
+                  value={maxCost}
+                  onChange={(e) => setMaxCost(Number(e.target.value))}
+                />
               </div>
-              <input
-                type="range"
-                min={0}
-                max={maxCostValue}
-                step="100"
-                className="w-full"
-                value={maxCost}
-                onChange={(e) => setMaxCost(Number(e.target.value))}
-              />
+              <button
+                onClick={resetFilters}
+                className="rounded border bg-blue-900 p-1 font-semibold transition duration-300 hover:bg-blue-700"
+              >
+                {language === "esp" ? "Borrar filtros" : "Reset filters"}
+              </button>
             </div>
+          ) : (
             <button
-              onClick={resetFilters}
-              className="rounded border bg-blue-900 p-1 font-semibold transition duration-300 hover:bg-blue-700"
+              className={`flex w-32 items-center justify-center gap-2 self-end rounded-lg border border-blue-500 bg-slate-950 p-2 text-blue-500 shadow-sm transition duration-300 hover:border-blue-400 hover:text-blue-400 hover:shadow-blue-500`}
+              onClick={() => setFiltersOpen(!filtersOpen)}
             >
-              {language === "esp" ? "Borrar filtros" : "Reset filters"}
+              <TbFilter size={38} />
+              <div className="font-semibold text-gray-300">
+                {language === "esp" ? "Filtrar" : "Filter"}
+              </div>
             </button>
-          </div>
-        ) : (
-          <button
-            className={`flex w-32 items-center justify-center gap-2 self-end rounded-lg border border-blue-500 bg-slate-950 p-2 text-blue-500 shadow-sm transition duration-300 hover:border-blue-400 hover:text-blue-400 hover:shadow-blue-500`}
-            onClick={() => setFiltersOpen(!filtersOpen)}
-          >
-            <TbFilter size={38} />
-            <div className="font-semibold text-gray-300">
-              {language === "esp" ? "Filtrar" : "Filter"}
-            </div>
-          </button>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {modalOpen && <FuelModal closeModal={() => setModalOpen(false)} />}
     </main>
