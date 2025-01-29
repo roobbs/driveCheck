@@ -51,7 +51,7 @@ export default function Fuel() {
 
   return (
     <main className="flex flex-1 flex-col gap-4 overflow-x-scroll bg-gray-800 p-4">
-      <div className="flex items-center justify-between">
+      <div className="sticky left-0 flex items-center justify-between">
         <h1 className="text-xl font-bold text-yellow-300">
           {language === "esp" ? "Historial de Combustible" : "Fuel History"}{" "}
           <p className="text-sm text-gray-400">{`(${user?.car.fuelRecords.length} ${language === "esp" ? "registros" : "records"})`}</p>
@@ -64,14 +64,16 @@ export default function Fuel() {
         </div>
       </div>
 
-      {fuelRecords.length === 1 && (
-        <div className="text-center font-bold text-yellow-200">
-          {language === "esp"
-            ? "Registra una carga más de combustible para comenzar a ver tus estadísticas."
-            : "Log one more fuel entry to start viewing your fuel statistics."}
-        </div>
-      )}
-      {fuelRecords.length > 1 && <FuelStats />}
+      <div className="sticky left-0">
+        {fuelRecords.length === 1 && (
+          <div className="text-center font-bold text-yellow-200">
+            {language === "esp"
+              ? "Registra una carga más de combustible para comenzar a ver tus estadísticas."
+              : "Log one more fuel entry to start viewing your fuel statistics."}
+          </div>
+        )}
+        {fuelRecords.length > 1 && <FuelStats />}
+      </div>
 
       {fuelRecords.length ? (
         <>
@@ -86,7 +88,6 @@ export default function Fuel() {
             : "You haven't logged any fuel entries yet! Add your first one to start visualize your data."}
         </div>
       )}
-
       {fuelRecords.length > 0 && (
         <div className="fixed bottom-4 right-4 z-[1] flex flex-col gap-1">
           {filtersOpen ? (
@@ -181,7 +182,6 @@ export default function Fuel() {
           )}
         </div>
       )}
-
       {modalOpen && <FuelModal closeModal={() => setModalOpen(false)} />}
     </main>
   );

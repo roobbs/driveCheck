@@ -63,7 +63,7 @@ export default function Maintenance() {
 
   return (
     <main className="flex flex-1 flex-col gap-8 overflow-x-scroll bg-gray-800 p-4">
-      <div className="flex items-center justify-between">
+      <div className="sticky left-0 flex items-center justify-between">
         <h1 className="text-xl font-bold text-yellow-300">
           {language === "esp"
             ? "Historial de Mantenimiento"
