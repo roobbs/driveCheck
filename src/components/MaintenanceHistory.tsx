@@ -26,15 +26,15 @@ export default function MaintenanceHistory() {
           className="flex items-center gap-1 rounded-lg border border-blue-500 bg-blue-700 p-2 text-sm font-semibold transition hover:bg-blue-800"
         >
           <RiToolsFill size={21} />
-          {language === "esp" ? "Ver historial completo" : "View full history"}
+          {language === "esp" ? "Ir a historial" : "Go to history"}
         </Link>
       </div>
       <section className="grid grid-cols-1 justify-center gap-4 rounded-xl bg-gray-900 p-4 py-6">
         {records?.length === 0 && (
-          <div className="text-center text-xl font-bold">
+          <div className="text-center font-bold">
             {language === "esp"
-              ? "Agrega un registro de mantenimiento"
-              : "Add a maintenance record"}
+              ? "¡Aún no has registrado mantenimientos! Agrega tu primer registro para llevar un mejor control de tu vehículo."
+              : "You haven't logged any maintenance records yet! Add your first one to keep better track of your vehicle."}
           </div>
         )}
         {records && records.length > 0 && (
