@@ -3,6 +3,7 @@ import OdometerChart from "./charts/OdometerChart";
 import { AuthContext } from "./auth/AuthContext";
 import { useContext } from "react";
 import { useFuelStats } from "../hooks/useFuelStats";
+import FuelAndDistanceChart from "./charts/FuelAndDistanceChart";
 
 export default function Charts() {
   const { language } = useContext(AuthContext);
@@ -22,6 +23,15 @@ export default function Charts() {
               {language === "esp" ? "Costo por Mes" : "Cost by Month"}
             </h3>
             <CostByMonthChart />
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <h3 className="m-2 border-b border-yellow-200 p-2 text-center text-xl font-semibold text-yellow-300">
+              {language === "esp"
+                ? "Combustible y Distancia por Mes"
+                : "Fuel and Distance by Month"}
+            </h3>
+            <FuelAndDistanceChart />
           </div>
 
           <div className="flex flex-col items-center gap-2">
