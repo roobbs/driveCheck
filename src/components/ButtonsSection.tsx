@@ -14,10 +14,12 @@ export default function Buttons() {
 
   const handleClose = () => setOpenModal(null);
 
+  const buttonsSize = 45;
+
   const buttons = [
     {
       id: "fuel",
-      icon: <BsFuelPump size={32} />,
+      icon: <BsFuelPump size={buttonsSize} />,
       tooltip:
         language === "esp"
           ? "Registra una carga de combustible"
@@ -25,7 +27,7 @@ export default function Buttons() {
     },
     {
       id: "reminder",
-      icon: <IoMdNotifications size={32} />,
+      icon: <IoMdNotifications size={buttonsSize} />,
       text: language === "esp" ? "Agregar Recordatorio" : "New Reminder",
       tooltip:
         language === "esp"
@@ -34,7 +36,7 @@ export default function Buttons() {
     },
     {
       id: "record",
-      icon: <AiFillTool size={32} />,
+      icon: <AiFillTool size={buttonsSize} />,
       ext: language === "esp" ? "Nuevo Mantenimiento" : "Maintenance Record",
       tooltip:
         language === "esp"
@@ -44,14 +46,14 @@ export default function Buttons() {
   ];
 
   return (
-    <section className="sticky bottom-0 flex items-center justify-center gap-8 390p:gap-4">
+    <section className="backdrop-blur-xs sticky bottom-0 flex items-center justify-center gap-8 bg-gradient-to-b from-slate-800/5 to-slate-800/80 py-2 390p:gap-4">
       {buttons.map((button) => (
         <div
           key={button.id}
-          className="group relative flex flex-col items-center justify-center rounded-lg border border-blue-500 bg-gradient-to-b from-blue-600 to-blue-900 p-4 text-white transition-transform hover:scale-105 hover:from-blue-700 hover:to-blue-900 active:scale-95"
+          className="group relative flex flex-col items-center justify-center rounded-lg border border-blue-400 bg-gradient-to-b from-blue-600 to-blue-950 p-3 text-white transition-transform hover:scale-105 hover:from-blue-700 hover:to-blue-900 active:scale-95"
           onClick={() => setOpenModal(button.id)}
         >
-          <BsFillPlusCircleFill className="absolute -right-2 -top-2 h-6 w-6 rounded-full bg-slate-800 font-bold text-yellow-500" />
+          <BsFillPlusCircleFill className="absolute -right-2 -top-2 h-6 w-6 rounded-full border-2 border-yellow-400 bg-yellow-300 font-bold text-slate-900" />
           {button.icon}
           {/* Tooltip */}
           <div className="absolute bottom-full hidden rounded-lg border bg-blue-950 px-3 py-2 text-center text-sm text-white group-hover:block">
