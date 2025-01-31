@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import AddRecordModal from "./AddRecordModal";
-import AddReminderModal from "./AddReminderModal";
-import FuelModal from "./FuelModal";
+import AddRecordModal from "./modals/AddRecordModal";
+import AddReminderModal from "./modals/AddReminderModal";
+import FuelModal from "./modals/AddFuelModal";
 import { BsFuelPump } from "react-icons/bs";
 import { AiFillTool } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";

@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { AuthContext } from "./auth/AuthContext";
-import { db } from "../../config/firebase";
+import { AuthContext } from "../auth/AuthContext";
+import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { CiEdit } from "react-icons/ci";
-import type { Summary } from "../../utils/Interfaces";
-import EditableField from "./EditableField";
+import type { Summary } from "../../../utils/Interfaces";
+import EditableField from "../EditableField";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import "../styles/animations.css";

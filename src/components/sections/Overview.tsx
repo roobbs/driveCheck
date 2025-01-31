@@ -3,9 +3,9 @@ import { FaOilCan } from "react-icons/fa";
 import { GiCarWheel } from "react-icons/gi";
 import { RiTempColdFill } from "react-icons/ri";
 import { useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import OverviewItem from "./OverviewItem";
-import formatNumber from "../../utils/formatNumber";
+import { AuthContext } from "../auth/AuthContext";
+import OverviewItem from "../OverviewItem";
+import formatNumber from "../../../utils/formatNumber";
 
 export default function Overview() {
   const { user, language } = useContext(AuthContext);

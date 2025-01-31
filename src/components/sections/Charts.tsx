@@ -1,9 +1,9 @@
-import CostByMonthChart from "./charts/CostByMonthChart";
-import OdometerChart from "./charts/OdometerChart";
-import { AuthContext } from "./auth/AuthContext";
+import CostByMonthChart from "../charts/CostByMonthChart";
+import OdometerChart from "../charts/OdometerChart";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
-import { useFuelStats } from "../hooks/useFuelStats";
-import FuelAndDistanceChart from "./charts/FuelAndDistanceChart";
+import { useFuelStats } from "../../hooks/useFuelStats";
+import FuelAndDistanceChart from "../charts/FuelAndDistanceChart";
 
 export default function Charts() {
   const { language } = useContext(AuthContext);
