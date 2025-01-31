@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import formatDate from "../../utils/formatDate";
-import formatNumber from "../../utils/formatNumber";
-import { MaintenanceRecord } from "../../utils/Interfaces";
+import { AuthContext } from "../auth/AuthContext";
+import formatDate from "../../../utils/formatDate";
+import formatNumber from "../../../utils/formatNumber";
+import { MaintenanceRecord } from "../../../utils/Interfaces";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
-import EditRecordModal from "./EditRecord";
-import DeleteMaintenanceModal from "./DeleteMaintenance";
+import EditRecordModal from "../EditRecord";
+import DeleteMaintenanceModal from "../DeleteMaintenance";
 
 export default function MaintenanceTable({
   data,
