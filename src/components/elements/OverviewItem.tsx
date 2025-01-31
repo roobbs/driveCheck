@@ -1,14 +1,14 @@
-import type { OverviewEntry } from "../../utils/Interfaces";
+import type { OverviewEntry } from "../../../utils/Interfaces";
 import { PropsWithChildren, useState } from "react";
 import { useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import { CiEdit } from "react-icons/ci";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
+import { db } from "../../../config/firebase";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import dateFormat from "../../utils/formatDate";
-import getDays from "../../utils/getDays";
+import dateFormat from "../../../utils/formatDate";
+import getDays from "../../../utils/getDays";
 
 export default function OverviewItem(props: PropsWithChildren<OverviewEntry>) {
   const { language, user, updateUser } = useContext(AuthContext);

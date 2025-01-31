@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 
 interface EditableFieldProps {
   label: string;
@@ -16,7 +16,7 @@ export default function EditableField(props: EditableFieldProps) {
 
   return (
     <div
-      className={`400p:min-w-full flex min-w-36 flex-col gap-1 rounded-md border p-2 transition-all ${
+      className={`flex min-w-36 flex-col gap-1 rounded-md border p-2 transition-all 400p:min-w-full ${
         isEditing
           ? "border-blue-500 bg-gray-800"
           : "border-transparent bg-transparent"

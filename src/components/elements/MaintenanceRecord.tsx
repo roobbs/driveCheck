@@ -1,9 +1,9 @@
 import { MdOutlineMedicalServices } from "react-icons/md";
-import type { MaintenanceRecord } from "../../utils/Interfaces";
-import { AuthContext } from "./auth/AuthContext";
+import type { MaintenanceRecord } from "../../../utils/Interfaces";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext, useState } from "react";
-import formatDate from "../../utils/formatDate";
-import formatNumber from "../../utils/formatNumber";
+import formatDate from "../../../utils/formatDate";
+import formatNumber from "../../../utils/formatNumber";
 import { MdOutlineDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import DeleteMaintenanceModal from "./DeleteMaintenance";

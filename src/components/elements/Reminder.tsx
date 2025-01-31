@@ -1,14 +1,14 @@
 import { MdNotificationsNone } from "react-icons/md";
-import type { Reminder } from "../../utils/Interfaces";
-import { AuthContext } from "./auth/AuthContext";
+import type { Reminder } from "../../../utils/Interfaces";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext, useState } from "react";
-import formatDate from "../../utils/formatDate";
-import formatNumber from "../../utils/formatNumber";
-import getDays from "../../utils/getDays";
+import formatDate from "../../../utils/formatDate";
+import formatNumber from "../../../utils/formatNumber";
+import getDays from "../../../utils/getDays";
 import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdFileDownloadDone } from "react-icons/md";
-import DeleteReminderModal from "./DeleteReminder";
+import DeleteReminderModal from "../modals/DeleteReminder";
 import EditReminderModal from "./EditReminder";
 
 export default function Reminder(props: Reminder) {
