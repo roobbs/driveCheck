@@ -1,19 +1,19 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import { db } from "../../config/firebase";
+import { AuthContext } from "../auth/AuthContext";
+import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
-interface AddRecordModalProps {
+interface AddReminderModalProps {
   closeModal: () => void;
 }
 
-export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
+export default function AddReminderModal({
+  closeModal,
+}: AddReminderModalProps) {
   const { user, updateUser, language } = useContext(AuthContext);
   const [form, setForm] = useState({
     date: "",
     description: "",
-    partCost: 0,
-    laborCost: 0,
     odometer: 0,
   });
 
@@ -21,10 +21,7 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]:
-        name === "laborCost" || name === "partCost" || name === "odometer"
-          ? Number(value)
-          : value,
+      [name]: name === "odometer" ? Number(value) : value,
     });
   };
 
@@ -42,20 +39,20 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
 
         const userDocRef = doc(db, "users", user?.uid);
 
-        const updatedHistoryArray = [
-          ...(user.car.maintenanceHistory || []),
+        const updatedRemindersArray = [
+          ...(user.car.upcomingReminders || []),
           form,
         ];
 
         await updateDoc(userDocRef, {
-          "car.maintenanceHistory": updatedHistoryArray,
+          "car.upcomingReminders": updatedRemindersArray,
         });
 
         updateUser({
           ...user,
           car: {
             ...user.car,
-            maintenanceHistory: updatedHistoryArray,
+            upcomingReminders: updatedRemindersArray,
           },
         });
 
@@ -87,8 +84,8 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
       <div className="relative m-2 w-full max-w-lg rounded-lg border border-gray-500 bg-gray-900 p-6 shadow-lg">
         <h2 className="mb-4 text-center text-2xl font-bold text-yellow-300">
           {language === "esp"
-            ? "Agregar Nuevo Registro de Mantenimiento"
-            : "Add New Maintenance Record "}
+            ? "Agregar Nuevo Recordatorio"
+            : "Add New Reminder"}
         </h2>
 
         <form className="flex flex-col gap-5">
@@ -104,18 +101,6 @@ export default function AddRecordModal({ closeModal }: AddRecordModalProps) {
               type: "date",
               placeholder: "Date",
               placeholderEs: "Fecha",
-            },
-            {
-              name: "partCost",
-              type: "number",
-              placeholder: "Part Cost",
-              placeholderEs: "Costo de piezas",
-            },
-            {
-              name: "laborCost",
-              type: "number",
-              placeholder: "Labor Cost",
-              placeholderEs: "Costo de mano de obra",
             },
             {
               name: "odometer",

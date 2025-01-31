@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import { db } from "../../config/firebase";
+import { AuthContext } from "../auth/AuthContext";
+import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
 interface FuelModalProps {

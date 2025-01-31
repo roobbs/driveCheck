@@ -1,8 +1,8 @@
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import { AuthContext } from "./auth/AuthContext";
+import { db } from "../../../config/firebase";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
 
 interface DeleteReminderProps {
