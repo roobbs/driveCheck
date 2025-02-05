@@ -1,9 +1,9 @@
-import Summary from "../components/Summary";
-import Overview from "../components/Overview";
-import MaintenanceHistory from "../components/MaintenanceHistory";
-import Buttons from "../components/ButtonsSection";
-import FuelStatsSummary from "../components/FuelSummary";
-import Charts from "../components/Charts";
+import Summary from "../components/sections/Summary";
+import Overview from "../components/sections/Overview";
+import MaintenanceHistory from "../components/sections/MaintenanceHistory";
+import Buttons from "../components/sections/ButtonsSection";
+import FuelStatsSummary from "../components/sections/FuelSummary";
+import Charts from "../components/sections/Charts";
 
 export default function Home() {
   return (

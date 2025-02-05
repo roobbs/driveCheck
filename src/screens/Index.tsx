@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { FaGithub } from "react-icons/fa";
 
-import IndexHeader from "../components/IndexHeader";
+import IndexHeader from "../components/indexScreen/IndexHeader";
 import HeroSection from "../components/indexScreen/HeroSection";
 import BenefitsSection from "../components/indexScreen/BenefitsSection";
 import FeaturesSection from "../components/indexScreen/FeaturesSection";

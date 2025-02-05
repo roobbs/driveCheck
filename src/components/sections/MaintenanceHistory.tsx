@@ -1,4 +1,4 @@
-import MaintenanceRecord from "../MaintenanceRecord";
+import MaintenanceRecord from "../elements/MaintenanceRecord";
 import { useContext } from "react";
 import { AuthContext } from "../auth/AuthContext";
 import { Link } from "react-router-dom";

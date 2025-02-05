@@ -1,11 +1,11 @@
 import { MdOutlineEdit, MdOutlineDelete } from "react-icons/md";
-import formatDate from "../../utils/formatDate";
-import formatNumber from "../../utils/formatNumber";
-import { AuthContext } from "./auth/AuthContext";
+import formatDate from "../../../utils/formatDate";
+import formatNumber from "../../../utils/formatNumber";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext, useState } from "react";
-import { FuelRecord } from "../../utils/Interfaces";
-import DeleteFuelModal from "./DeleteFuel";
-import EditFuelModal from "./EditFuel";
+import { FuelRecord } from "../../../utils/Interfaces";
+import DeleteFuelModal from "../modals/DeleteFuel";
+import EditFuelModal from "../modals/EditFuel";
 
 export default function FuelTable({ data }: { data: FuelRecord[] }) {
   const { language, user } = useContext(AuthContext);

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { FaCirclePlus } from "react-icons/fa6";
-import AddRecordModal from "../components/AddRecordModal";
+import AddRecordModal from "../components/modals/AddRecordModal";
 import { TbFilterSearch } from "react-icons/tb";
-import MaintenanceTable from "../components/MaintenanceTable";
+import MaintenanceTable from "../components/tables/MaintenanceTable";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export default function Maintenance() {

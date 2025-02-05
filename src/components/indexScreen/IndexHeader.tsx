@@ -1,9 +1,9 @@
-import enImage from "../images/en_US.png";
-import esImage from "../images/es_MX.png";
+import enImage from "../../images/en_US.png";
+import esImage from "../../images/es_MX.png";
 import { IoCarSport } from "react-icons/io5";
 import { useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import SignInButton from "./auth/SignInButton";
+import { AuthContext } from "../auth/AuthContext";
+import SignInButton from "../auth/SignInButton";
 
 export default function IndexHeader() {
   const { language, changeLanguage } = useContext(AuthContext);

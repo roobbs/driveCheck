@@ -5,10 +5,10 @@ import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { CiEdit } from "react-icons/ci";
 import type { Summary } from "../../../utils/Interfaces";
-import EditableField from "../EditableField";
+import EditableField from "../elements/EditableField";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import "../styles/animations.css";
+import "../../styles/animations.css";
 
 export default function Summary() {
   const { language, user, updateUser } = useContext(AuthContext);

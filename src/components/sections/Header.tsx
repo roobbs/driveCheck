@@ -1,17 +1,17 @@
 import { IoCarSport } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState, useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import { signUserOut } from "../../utils/database";
+import { AuthContext } from "../auth/AuthContext";
+import { signUserOut } from "../../../utils/database";
 import { useNavigate } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
-import "../styles/animations.css";
-import enImage from "../images/en_US.png";
-import esImage from "../images/es_MX.png";
+import "../../styles/animations.css";
+import enImage from "../../images/en_US.png";
+import esImage from "../../images/es_MX.png";
 import { FaLanguage } from "react-icons/fa6";
 import { TbRulerMeasure } from "react-icons/tb";
-import { db } from "../../config/firebase";
+import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 

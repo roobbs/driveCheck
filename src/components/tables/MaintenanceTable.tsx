@@ -5,8 +5,8 @@ import formatNumber from "../../../utils/formatNumber";
 import { MaintenanceRecord } from "../../../utils/Interfaces";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
-import EditRecordModal from "../EditRecord";
-import DeleteMaintenanceModal from "../DeleteMaintenance";
+import EditRecordModal from "../modals/EditRecord";
+import DeleteMaintenanceModal from "../modals/DeleteMaintenance";
 
 export default function MaintenanceTable({
   data,

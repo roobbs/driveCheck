@@ -9,7 +9,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { MdFileDownloadDone } from "react-icons/md";
 import DeleteReminderModal from "../modals/DeleteReminder";
-import EditReminderModal from "./EditReminder";
+import EditReminderModal from "../modals/EditReminder";
 
 export default function Reminder(props: Reminder) {
   const { date, description, odometer } = props;

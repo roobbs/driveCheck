@@ -6,8 +6,8 @@ import formatDate from "../../../utils/formatDate";
 import formatNumber from "../../../utils/formatNumber";
 import { MdOutlineDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
-import DeleteMaintenanceModal from "./DeleteMaintenance";
-import EditRecordModal from "./EditRecord";
+import DeleteMaintenanceModal from "../modals/DeleteMaintenance";
+import EditRecordModal from "../modals/EditRecord";
 
 export default function MaintenanceRecord(props: MaintenanceRecord) {
   const { date, description, laborCost, partCost, odometer } = props;

@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
-import Reminder from "../components/Reminder";
+import Reminder from "../components/elements/Reminder";
 import { FaCirclePlus } from "react-icons/fa6";
-import AddReminderModal from "../components/AddReminderModal";
+import AddReminderModal from "../components/modals/AddReminderModal";
 
 export default function Reminders() {
   const { user, language } = useContext(AuthContext);

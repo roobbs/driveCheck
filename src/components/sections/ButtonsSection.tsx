@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import AddRecordModal from "./modals/AddRecordModal";
-import AddReminderModal from "./modals/AddReminderModal";
-import FuelModal from "./modals/AddFuelModal";
+import AddRecordModal from "../modals/AddRecordModal";
+import AddReminderModal from "../modals/AddReminderModal";
+import FuelModal from "../modals/AddFuelModal";
 import { BsFuelPump } from "react-icons/bs";
 import { AiFillTool } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
 export default function Buttons() {

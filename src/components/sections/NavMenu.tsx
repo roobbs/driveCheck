@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { MdHomeFilled } from "react-icons/md";
 import { IoMdNotifications } from "react-icons/io";
 import { RiToolsFill } from "react-icons/ri";
-import { AuthContext } from "./auth/AuthContext";
+import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
 import { BsFillFuelPumpFill } from "react-icons/bs";
 

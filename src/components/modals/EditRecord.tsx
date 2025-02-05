@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { AuthContext } from "./auth/AuthContext";
-import { db } from "../../config/firebase";
+import { AuthContext } from "../auth/AuthContext";
+import { db } from "../../../config/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
 interface EditRecordModalProps {

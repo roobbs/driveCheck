@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { useFuelStats } from "../hooks/useFuelStats";
-import { AuthContext } from "./auth/AuthContext";
+import { useFuelStats } from "../../hooks/useFuelStats";
+import { AuthContext } from "../auth/AuthContext";
 
 export default function FuelStatsSummary() {
   const fuelStats = useFuelStats();

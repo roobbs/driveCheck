@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../components/auth/AuthContext";
 import { FaCirclePlus } from "react-icons/fa6";
-import FuelModal from "../components/FuelModal";
-import FuelTable from "../components/FuelTable";
+import FuelModal from "../components/modals/AddFuelModal";
+import FuelTable from "../components/tables/FuelTable";
 import { IoMdCloseCircle } from "react-icons/io";
 import { TbFilter } from "react-icons/tb";
-import FuelStats from "../components/FuelStats";
+import FuelStats from "../components/sections/FuelStats";
 
 export default function Fuel() {
   const { user, language } = useContext(AuthContext);
