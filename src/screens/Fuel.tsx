@@ -82,11 +82,13 @@ export default function Fuel() {
           <div></div>
         </>
       ) : (
-        <div className="text-center font-bold text-yellow-200">
-          {language === "esp"
-            ? "¡Aún no has registrado cargas de combustible! Agrega tu primera carga para comenzar a visualizar tus datos."
-            : "You haven't logged any fuel entries yet! Add your first one to start visualize your data."}
-        </div>
+        <section className="flex flex-col gap-4 rounded-lg bg-gray-900 p-4 shadow-lg">
+          <div className="text-center font-bold text-yellow-200">
+            {language === "esp"
+              ? "¡Aún no has registrado cargas de combustible! Agrega tu primera carga para comenzar a visualizar tus datos."
+              : "You haven't logged any fuel entries yet! Add your first one to start visualize your data."}
+          </div>
+        </section>
       )}
       {fuelRecords.length > 0 && (
         <div className="fixed bottom-4 right-4 z-[1] flex flex-col gap-1">
