@@ -38,17 +38,22 @@ export default function Reminders() {
         </div>
       </div>
 
-      <section className="flex flex-col gap-4 rounded-lg bg-gray-900 p-6 shadow-lg">
-        <h3 className="text-center text-lg font-bold text-yellow-300">
-          {language === "esp" ? "Este mes" : "This month"}
-        </h3>
-        {pendingReminders.length === 0 ? (
-          <div className="text-center text-gray-300">
+      {pendingReminders.length === 0 && futureReminders.length === 0 && (
+        <section className="flex flex-col gap-4 rounded-lg bg-gray-900 p-6 shadow-lg">
+          <div className="text-center font-bold text-yellow-200">
             {language === "esp"
-              ? "No tienes recordatorios pendientes "
-              : "You have no pending reminders "}
+              ? "No tienes recordatorios en este momento. ¡Agrega uno para comenzar!"
+              : "You have no reminders at the moment. Add one to get started!"}
           </div>
-        ) : (
+        </section>
+      )}
+
+      {pendingReminders.length > 0 && (
+        <section className="flex flex-col gap-4 rounded-lg bg-gray-900 p-6 shadow-lg">
+          <h3 className="text-center text-lg font-bold text-yellow-300">
+            {language === "esp" ? "Este mes" : "This month"}
+          </h3>
+
           <div className="grid gap-4 780p:grid-cols-1">
             {pendingReminders.map((reminder, index) => (
               <Reminder
@@ -59,8 +64,8 @@ export default function Reminders() {
               />
             ))}
           </div>
-        )}
-      </section>
+        </section>
+      )}
 
       {futureReminders.length > 0 && (
         <section className="flex flex-col gap-4 rounded-lg bg-gray-900 p-6 shadow-lg">
@@ -69,24 +74,17 @@ export default function Reminders() {
               ? "Próximos recordatorios"
               : "Upcoming Reminders"}
           </h2>
-          {futureReminders.length === 0 ? (
-            <div className="text-center text-gray-300">
-              {language === "esp"
-                ? "No tienes próximos recordatorios programados."
-                : "You have no upcoming reminders."}
-            </div>
-          ) : (
-            <div className="grid gap-4 780p:grid-cols-1">
-              {futureReminders.map((reminder, index) => (
-                <Reminder
-                  key={index}
-                  date={reminder.date}
-                  description={reminder.description}
-                  odometer={reminder.odometer}
-                />
-              ))}
-            </div>
-          )}
+
+          <div className="grid gap-4 780p:grid-cols-1">
+            {futureReminders.map((reminder, index) => (
+              <Reminder
+                key={index}
+                date={reminder.date}
+                description={reminder.description}
+                odometer={reminder.odometer}
+              />
+            ))}
+          </div>
         </section>
       )}
 
