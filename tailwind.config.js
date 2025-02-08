@@ -25,6 +25,7 @@ export default {
       "1180p": { max: "1180px" },
       "1000p": { max: "1000px" },
       "900p": { max: "900px" },
+      "900p-min": { min: "900px" },
       "825p": { max: "825px" },
       "780p": { max: "780px" },
       "750p": { max: "750px" },

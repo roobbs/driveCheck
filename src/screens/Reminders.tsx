@@ -56,7 +56,7 @@ export default function Reminders() {
             {language === "esp" ? "Este mes" : "This month"}
           </h3>
 
-          <div className="grid gap-4 780p:grid-cols-1">
+          <div className="900p-min:justify-center grid gap-4 780p:grid-cols-1">
             {pendingReminders.map((reminder, index) => (
               <Reminder
                 key={index}
@@ -77,7 +77,7 @@ export default function Reminders() {
               : "Upcoming Reminders"}
           </h2>
 
-          <div className="grid gap-4 780p:grid-cols-1">
+          <div className="900p-min:justify-center grid gap-4 780p:grid-cols-1">
             {futureReminders.map((reminder, index) => (
               <Reminder
                 key={index}
