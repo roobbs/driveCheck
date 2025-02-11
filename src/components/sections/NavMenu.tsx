@@ -5,9 +5,12 @@ import { RiToolsFill } from "react-icons/ri";
 import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
 import { BsFillFuelPumpFill } from "react-icons/bs";
+import useReminders from "../../hooks/useReminders";
 
 export default function NavMenu() {
   const { language } = useContext(AuthContext);
+  const { totalUrgentReminders } = useReminders();
+
   return (
     <nav className="sticky top-0 z-[1] flex items-center justify-around bg-slate-950 px-4 py-2 shadow-md">
       <NavLink
@@ -28,7 +31,7 @@ export default function NavMenu() {
       <NavLink
         to="/reminders"
         className={({ isActive }) =>
-          `flex items-center gap-1 rounded px-4 py-1 text-sm font-medium transition duration-300 ${
+          `relative flex items-center gap-1 rounded px-4 py-1 text-sm font-medium transition duration-300 ${
             isActive
               ? "text-blue-500"
               : "text-slate-300 hover:bg-slate-700 hover:text-white"
@@ -38,6 +41,9 @@ export default function NavMenu() {
         <IoMdNotifications size={20} />{" "}
         <span className="750p:hidden">
           {language === "esp" ? "Recordatorios" : "Reminders"}
+        </span>
+        <span className="absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 font-bold text-white">
+          {totalUrgentReminders}
         </span>
       </NavLink>
       <NavLink
