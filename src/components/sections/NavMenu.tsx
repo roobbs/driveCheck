@@ -42,9 +42,11 @@ export default function NavMenu() {
         <span className="750p:hidden">
           {language === "esp" ? "Recordatorios" : "Reminders"}
         </span>
-        <span className="absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 font-bold text-white">
-          {totalUrgentReminders}
-        </span>
+        {totalUrgentReminders ? (
+          <span className="absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 font-bold text-white">
+            {totalUrgentReminders}
+          </span>
+        ) : null}
       </NavLink>
       <NavLink
         to="/fuelRecords"
