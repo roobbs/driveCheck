@@ -5,11 +5,16 @@ import AddRecordModal from "../components/modals/AddRecordModal";
 import { TbFilterSearch } from "react-icons/tb";
 import MaintenanceTable from "../components/tables/MaintenanceTable";
 import { IoMdCloseCircle } from "react-icons/io";
+// import MaintenanceByYear from "../components/charts/MaintenanceByYear";
+import { useMaintenanceInfo } from "../hooks/useMaintenanceInfo";
+import formatNumber from "../../utils/formatNumber";
 
 export default function Maintenance() {
   const { user, language } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
+
+  const { totalCostThisYear } = useMaintenanceInfo();
 
   const maxCostValue = user?.car?.maintenanceHistory?.length
     ? Math.max(
@@ -75,6 +80,16 @@ export default function Maintenance() {
           size={50}
           className="text-yellow-300 transition hover:text-yellow-400"
         />
+      </div>
+      <div className="sticky left-0 flex items-center gap-1">
+        <span className="text-[13px] text-blue-200">
+          {language === "esp"
+            ? "Total gastado este año en mantenimiento"
+            : "Total spent this year on maintenance:"}
+        </span>{" "}
+        <span className="rounded bg-blue-200 px-1 text-lg font-semibold text-blue-900">
+          ${formatNumber(totalCostThisYear)}
+        </span>
       </div>
 
       {maintenanceArray.length ? (
