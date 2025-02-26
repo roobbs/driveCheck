@@ -4,6 +4,7 @@ import { AuthContext } from "../auth/AuthContext";
 import { useContext } from "react";
 import { useFuelStats } from "../../hooks/useFuelStats";
 import FuelAndDistanceChart from "../charts/FuelAndDistanceChart";
+import MaintenanceByYear from "../charts/MaintenanceByYear";
 
 export default function Charts() {
   const { language } = useContext(AuthContext);
@@ -20,7 +21,9 @@ export default function Charts() {
         <section className="flex flex-col gap-4 rounded-xl bg-gray-900 p-1">
           <div className="flex flex-col items-center gap-2">
             <h3 className="m-2 border-b border-yellow-200 p-2 text-center text-xl font-semibold text-yellow-300">
-              {language === "esp" ? "Costo por Mes" : "Cost by Month"}
+              {language === "esp"
+                ? "Costo de combustible por Mes"
+                : "Fuel cost by Month"}
             </h3>
             <CostByMonthChart />
           </div>
@@ -28,8 +31,8 @@ export default function Charts() {
           <div className="flex flex-col items-center gap-2">
             <h3 className="m-2 border-b border-yellow-200 p-2 text-center text-xl font-semibold text-yellow-300">
               {language === "esp"
-                ? "Combustible y Distancia por Mes"
-                : "Fuel and Distance by Month"}
+                ? "Combustible (L) y Distancia por Mes"
+                : "Fuel (L) and Distance by Month"}
             </h3>
             <FuelAndDistanceChart />
           </div>
@@ -39,6 +42,15 @@ export default function Charts() {
               {language === "esp" ? "Lectura del Odómetro" : "Odometer Reading"}
             </h3>
             <OdometerChart />
+          </div>
+
+          <div className="flex flex-col items-center gap-2">
+            <h3 className="m-2 border-b border-yellow-200 p-2 text-center text-xl font-semibold text-yellow-300">
+              {language === "esp"
+                ? "Gastos Anuales en el Vehículo"
+                : "Annual Vehicle Expenses"}
+            </h3>
+            <MaintenanceByYear />
           </div>
         </section>
       ) : (
